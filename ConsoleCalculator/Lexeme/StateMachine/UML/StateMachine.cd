@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="clc::lxr::IState">
+    <Position X="6" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAggAAAAAAAAAAAAAAKAAAAAAAAA=</HashCode>
+      <FileName>Lexeme\StateMachine\IState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="clc::lxr::StateFunction">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="clc::lxr::StateFunction::State">
+        <TypeIdentifier>
+          <NewMemberFileName>Lexeme\StateMachine\StateFunction.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAABAAAIIAQIAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Lexeme\StateMachine\StateFunction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="clc::lxr::StateMachine">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAICAAACAAAAAIIAAAAAAAAAAAAAEAAIAAAAAEIA=</HashCode>
+      <FileName>Lexeme\StateMachine\StateMachine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="clc::lxr::StateName">
+    <Position X="2.75" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="clc::lxr::StateName::State">
+        <TypeIdentifier>
+          <NewMemberFileName>Lexeme\StateMachine\StateName.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="clc::lxr::StateName::Signal">
+        <TypeIdentifier>
+          <NewMemberFileName>Lexeme\StateMachine\StateName.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAJAABIIAAAAAAAAAAAAAAAAAAACEEAAA=</HashCode>
+      <FileName>Lexeme\StateMachine\StateName.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="clc::lxr::StateNumber">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="clc::lxr::StateNumber::State">
+        <TypeIdentifier>
+          <NewMemberFileName>Lexeme\StateMachine\StateNumber.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="clc::lxr::StateNumber::Signal">
+        <TypeIdentifier>
+          <NewMemberFileName>Lexeme\StateMachine\StateNumber.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAiAAAAAAAAAJAABIAAAAAAAAAAAAAAAAAAAACAEAAA=</HashCode>
+      <FileName>Lexeme\StateMachine\StateNumber.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="clc::lxr::StateOperation">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="clc::lxr::StateOperation::State">
+        <TypeIdentifier>
+          <NewMemberFileName>Lexeme\StateMachine\StateOperation.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAABAAAIIAAIAAAAAAAAACAAAABAAAAAAA=</HashCode>
+      <FileName>Lexeme\StateMachine\StateOperation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="clc::lxr::Lexeme">
+    <Position X="10" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAAAAAABAAAA=</HashCode>
+      <FileName>Lexeme\Lexeme.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="clc::lxr::Type">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAgAAAAAAEIAAAYAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Lexeme\Type.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

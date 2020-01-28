@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Lexeme">
+      <UniqueIdentifier>{1e939517-b7c4-416c-8097-e016bb14b29f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lexeme\Исходные файлы">
+      <UniqueIdentifier>{bf5e6a74-b43d-4364-848b-9d4810a91db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lexeme\Файлы заголовков">
+      <UniqueIdentifier>{657c0358-303d-41b2-9df1-f85dbc791dd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lexeme\StateMachine">
+      <UniqueIdentifier>{a9ad49f0-9635-4855-a992-c5cd08035a53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lexeme\StateMachine\Исходные файлы">
+      <UniqueIdentifier>{1656f936-5122-4a65-b175-80f3a7e5896a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lexeme\StateMachine\Файлы заголовков">
+      <UniqueIdentifier>{efb114cd-c8d5-4586-9cc8-8e370952527f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lexeme\StateMachine\UML">
+      <UniqueIdentifier>{2f4a1518-791e-45c6-98fd-c8514b899dc3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexeme\Lexeme.cpp">
+      <Filter>Lexeme\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexeme\StateMachine\StateNumber.cpp">
+      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexeme\StateMachine\StateFunction.cpp">
+      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexeme\StateMachine\StateName.cpp">
+      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexeme\StateMachine\StateOperation.cpp">
+      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexeme\StateMachine\StateMachine.cpp">
+      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lexeme\Lexeme.h">
+      <Filter>Lexeme\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="AliasType.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexeme\StateMachine\IState.h">
+      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexeme\StateMachine\StateNumber.h">
+      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexeme\StateMachine\StateFunction.h">
+      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexeme\StateMachine\StateName.h">
+      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexeme\StateMachine\StateOperation.h">
+      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexeme\StateMachine\StateMachine.h">
+      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexeme\Type.h">
+      <Filter>Lexeme\Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lexeme\StateMachine\UML\StateMachine.cd">
+      <Filter>Lexeme\StateMachine\UML</Filter>
+    </None>
+  </ItemGroup>
+</Project>
