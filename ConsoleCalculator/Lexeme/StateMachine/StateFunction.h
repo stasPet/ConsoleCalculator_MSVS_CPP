@@ -28,7 +28,7 @@ namespace clc::lxr
 
         StateFunction();
 
-        virtual const StateType& Set(const CharType&) override;
+        virtual StateType Set(CharType) override;
         virtual void Reset() override;
     };
 }

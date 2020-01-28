@@ -55,7 +55,7 @@ const StateNumber::State StateNumber::jumpTable[][sizeTable]
     State::Fail,             State::Fail,          State::Fail,           State::Fail,           State::Fail,      // State::Fail
 };
 
-StateNumber::Signal StateNumber::ConvertToSignal(const CharType& message)
+StateNumber::Signal StateNumber::ConvertToSignal(CharType message)
 {   
     switch (message)
     {
@@ -75,7 +75,7 @@ StateNumber::Signal StateNumber::ConvertToSignal(const CharType& message)
     return Signal::NoMatch;
 }
 
-const StateType& StateNumber::Set(const CharType& message)
+StateType StateNumber::Set(CharType message)
 {
     ArraySize base   = ConvertStateToIndex(currentState);
     ArraySize offset = ConvertSignalToIndex(ConvertToSignal(message) );

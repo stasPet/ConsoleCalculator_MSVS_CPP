@@ -14,7 +14,7 @@ StateFunction::StateFunction()
     Reset();
 }
 
-const StateType& StateFunction::Set(const CharType& message) 
+StateType StateFunction::Set(CharType message) 
 {
     switch (currentState)
     {

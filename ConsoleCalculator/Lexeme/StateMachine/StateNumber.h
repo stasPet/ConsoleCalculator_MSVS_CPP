@@ -23,7 +23,7 @@ namespace clc::lxr
         static constexpr ArraySize sizeTable {5};
         static const State jumpTable[][sizeTable];
 
-        static Signal ConvertToSignal(const CharType&);
+        static Signal ConvertToSignal(CharType);
 
         static constexpr ArraySize ConvertStateToIndex(State);
         static constexpr ArraySize ConvertSignalToIndex(Signal);
@@ -32,7 +32,7 @@ namespace clc::lxr
 
         StateNumber();
 
-        virtual const StateType& Set(const CharType&) override;
+        virtual StateType Set(CharType) override;
         virtual void Reset() override;
     };
 

@@ -40,7 +40,7 @@ StateName::Signal StateName::ConvertToSignal(const CharType& message)
     return Signal::NoMath;
 }
 
-const StateType& StateName::Set(const CharType& message)
+StateType StateName::Set(CharType message)
 {
     ArraySize base   = ConvertStateToIndex(currentState);
     ArraySize offset = ConvertSignalToIndex(ConvertToSignal(message) );

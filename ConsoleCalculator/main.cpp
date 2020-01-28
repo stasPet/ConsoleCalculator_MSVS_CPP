@@ -8,10 +8,10 @@ using namespace clc::lxr;
 
 int main()
 {
-	std::wistringstream sstream {L"1.*5-(1+2.3e-1);/a-c+56;"};;
+	std::wistringstream sstream {L"1.30432432409583393E+312412 + 213.33423150349032405893281e-213214;"};
 	clc::lxr::Lexeme lexeme;
 	
-	while (std::wcin >> lexeme)
+	while (sstream >> lexeme)
 	{
 		std::wcout << lexeme << std::endl;
 	}

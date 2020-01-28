@@ -11,18 +11,18 @@ namespace clc::lxr
     public:
         virtual ~IState() {}
 
-        virtual const StateType& Set(const CharType&) = 0;
+        virtual StateType Set(CharType) = 0;
         virtual void Reset() = 0;
 
-        const StateType& GetStateType();
-        void SetStateType(const StateType&);
+        StateType GetStateType();
+        void SetStateType(StateType);
     };
 
-    inline const StateType& IState::GetStateType()
+    inline StateType IState::GetStateType()
     {
         return stateType;
     }
-    inline void IState::SetStateType(const StateType& type)
+    inline void IState::SetStateType(StateType type)
     {
         stateType = type;
     }
