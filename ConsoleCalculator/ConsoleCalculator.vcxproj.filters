@@ -57,6 +57,9 @@
     <ClCompile Include="Lexeme\StateMachine\StateMachine.cpp">
       <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Lexeme\Lexer.cpp">
+      <Filter>Lexeme\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lexeme\Lexeme.h">
@@ -84,6 +87,9 @@
       <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Lexeme\Type.h">
+      <Filter>Lexeme\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexeme\Lexer.h">
       <Filter>Lexeme\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

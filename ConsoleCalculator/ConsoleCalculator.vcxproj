@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Lexeme\Lexeme.cpp" />
+    <ClCompile Include="Lexeme\Lexer.cpp" />
     <ClCompile Include="Lexeme\StateMachine\StateFunction.cpp" />
     <ClCompile Include="Lexeme\StateMachine\StateMachine.cpp" />
     <ClCompile Include="Lexeme\StateMachine\StateName.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="AliasType.h" />
     <ClInclude Include="Lexeme\Lexeme.h" />
+    <ClInclude Include="Lexeme\Lexer.h" />
     <ClInclude Include="Lexeme\Type.h" />
     <ClInclude Include="Lexeme\StateMachine\IState.h" />
     <ClInclude Include="Lexeme\StateMachine\StateFunction.h" />

@@ -10,7 +10,7 @@ std::wistream& clc::lxr::operator>>(std::wistream& stream, Lexeme& lexeme)
     {
         if (!std::iswspace(bufferChar) && 
             bufferChar != L'\n' &&
-            bufferChar != L'\;')
+            bufferChar != L';')
         {
             stream.putback(bufferChar);
             break;
