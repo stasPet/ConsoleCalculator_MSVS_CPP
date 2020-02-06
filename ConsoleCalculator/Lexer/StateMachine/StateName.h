@@ -15,13 +15,13 @@ namespace clc::lxr
 
         State currentState;
 
-        static constexpr std::size_t size = 3;
+        static constexpr ArraySizeType size = 3;
         static const State jumpTable[][size];
 
         static Signal ConvertToSignal(const CharType&);
 
-        static constexpr ArraySize ConvertStateToIndex(State);
-        static constexpr ArraySize ConvertSignalToIndex(Signal);
+        static constexpr ArraySizeType ConvertStateToIndex(State);
+        static constexpr ArraySizeType ConvertSignalToIndex(Signal);
 
     public:
 
@@ -41,12 +41,12 @@ namespace clc::lxr
         SetStateType(StateType::Empty);
     }
 
-    constexpr ArraySize StateName::ConvertStateToIndex(State state)
+    constexpr ArraySizeType StateName::ConvertStateToIndex(State state)
     {
-        return static_cast<ArraySize>(state);
+        return static_cast<ArraySizeType>(state);
     }
-    constexpr ArraySize StateName::ConvertSignalToIndex(Signal state)
+    constexpr ArraySizeType StateName::ConvertSignalToIndex(Signal state)
     {
-        return static_cast<ArraySize>(state);
+        return static_cast<ArraySizeType>(state);
     }
 }

@@ -17,8 +17,8 @@ namespace clc::lxr
 
         State currentState;
 
-        static constexpr ArraySize size = 6;
-        ArraySize position;
+        static constexpr ArraySizeType size = 6;
+        ArraySizeType position;
 
         CharType temp;
         CharType opNames[size];

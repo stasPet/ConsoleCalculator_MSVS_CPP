@@ -95,7 +95,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -139,29 +139,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lexeme\Lexeme.cpp" />
-    <ClCompile Include="Lexeme\Lexer.cpp" />
-    <ClCompile Include="Lexeme\StateMachine\StateFunction.cpp" />
-    <ClCompile Include="Lexeme\StateMachine\StateMachine.cpp" />
-    <ClCompile Include="Lexeme\StateMachine\StateName.cpp" />
-    <ClCompile Include="Lexeme\StateMachine\StateNumber.cpp" />
-    <ClCompile Include="Lexeme\StateMachine\StateOperation.cpp" />
+    <ClCompile Include="Lexer\Lexeme.cpp" />
+    <ClCompile Include="Lexer\Lexer.cpp" />
+    <ClCompile Include="Lexer\StateMachine\StateFunction.cpp" />
+    <ClCompile Include="Lexer\StateMachine\StateMachine.cpp" />
+    <ClCompile Include="Lexer\StateMachine\StateName.cpp" />
+    <ClCompile Include="Lexer\StateMachine\StateNumber.cpp" />
+    <ClCompile Include="Lexer\StateMachine\StateOperation.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Parser\Parser.cpp" />
+    <ClCompile Include="TableOfSymbols.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AliasType.h" />
-    <ClInclude Include="Lexeme\Lexeme.h" />
-    <ClInclude Include="Lexeme\Lexer.h" />
-    <ClInclude Include="Lexeme\Type.h" />
-    <ClInclude Include="Lexeme\StateMachine\IState.h" />
-    <ClInclude Include="Lexeme\StateMachine\StateFunction.h" />
-    <ClInclude Include="Lexeme\StateMachine\StateMachine.h" />
-    <ClInclude Include="Lexeme\StateMachine\StateName.h" />
-    <ClInclude Include="Lexeme\StateMachine\StateNumber.h" />
-    <ClInclude Include="Lexeme\StateMachine\StateOperation.h" />
+    <ClInclude Include="Lexer\Lexeme.h" />
+    <ClInclude Include="Lexer\Lexer.h" />
+    <ClInclude Include="Lexer\StateMachine\IState.h" />
+    <ClInclude Include="Lexer\StateMachine\StateFunction.h" />
+    <ClInclude Include="Lexer\StateMachine\StateMachine.h" />
+    <ClInclude Include="Lexer\StateMachine\StateName.h" />
+    <ClInclude Include="Lexer\StateMachine\StateNumber.h" />
+    <ClInclude Include="Lexer\StateMachine\StateOperation.h" />
+    <ClInclude Include="Lexer\Type.h" />
+    <ClInclude Include="Parser\Parser.h" />
+    <ClInclude Include="Parser\TokenTree.h" />
+    <ClInclude Include="TableOfSymbols.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lexeme\StateMachine\UML\StateMachine.cd" />
+    <None Include="Lexer\StateMachine\UML\StateMachine.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,7 +11,7 @@ namespace clc::lxr
     struct Lexeme
     {
         Type type = Type::Empty;
-        ExpressionString value;
+        ExpressionStringType value;
 
         void Clear();
     };

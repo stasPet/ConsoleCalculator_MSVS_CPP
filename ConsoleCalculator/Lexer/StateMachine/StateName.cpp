@@ -42,8 +42,8 @@ StateName::Signal StateName::ConvertToSignal(const CharType& message)
 
 StateType StateName::Set(CharType message)
 {
-    ArraySize base   = ConvertStateToIndex(currentState);
-    ArraySize offset = ConvertSignalToIndex(ConvertToSignal(message) );
+    ArraySizeType base   = ConvertStateToIndex(currentState);
+    ArraySizeType offset = ConvertSignalToIndex(ConvertToSignal(message) );
 
     currentState = jumpTable[base][offset];
 

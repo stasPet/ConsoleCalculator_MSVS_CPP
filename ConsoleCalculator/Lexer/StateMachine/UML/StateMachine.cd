@@ -4,7 +4,7 @@
     <Position X="6" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABAAAAggAAAAAAAAAAAAAAKAAAAAAAAA=</HashCode>
-      <FileName>Lexeme\StateMachine\IState.h</FileName>
+      <FileName>Lexer\StateMachine\IState.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="clc::lxr::StateFunction">
@@ -21,14 +21,14 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAABAAAIIAQIAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
-      <FileName>Lexeme\StateMachine\StateFunction.h</FileName>
+      <FileName>Lexer\StateMachine\StateFunction.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="clc::lxr::StateMachine">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAICAAACAAAAAIIAAAAAAAAAAAAAEAAIAAAAAEIA=</HashCode>
-      <FileName>Lexeme\StateMachine\StateMachine.h</FileName>
+      <HashCode>AAAAAICAAAAAAAAAIIAAAAAAAAAAAAAEAAIAAAAAEIA=</HashCode>
+      <FileName>Lexer\StateMachine\StateMachine.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="clc::lxr::StateName">
@@ -50,7 +50,7 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAJAABIIAAAAAAAAAAAAAAAAAAACEEAAA=</HashCode>
-      <FileName>Lexeme\StateMachine\StateName.h</FileName>
+      <FileName>Lexer\StateMachine\StateName.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="clc::lxr::StateNumber">
@@ -72,7 +72,7 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAiAAAAAAAAAJAABIAAAAAAAAAAAAAAAAAAAACAEAAA=</HashCode>
-      <FileName>Lexeme\StateMachine\StateNumber.h</FileName>
+      <FileName>Lexer\StateMachine\StateNumber.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="clc::lxr::StateOperation">
@@ -89,21 +89,21 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAABAAAIIAAIAAAAAAAAACAAAABAAAAAAA=</HashCode>
-      <FileName>Lexeme\StateMachine\StateOperation.h</FileName>
+      <FileName>Lexer\StateMachine\StateOperation.h</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="clc::lxr::Lexeme">
-    <Position X="10" Y="0.75" Width="1.5" />
+    <Position X="8" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAAAAAABAAAA=</HashCode>
-      <FileName>Lexeme\Lexeme.h</FileName>
+      <FileName>Lexer\Lexeme.h</FileName>
     </TypeIdentifier>
   </Struct>
   <Enum Name="clc::lxr::Type">
-    <Position X="8.25" Y="0.5" Width="1.5" />
+    <Position X="10" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAgAAAAAAEIAAAYAAAAAAAAAAAEAAAAAAAA=</HashCode>
-      <FileName>Lexeme\Type.h</FileName>
+      <HashCode>AAAAAAAAAAgAAAAAAEIAAAYAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Lexer\Type.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

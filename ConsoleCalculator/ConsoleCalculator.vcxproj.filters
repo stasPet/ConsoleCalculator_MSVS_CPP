@@ -13,89 +13,113 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Lexeme">
+    <Filter Include="Parser">
+      <UniqueIdentifier>{bf1bbec9-1dfc-4ac1-bdcb-40998f2b5c28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lexer">
       <UniqueIdentifier>{1e939517-b7c4-416c-8097-e016bb14b29f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lexeme\Исходные файлы">
+    <Filter Include="Lexer\Исходные файлы">
       <UniqueIdentifier>{bf5e6a74-b43d-4364-848b-9d4810a91db7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lexeme\Файлы заголовков">
+    <Filter Include="Lexer\Файлы заголовков">
       <UniqueIdentifier>{657c0358-303d-41b2-9df1-f85dbc791dd1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lexeme\StateMachine">
+    <Filter Include="Lexer\StateMachine">
       <UniqueIdentifier>{a9ad49f0-9635-4855-a992-c5cd08035a53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lexeme\StateMachine\Исходные файлы">
+    <Filter Include="Lexer\StateMachine\Исходные файлы">
       <UniqueIdentifier>{1656f936-5122-4a65-b175-80f3a7e5896a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lexeme\StateMachine\Файлы заголовков">
+    <Filter Include="Lexer\StateMachine\Файлы заголовков">
       <UniqueIdentifier>{efb114cd-c8d5-4586-9cc8-8e370952527f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lexeme\StateMachine\UML">
+    <Filter Include="Lexer\StateMachine\UML">
       <UniqueIdentifier>{2f4a1518-791e-45c6-98fd-c8514b899dc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser\Исходные файлы">
+      <UniqueIdentifier>{e58437a0-4718-469b-8000-610d4e11855f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser\Файлы заголовков">
+      <UniqueIdentifier>{a36ca408-3ce7-4990-ae79-fb0ed2b08303}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexeme\Lexeme.cpp">
-      <Filter>Lexeme\Исходные файлы</Filter>
+    <ClCompile Include="Lexer\Lexeme.cpp">
+      <Filter>Lexer\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexeme\StateMachine\StateNumber.cpp">
-      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    <ClCompile Include="Lexer\Lexer.cpp">
+      <Filter>Lexer\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexeme\StateMachine\StateFunction.cpp">
-      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    <ClCompile Include="Lexer\StateMachine\StateFunction.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexeme\StateMachine\StateName.cpp">
-      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    <ClCompile Include="Lexer\StateMachine\StateMachine.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexeme\StateMachine\StateOperation.cpp">
-      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    <ClCompile Include="Lexer\StateMachine\StateName.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexeme\StateMachine\StateMachine.cpp">
-      <Filter>Lexeme\StateMachine\Исходные файлы</Filter>
+    <ClCompile Include="Lexer\StateMachine\StateNumber.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexeme\Lexer.cpp">
-      <Filter>Lexeme\Исходные файлы</Filter>
+    <ClCompile Include="Lexer\StateMachine\StateOperation.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser\Parser.cpp">
+      <Filter>Parser\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="TableOfSymbols.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lexeme\Lexeme.h">
-      <Filter>Lexeme\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="AliasType.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexeme\StateMachine\IState.h">
-      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\Lexeme.h">
+      <Filter>Lexer\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexeme\StateMachine\StateNumber.h">
-      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\Lexer.h">
+      <Filter>Lexer\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexeme\StateMachine\StateFunction.h">
-      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\Type.h">
+      <Filter>Lexer\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexeme\StateMachine\StateName.h">
-      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\StateMachine\IState.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexeme\StateMachine\StateOperation.h">
-      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\StateMachine\StateFunction.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexeme\StateMachine\StateMachine.h">
-      <Filter>Lexeme\StateMachine\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\StateMachine\StateMachine.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexeme\Type.h">
-      <Filter>Lexeme\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\StateMachine\StateName.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexeme\Lexer.h">
-      <Filter>Lexeme\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\StateMachine\StateNumber.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\StateMachine\StateOperation.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\Parser.h">
+      <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\TokenTree.h">
+      <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="TableOfSymbols.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lexeme\StateMachine\UML\StateMachine.cd">
-      <Filter>Lexeme\StateMachine\UML</Filter>
+    <None Include="Lexer\StateMachine\UML\StateMachine.cd">
+      <Filter>Lexer\StateMachine\UML</Filter>
     </None>
   </ItemGroup>
 </Project>

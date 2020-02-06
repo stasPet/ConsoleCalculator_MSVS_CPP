@@ -18,11 +18,11 @@ namespace clc::lxr
 
         State currentState;
 
-        static constexpr ArraySize size = 5;
-        ArraySize position;
+        static constexpr ArraySizeType size = 5;
+        ArraySizeType position;
 
-        std::vector<const ExpressionString*> fNamesRef{size};
-        ExpressionString fNames[size];
+        std::vector<const ExpressionStringType*> fNamesRef{size};
+        ExpressionStringType fNames[size];
 
     public:
 

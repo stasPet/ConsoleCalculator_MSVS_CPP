@@ -11,7 +11,7 @@ namespace clc::lxr
     {
     private:
 
-        static constexpr ArraySize size = 4;
+        static constexpr ArraySizeType size = 4;
         std::unique_ptr<IState> states[size];
 
         StateType currentState;

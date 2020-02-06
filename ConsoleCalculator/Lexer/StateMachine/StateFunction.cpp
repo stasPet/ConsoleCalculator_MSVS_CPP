@@ -22,7 +22,7 @@ StateType StateFunction::Set(CharType message)
 
         for (auto p = fNamesRef.begin(); p != fNamesRef.end(); )
         {
-            const ExpressionString& element = *(*p);
+            const ExpressionStringType& element = *(*p);
 
             if (element[position] != message)
                 p = fNamesRef.erase(p);
