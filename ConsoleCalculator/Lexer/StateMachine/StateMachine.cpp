@@ -12,17 +12,17 @@ using namespace clc;
 
 StateMachine::StateMachine()
 {
-    states[0].reset(new StateFunction{} );
-    states[1].reset(new StateName{} );
-    states[2].reset(new StateNumber{} );
-    states[3].reset(new StateOperation{} );
+    states.emplace_back(new StateFunction{} );
+    states.emplace_back(new StateName{} );
+    states.emplace_back(new StateNumber{} );
+    states.emplace_back(new StateOperation{} );
 
     currentState = StateType::Empty;
 }
 
 StateType StateMachine::SetChar(CharType message)
 {
-    for (auto&& r : states)
+    for (auto& r : states)
         r->Set(message);
 
     currentState = CheckState();
@@ -42,12 +42,12 @@ void StateMachine::ResetStates()
 StateType StateMachine::CheckState()
 {
  // If there is at least one undefined state returned TokenID::NON.
-    for (auto&& r : states)
+    for (const auto& r : states)
         if (r->GetStateType() == StateType::Empty)
             return StateType::Empty;
 
 // If there is at least one correct condition, this state is returned.
-    for (auto&& r : states)
+    for (const auto& r : states)
         if (r->GetStateType() != StateType::Empty &&
             r->GetStateType() != StateType::Bad)
                 return r->GetStateType();

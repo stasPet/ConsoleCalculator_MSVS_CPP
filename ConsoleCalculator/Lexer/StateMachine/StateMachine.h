@@ -1,7 +1,9 @@
 #pragma once
 
 #include "IState.h"
+
 #include <memory>
+#include <vector>
 
 // The StateMachine class in turn passes the message to each of its states.
 
@@ -10,9 +12,8 @@ namespace clc::lxr
     class StateMachine
     {
     private:
-
-        static constexpr ArraySizeType size = 4;
-        std::unique_ptr<IState> states[size];
+        using StatsType = std::vector<std::unique_ptr<IState> >;
+        StatsType states;
 
         StateType currentState;
         StateType CheckState();

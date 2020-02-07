@@ -14,11 +14,11 @@ namespace clc::lxr
         virtual StateType Set(CharType) = 0;
         virtual void Reset() = 0;
 
-        StateType GetStateType();
+        StateType GetStateType() const;
         void SetStateType(StateType);
     };
 
-    inline StateType IState::GetStateType()
+    inline StateType IState::GetStateType() const
     {
         return stateType;
     }
