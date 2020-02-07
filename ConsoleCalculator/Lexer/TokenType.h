@@ -2,7 +2,7 @@
 
 namespace clc::lxr
 {
-    enum class Type
+    enum class TokenType
     {
         Number, Name, Function, Operation, Bad, Empty
     };

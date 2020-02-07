@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lexer\Lexeme.cpp" />
     <ClCompile Include="Lexer\Lexer.cpp" />
     <ClCompile Include="Lexer\StateMachine\StateFunction.cpp" />
     <ClCompile Include="Lexer\StateMachine\StateMachine.cpp" />
@@ -152,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AliasType.h" />
-    <ClInclude Include="Lexer\Lexeme.h" />
     <ClInclude Include="Lexer\Lexer.h" />
     <ClInclude Include="Lexer\StateMachine\IState.h" />
     <ClInclude Include="Lexer\StateMachine\StateFunction.h" />
@@ -160,7 +158,8 @@
     <ClInclude Include="Lexer\StateMachine\StateName.h" />
     <ClInclude Include="Lexer\StateMachine\StateNumber.h" />
     <ClInclude Include="Lexer\StateMachine\StateOperation.h" />
-    <ClInclude Include="Lexer\Type.h" />
+    <ClInclude Include="Lexer\Token.h" />
+    <ClInclude Include="Lexer\TokenType.h" />
     <ClInclude Include="Parser\Parser.h" />
     <ClInclude Include="Parser\TokenTree.h" />
     <ClInclude Include="TableOfSymbols.h" />

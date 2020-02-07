@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <string>
 
-#include "Lexer/Type.h"
+#include "Lexer/TokenType.h"
 
 namespace clc
 {
@@ -11,6 +11,6 @@ namespace clc
     using CharType             = std::wstring::value_type;
     using ArraySizeType        = std::size_t;
     using AttributeType        = std::size_t;
-    using StateType            = lxr::Type;
+    using StateType            = lxr::TokenType;
     using NumberType           = long double;
 }

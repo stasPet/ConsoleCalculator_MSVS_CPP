@@ -48,9 +48,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexer\Lexeme.cpp">
-      <Filter>Lexer\Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Lexer\Lexer.cpp">
       <Filter>Lexer\Исходные файлы</Filter>
     </ClCompile>
@@ -80,13 +77,7 @@
     <ClInclude Include="AliasType.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexer\Lexeme.h">
-      <Filter>Lexer\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Lexer\Lexer.h">
-      <Filter>Lexer\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\Type.h">
       <Filter>Lexer\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Lexer\StateMachine\IState.h">
@@ -115,6 +106,12 @@
     </ClInclude>
     <ClInclude Include="TableOfSymbols.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\Token.h">
+      <Filter>Lexer\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\TokenType.h">
+      <Filter>Lexer\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

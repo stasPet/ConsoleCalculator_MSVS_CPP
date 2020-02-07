@@ -5,43 +5,43 @@
 
 using namespace clc::lxr;
 
-Lexeme Lexer::GetLexeme()
+Token Lexer::GetToken()
 {
-    Lexeme lexeme;
-    CharType bufferChar;
-
-    while (stream.get(bufferChar) )
+    while (stream.get(charBuffer) )
     {
-        if (!std::iswspace(bufferChar) && 
-            bufferChar != L'\n' &&
-            bufferChar != L';')
+        if (!std::iswspace(charBuffer) && 
+            charBuffer != L'\n' &&
+            charBuffer != L';')
         {
-            stream.putback(bufferChar);
+            stream.putback(charBuffer);
             break;
         }
     }
 
     stateMachine.ResetStates();
-    lexeme.Clear();
+    token.Clear();
+    stringBuffer.clear();
 
-    while (stream.get(bufferChar) )
+    while (stream.get(charBuffer) )
     {
-        lexeme.value.push_back(bufferChar);
-        lexeme.type = stateMachine.SetChar(bufferChar);
+        stringBuffer.push_back(charBuffer);
+        token.tokenType = stateMachine.SetChar(charBuffer);
 
-        if (lexeme.type != StateType::Empty)
+        if (token.tokenType != StateType::Empty)
         {
 
-            stream.putback(bufferChar);
-            lexeme.value.erase(lexeme.value.end() - 1);
+            stream.putback(charBuffer);
+            stringBuffer.erase(stringBuffer.end() - 1);
+
+            token.attributeType = tableOfSymbols.SetSymbol(stringBuffer);
 
             break;
         }
     }
 
-    return lexeme;
+    return token;
 }
-void Lexer::PutLexeme(Lexeme)
+void Lexer::PutToken(Token)
 {
     
 }
