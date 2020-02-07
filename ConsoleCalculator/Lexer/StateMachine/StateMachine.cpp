@@ -33,7 +33,7 @@ StateType StateMachine::SetChar(CharType message)
 }
 void StateMachine::ResetStates()
 {
-    for (auto&& r : states)
+    for (auto& r : states)
         r->Reset();
 
     currentState = StateType::Empty;

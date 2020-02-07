@@ -101,9 +101,6 @@
     <ClInclude Include="Parser\Parser.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\TokenTree.h">
-      <Filter>Parser\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="TableOfSymbols.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -112,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="Lexer\TokenType.h">
       <Filter>Lexer\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\AST.h">
+      <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

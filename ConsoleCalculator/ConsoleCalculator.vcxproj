@@ -161,7 +161,7 @@
     <ClInclude Include="Lexer\Token.h" />
     <ClInclude Include="Lexer\TokenType.h" />
     <ClInclude Include="Parser\Parser.h" />
-    <ClInclude Include="Parser\TokenTree.h" />
+    <ClInclude Include="Parser\AST.h" />
     <ClInclude Include="TableOfSymbols.h" />
   </ItemGroup>
   <ItemGroup>

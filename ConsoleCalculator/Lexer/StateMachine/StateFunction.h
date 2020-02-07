@@ -15,7 +15,7 @@ namespace clc::lxr
         {
             Check, SetFlag, Good, Fail
         };
-
+        
         State currentState;
 
         static constexpr ArraySizeType size = 5;
