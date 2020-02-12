@@ -1,12 +1,16 @@
 #pragma once
 
 #include "IState.h"
+#include <vector>
 
 namespace clc::lxr
 {
     class StateNumber: public IState
     {
     private:
+        template <typename T> using InternalStateType =
+            std::vector<std::vector<T> >;
+
         enum class State: unsigned char
         {
             DigitA, DigitDotExponent, DigitExponent, DigitOperation,
@@ -19,9 +23,7 @@ namespace clc::lxr
         };
 
         State currentState;
-
-        static constexpr ArraySizeType sizeTable {5};
-        static const State jumpTable[][sizeTable];
+        static const InternalStateType<State> jumpTable;
 
         static Signal ConvertToSignal(CharType);
 

@@ -1,11 +1,15 @@
 #pragma once
+
 #include "IState.h"
+#include <vector>
 
 namespace clc::lxr
 {
     class StateName: public IState
     {
     private:
+        template <typename T> using InternalStateType =
+            std::vector<std::vector<T> >;
 
         enum class State: unsigned char
         {
@@ -14,11 +18,9 @@ namespace clc::lxr
         enum class Signal: unsigned char {Alpha, Digit, NoMath};
 
         State currentState;
+        static const InternalStateType<State> jumpTable;
 
-        static constexpr ArraySizeType size = 3;
-        static const State jumpTable[][size];
-
-        static Signal ConvertToSignal(const CharType&);
+        static Signal ConvertToSignal(CharType);
 
         static constexpr ArraySizeType ConvertStateToIndex(State);
         static constexpr ArraySizeType ConvertSignalToIndex(Signal);

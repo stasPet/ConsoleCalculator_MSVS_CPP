@@ -3,14 +3,13 @@
 using namespace clc::lxr;
 using namespace clc;
 
+std::vector<ExpressionStringType>  StateFunction::fNames
+{
+    {L"sqrt("}, {L"sin("}, {L"cos("}, {L"ctg("}, {L"tg("}
+};
+
 StateFunction::StateFunction()
 {
-    fNames[0] = L"sqrt(";
-    fNames[1] = L"sin(";
-    fNames[2] = L"cos(";
-    fNames[3] = L"ctg(";
-    fNames[4] = L"tg(";
-
     Reset();
 }
 
@@ -62,9 +61,8 @@ void StateFunction::Reset()
     currentState = State::Check;
     SetStateType(StateType::Empty);
 
-    fNamesRef.resize(5);
-    for (std::size_t i = 0; i < size; ++i)
-        fNamesRef[i] = &fNames[i];
+    for (std::size_t i = 0; i < fNames.size(); ++i)
+        fNamesRef.emplace_back(&fNames[i] );
 
     position = 0;
 }

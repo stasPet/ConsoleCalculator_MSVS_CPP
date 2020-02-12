@@ -42,17 +42,17 @@ using namespace clc;
         1. Any other signal jump to State::Fail.
 */
 
-const StateNumber::State StateNumber::jumpTable[][sizeTable]
+const StateNumber::InternalStateType<StateNumber::State> StateNumber::jumpTable
 {
  // Signal::Digit            Signal::Dot,          Signal::Exponent,      Signal::Operation,     Signal::NoMatch,
-    State::DigitDotExponent, State::Fail,          State::Fail,           State::Fail,           State::Fail,      // State::DigitA
-    State::DigitDotExponent, State::DigitExponent, State::DigitOperation, State::Good,           State::Good,      // State::DigitDotExponent
-    State::DigitExponent,    State::Good,          State::DigitOperation, State::Good,           State::Good,      // State::DigitExponent
-    State::DigitC,           State::Fail,          State::Fail,           State::DigitB,         State::Fail,      // State::DigitOperation
-    State::DigitC,           State::Fail,          State::Fail,           State::Fail,           State::Fail,      // State::DigitB
-    State::DigitC,           State::Good,          State::Good,           State::Good,           State::Good,      // State::DigitC
-    State::Fail,             State::Fail,          State::Fail,           State::Fail,           State::Fail,      // State::Good
-    State::Fail,             State::Fail,          State::Fail,           State::Fail,           State::Fail,      // State::Fail
+    {State::DigitDotExponent, State::Fail,          State::Fail,           State::Fail,           State::Fail},      // State::DigitA
+    {State::DigitDotExponent, State::DigitExponent, State::DigitOperation, State::Good,           State::Good},      // State::DigitDotExponent
+    {State::DigitExponent,    State::Good,          State::DigitOperation, State::Good,           State::Good},      // State::DigitExponent
+    {State::DigitC,           State::Fail,          State::Fail,           State::DigitB,         State::Fail},      // State::DigitOperation
+    {State::DigitC,           State::Fail,          State::Fail,           State::Fail,           State::Fail},      // State::DigitB
+    {State::DigitC,           State::Good,          State::Good,           State::Good,           State::Good},      // State::DigitC
+    {State::Fail,             State::Fail,          State::Fail,           State::Fail,           State::Fail},      // State::Good
+    {State::Fail,             State::Fail,          State::Fail,           State::Fail,           State::Fail},      // State::Fail
 };
 
 StateNumber::Signal StateNumber::ConvertToSignal(CharType message)

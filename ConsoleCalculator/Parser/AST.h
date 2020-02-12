@@ -7,10 +7,13 @@ namespace clc::psr
     class AST
     {
     private:
-        lxr::Token value;
+        struct Node
+        {
+            lxr::Token value;
 
-        AST * left;
-        AST * right;
+            Node * left = nullptr;
+            Node * right = nullptr;
+        };
 
     public:
 

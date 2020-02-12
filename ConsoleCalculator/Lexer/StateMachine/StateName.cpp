@@ -23,16 +23,16 @@ using namespace clc;
         1. Any other signal jump to S4.
 */
 
-const StateName::State StateName::jumpTable[][size]
+const StateName::InternalStateType<StateName::State> StateName::jumpTable
 {
  // Signal::Alpha      Signal::Digit      Signal::NoMath
-    State::DigitAlpha, State::Fail,       State::Fail,   // State::Alpha
-    State::DigitAlpha, State::DigitAlpha, State::Good,   // State::DigitAlpha
-    State::Fail,       State::Fail,       State::Fail,   // State::Good
-    State::Fail,       State::Fail,       State::Fail,   // State::Fail
+    {State::DigitAlpha, State::Fail,       State::Fail},   // State::Alpha
+    {State::DigitAlpha, State::DigitAlpha, State::Good},   // State::DigitAlpha
+    {State::Fail,       State::Fail,       State::Fail},   // State::Good
+    {State::Fail,       State::Fail,       State::Fail},   // State::Fail
 };
 
-StateName::Signal StateName::ConvertToSignal(const CharType& message)
+StateName::Signal StateName::ConvertToSignal(CharType message)
 {
     if (std::iswalpha(message) || message == '_') return Signal::Alpha;
     if (std::iswdigit(message) )                  return Signal::Digit;

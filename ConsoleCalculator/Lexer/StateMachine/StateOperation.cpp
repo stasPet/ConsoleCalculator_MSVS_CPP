@@ -3,15 +3,13 @@
 using namespace clc::lxr;
 using namespace clc;
 
+std::vector<CharType> StateOperation::opNames
+{
+    L'+', L'-', L'*', L'/', L'(', L')'
+};
+
 StateOperation::StateOperation()
 {
-    opNames[0] = L'+';
-    opNames[1] = L'-';
-    opNames[2] = L'*';
-    opNames[3] = L'/';
-    opNames[4] = L'(';
-    opNames[5] = L')';
-
     Reset();
 }
 
