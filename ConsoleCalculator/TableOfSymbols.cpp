@@ -10,21 +10,12 @@ TableOfSymbols::TableOfSymbols(std::initializer_list<ExpressionStringType> l)
 
 AttributeType TableOfSymbols::SetSymbol(ExpressionStringType e)
 {
-    /*if (tableOfSymbolsIn.find(e) == tableOfSymbolsIn.end() )
-    {
-        tableOfSymbolsOut[valueAttribute] = e;
-        tableOfSymbolsIn[std::move(e) ] = valueAttribute++;
-    }*/
+    const auto p = tableOfSymbolsIn.try_emplace(e, valueAttribute);
 
-    AttributeType& a = tableOfSymbolsIn[e];
+    if (p.second)
+        tableOfSymbolsOut.try_emplace(valueAttribute++, std::move(e) );
 
-    if (!a)
-    {
-        tableOfSymbolsOut[valueAttribute] = std::move(e);
-        a = valueAttribute++;
-    }
-
-    return a;
+    return valueAttribute - 1;
 }
 ExpressionStringType TableOfSymbols::GetSymbol(AttributeType a) const
 {
