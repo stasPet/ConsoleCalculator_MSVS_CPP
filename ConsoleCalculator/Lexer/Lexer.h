@@ -2,9 +2,10 @@
 
 #include <iosfwd>
 
-#include "Token.h"
 #include "StateMachine/StateMachine.h"
-#include "../TableOfSymbols.h"
+
+#include "Token.h"
+#include "TableOfSymbols.h"
 
 namespace clc::lxr
 {
@@ -16,7 +17,8 @@ namespace clc::lxr
 
         CharType charBuffer;
         ExpressionStringType stringBuffer;
-        Token token;
+
+        Token currentToken;
 
         StateMachine stateMachine;
 
@@ -26,18 +28,11 @@ namespace clc::lxr
 
         Token GetToken();
         void PutToken(Token);
-
-        void Reset(std::wistream &, TableOfSymbols &);
     };
 
     inline Lexer::Lexer(std::wistream & s, TableOfSymbols & t) :
             stream{s}, tableOfSymbols{t}
     {
         // ...
-    }
-
-    inline void Lexer::Reset(std::wistream &, TableOfSymbols &)
-    {
-        // TODO
     }
 }

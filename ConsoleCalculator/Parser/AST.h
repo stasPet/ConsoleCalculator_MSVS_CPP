@@ -1,8 +1,11 @@
 #pragma once
 
-#include "../Lexer/Token.h"
+#include "AliasType.h"
+#include "Lexer/Token.h"
 
-namespace clc::psr
+#include <list>
+
+namespace clc::prs
 {
     class AST
     {
@@ -15,7 +18,14 @@ namespace clc::psr
             Node * right = nullptr;
         };
 
-    public:
+        std::list<Node*> buffer;
 
+    public:
+        AST(lxr::Token);
+
+        void InsertToken(lxr::Token);
+        lxr::Token GetToken();
     };
+
+    inline AST::AST(lxr::Token token) : buffer{new Node{token} } {}
 }

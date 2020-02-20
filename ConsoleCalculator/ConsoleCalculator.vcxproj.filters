@@ -43,6 +43,9 @@
     <Filter Include="Parser\Файлы заголовков">
       <UniqueIdentifier>{a36ca408-3ce7-4990-ae79-fb0ed2b08303}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UML">
+      <UniqueIdentifier>{84c7b5ef-21ca-49f8-bf8d-d6561b6849d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,19 +54,7 @@
     <ClCompile Include="Lexer\Lexer.cpp">
       <Filter>Lexer\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\StateFunction.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Lexer\StateMachine\StateMachine.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\StateName.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\StateNumber.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\StateOperation.cpp">
       <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Parser\Parser.cpp">
@@ -71,6 +62,18 @@
     </ClCompile>
     <ClCompile Include="TableOfSymbols.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser\AST.cpp">
+      <Filter>Parser\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexer\StateMachine\StateOperation.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexer\StateMachine\JumpTableNumber.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexer\StateMachine\JumpTableName.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,19 +86,7 @@
     <ClInclude Include="Lexer\StateMachine\IState.h">
       <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateFunction.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Lexer\StateMachine\StateMachine.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateName.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateNumber.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateOperation.h">
       <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Parser\Parser.h">
@@ -104,19 +95,34 @@
     <ClInclude Include="TableOfSymbols.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Parser\AST.h">
+      <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\StateMachine\StateOperation.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
     <ClInclude Include="Lexer\Token.h">
       <Filter>Lexer\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexer\TokenType.h">
-      <Filter>Lexer\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\StateMachine\StateOperand.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\AST.h">
-      <Filter>Parser\Файлы заголовков</Filter>
+    <ClInclude Include="Lexer\StateMachine\JumpTableNumber.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\StateMachine\JumpTableName.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Lexer\StateMachine\UML\StateMachine.cd">
       <Filter>Lexer\StateMachine\UML</Filter>
+    </None>
+    <None Include="UML.vsdx">
+      <Filter>UML</Filter>
     </None>
   </ItemGroup>
 </Project>

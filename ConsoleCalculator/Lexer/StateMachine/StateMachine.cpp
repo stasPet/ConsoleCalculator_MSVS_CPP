@@ -1,9 +1,10 @@
 #include "StateMachine.h"
 
-#include "StateFunction.h"
-#include "StateName.h"
-#include "StateNumber.h"
 #include "StateOperation.h"
+#include "StateOperand.h"
+
+#include "JumpTableNumber.h"
+#include "JumpTableName.h"
 
 #include <cwctype>
 
@@ -12,49 +13,71 @@ using namespace clc;
 
 StateMachine::StateMachine()
 {
-    states.emplace_back(new StateFunction{} );
-    states.emplace_back(new StateName{} );
-    states.emplace_back(new StateNumber{} );
-    states.emplace_back(new StateOperation{} );
+    states.emplace_back
+    (
+        new StateOperation
+        {
+            TokenType::Operation,
+            {
+                L"sqrt", L"sin", L"cos", L"ctg", L"tg",
+                L"*",    L"/",   L"+",   L"-",
+                L"(",    L")",   L";"
+            }
+        }
+    );
+    states.emplace_back
+    (
+        new StateOperand<JumpTableNumber>
+        {
+            TokenType::Operand
+        }
+    );
+    states.emplace_back
+    (
+        new StateOperand<JumpTableName>
+        {
+            TokenType::Operand
+        }
+    );
 
-    currentState = StateType::Empty;
+    currentTokenType = TokenType::Empty;
 }
 
-StateType StateMachine::SetChar(CharType message)
+TokenType StateMachine::SetChar(CharType message)
 {
     for (auto& r : states)
         r->Set(message);
 
-    currentState = CheckState();
-    if (currentState == StateType::Bad)
-        currentState = Skip(message);
+    currentTokenType = CheckState();
+    if (currentTokenType == TokenType::Bad)
+        currentTokenType = Skip(message);
 
-    return currentState;
+    return currentTokenType;
 }
 void StateMachine::ResetStates()
 {
     for (auto& r : states)
         r->Reset();
 
-    currentState = StateType::Empty;
+    currentTokenType = TokenType::Empty;
 }
 
-StateType StateMachine::CheckState()
+TokenType StateMachine::CheckState()
 {
  // If there is at least one undefined state returned TokenID::NON.
     for (const auto& r : states)
-        if (r->GetStateType() == StateType::Empty)
-            return StateType::Empty;
+        if (r->GetTokenType() == TokenType::Empty )
+            return TokenType::Empty;
 
 // If there is at least one correct condition, this state is returned.
     for (const auto& r : states)
-        if (r->GetStateType() != StateType::Empty &&
-            r->GetStateType() != StateType::Bad)
-                return r->GetStateType();
+        if (r->GetTokenType() != TokenType::Empty &&
+            r->GetTokenType() != TokenType::Bad)
+                return r->GetTokenType();
 
-    return StateType::Bad;
+    return TokenType::Bad;
 }
-StateType StateMachine::Skip(CharType message)
+TokenType StateMachine::Skip(CharType message)
 {
     switch (message)
     {
@@ -65,12 +88,12 @@ StateType StateMachine::Skip(CharType message)
     case L';':
     case L'(':
     case L')':
-        return StateType::Bad;
+        return TokenType::Bad;
 
     default:
         if (std::iswspace(message) )
-            return StateType::Bad;
+            return TokenType::Bad;
     }
 
-    return StateType::Empty;
+    return TokenType::Empty;
 }

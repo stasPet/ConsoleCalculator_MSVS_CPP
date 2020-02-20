@@ -1,29 +1,15 @@
 #pragma once
-#include "../../AliasType.h"
+#include "Lexer/Token.h"
 
 namespace clc::lxr
 {
-    class IState
+    struct IState
     {
-    private:
-        StateType stateType = StateType::Empty;
-
-    public:
         virtual ~IState() {}
 
-        virtual StateType Set(CharType) = 0;
+        virtual TokenType Set(CharType) = 0;
         virtual void Reset() = 0;
 
-        StateType GetStateType() const;
-        void SetStateType(StateType);
+        virtual TokenType GetTokenType() = 0;
     };
-
-    inline StateType IState::GetStateType() const
-    {
-        return stateType;
-    }
-    inline void IState::SetStateType(StateType type)
-    {
-        stateType = type;
-    }
 }

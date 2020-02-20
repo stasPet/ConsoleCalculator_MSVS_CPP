@@ -19,27 +19,27 @@ Token Lexer::GetToken()
     }
 
     stateMachine.ResetStates();
-    token.Clear();
     stringBuffer.clear();
+    currentToken.Clear();
 
     while (stream.get(charBuffer) )
     {
         stringBuffer.push_back(charBuffer);
-        token.tokenType = stateMachine.SetChar(charBuffer);
+        currentToken.tokenType = stateMachine.SetChar(charBuffer);
 
-        if (token.tokenType != StateType::Empty)
+        if (currentToken.tokenType != TokenType::Empty)
         {
 
             stream.putback(charBuffer);
             stringBuffer.erase(stringBuffer.end() - 1);
 
-            token.attributeType = tableOfSymbols.SetSymbol(stringBuffer);
+            currentToken.attribue = tableOfSymbols.SetSymbol(stringBuffer);
 
             break;
         }
     }
 
-    return token;
+    return currentToken;
 }
 void Lexer::PutToken(Token)
 {

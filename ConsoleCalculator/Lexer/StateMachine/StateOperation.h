@@ -1,11 +1,13 @@
 #pragma once
 
 #include "IState.h"
+
 #include <vector>
+#include <string>
 
 namespace clc::lxr
 {
-    class StateOperation: public IState
+    class StateOperation : public IState
     {
     private:
         enum class State: unsigned char
@@ -14,23 +16,21 @@ namespace clc::lxr
         };
 
         State currentState;
-        ArraySizeType position;
+        std::vector<ExpressionStringType>::size_type position;
 
-        CharType temp;
-        static std::vector<CharType> opNames;
+        TokenType tokenType;
+        TokenType currenType;
+
+        std::vector<ExpressionStringType> fNames;
+        std::vector<ExpressionStringType*> fNamesRef;
 
     public:
+        StateOperation(TokenType,
+            std::initializer_list<ExpressionStringType> );
 
-        StateOperation();
+        TokenType Set(CharType) override;
+        void Reset() override;
 
-        virtual StateType Set(CharType) override;
-        virtual void Reset() override;
+        TokenType GetTokenType() override;
     };
-
-    inline void StateOperation::Reset()
-    {
-        currentState = State::Check;
-        SetStateType(StateType::Empty);
-        temp = 0;
-    }
 }

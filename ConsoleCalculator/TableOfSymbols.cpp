@@ -13,9 +13,12 @@ AttributeType TableOfSymbols::SetSymbol(ExpressionStringType e)
     const auto p = tableOfSymbolsIn.try_emplace(e, valueAttribute);
 
     if (p.second)
-        tableOfSymbolsOut.try_emplace(valueAttribute++, std::move(e) );
+    {
+        tableOfSymbolsOut.try_emplace(valueAttribute, std::move(e) );
+        return valueAttribute++;
+    }
 
-    return valueAttribute - 1;
+    return p.first->second;
 }
 ExpressionStringType TableOfSymbols::GetSymbol(AttributeType a) const
 {

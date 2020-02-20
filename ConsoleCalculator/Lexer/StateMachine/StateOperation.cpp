@@ -3,50 +3,76 @@
 using namespace clc::lxr;
 using namespace clc;
 
-std::vector<CharType> StateOperation::opNames
+StateOperation::StateOperation(TokenType t,
+    std::initializer_list<ExpressionStringType> l)
 {
-    L'+', L'-', L'*', L'/', L'(', L')'
-};
+    if (l.size() == 0)
+        throw L"StateOperation::StateOperation(TokenType, \
+            std::initializer_list<ExpressionStringType> )";
 
-StateOperation::StateOperation()
-{
+    for (auto& r : l)
+        fNames.emplace_back(std::move(r) );
+
+    tokenType = t;
     Reset();
 }
 
-StateType StateOperation::Set(CharType message)
+TokenType StateOperation::Set(CharType message) 
 {
     switch (currentState)
     {
     case State::Check:
-        for (auto&& w : opNames)
+
+        for (auto p = fNamesRef.begin(); p != fNamesRef.end(); )
         {
-            if(w == message)
-            {
-                temp = message;
-                break;
-            }
+            const ExpressionStringType& element = *(*p);
+
+            if (element[position] != message)
+                p = fNamesRef.erase(p);
+            else
+                ++p;
         }
 
-        if (temp)
-            currentState = State::SetFlag;
-        else
+        if (fNamesRef.size() == 1)
+        {
+            if (position + 1 == (*(fNamesRef.front() ) ).size() )
+                currentState = State::SetFlag;
+        }
+        else if (fNamesRef.empty() )
         {
             currentState = State::Fail;
-            SetStateType(StateType::Bad);
+            currenType = TokenType::Bad;
         }
-
+        ++position;
         break;
 
     case State::SetFlag:
         currentState = State::Good;
-        SetStateType(StateType::Operation);
+        currenType = tokenType;
         break;
 
     case State::Good:
         currentState = State::Fail;
-        SetStateType(StateType::Bad);
+        currenType = TokenType::Bad;
         break;
     }
 
-    return GetStateType();
+    return currenType;
+}
+void StateOperation::Reset()
+{
+    currentState = State::Check;
+    currenType = TokenType::Empty;
+
+    fNamesRef.resize(fNames.size() );
+
+    for (std::size_t i = 0; i < fNames.size(); ++i)
+        fNamesRef[i] = &fNames[i];
+
+    position = 0;
+}
+
+TokenType StateOperation::GetTokenType()
+{
+    return currenType;
 }

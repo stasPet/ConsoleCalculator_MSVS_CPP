@@ -12,19 +12,18 @@ namespace clc::lxr
     class StateMachine
     {
     private:
-        using StatsType = std::vector<std::unique_ptr<IState> >;
-        StatsType states;
+        std::vector<std::unique_ptr<IState> > states;
 
-        StateType currentState;
-        StateType CheckState();
+        TokenType currentTokenType;
+        TokenType CheckState();
 
 // The method skips all characters until the delimiter is encountered.
-        StateType Skip(CharType);
+        TokenType Skip(CharType);
 
     public:
         StateMachine();
 
-        StateType SetChar(CharType);
+        TokenType SetChar(CharType);
         void ResetStates();
     };
 }

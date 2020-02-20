@@ -83,10 +83,13 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\Stanislav\source\repos\ConsoleCalculator\ConsoleCalculator</AdditionalIncludeDirectories>
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -100,6 +103,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\Stanislav\source\repos\ConsoleCalculator\ConsoleCalculator;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,32 +144,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Lexer\Lexer.cpp" />
-    <ClCompile Include="Lexer\StateMachine\StateFunction.cpp" />
-    <ClCompile Include="Lexer\StateMachine\StateMachine.cpp" />
-    <ClCompile Include="Lexer\StateMachine\StateName.cpp" />
-    <ClCompile Include="Lexer\StateMachine\StateNumber.cpp" />
+    <ClCompile Include="Lexer\StateMachine\JumpTableName.cpp" />
+    <ClCompile Include="Lexer\StateMachine\JumpTableNumber.cpp" />
     <ClCompile Include="Lexer\StateMachine\StateOperation.cpp" />
+    <ClCompile Include="Lexer\StateMachine\StateMachine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Parser\AST.cpp" />
     <ClCompile Include="Parser\Parser.cpp" />
     <ClCompile Include="TableOfSymbols.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AliasType.h" />
+    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Lexer\StateMachine\JumpTableName.h" />
+    <ClInclude Include="Lexer\StateMachine\JumpTableNumber.h" />
+    <ClInclude Include="Lexer\Token.h" />
     <ClInclude Include="Lexer\Lexer.h" />
     <ClInclude Include="Lexer\StateMachine\IState.h" />
-    <ClInclude Include="Lexer\StateMachine\StateFunction.h" />
-    <ClInclude Include="Lexer\StateMachine\StateMachine.h" />
-    <ClInclude Include="Lexer\StateMachine\StateName.h" />
-    <ClInclude Include="Lexer\StateMachine\StateNumber.h" />
     <ClInclude Include="Lexer\StateMachine\StateOperation.h" />
-    <ClInclude Include="Lexer\Token.h" />
-    <ClInclude Include="Lexer\TokenType.h" />
+    <ClInclude Include="Lexer\StateMachine\StateMachine.h" />
+    <ClInclude Include="Lexer\StateMachine\StateOperand.h" />
     <ClInclude Include="Parser\Parser.h" />
     <ClInclude Include="Parser\AST.h" />
     <ClInclude Include="TableOfSymbols.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lexer\StateMachine\UML\StateMachine.cd" />
+    <None Include="UML.vsdx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

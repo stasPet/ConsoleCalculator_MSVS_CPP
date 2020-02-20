@@ -1,17 +1,21 @@
 #pragma once
 
-#include "../Lexer/Lexer.h"
+#include "Lexer/Lexer.h"
+#include "AST.h"
 
-namespace clc::psr
+namespace clc::prs
 {
     class Parser
     {
     private:
         lxr::Lexer lexer;
+        AST ast{lxr::Token{} };
 
     public:
-        Parser(std::wistream & s): lexer{s} {}
-
-
+        Parser(std::wistream &, TableOfSymbols &);
+        AST GetAST();
     };
+
+    inline Parser::Parser(std::wistream & s, TableOfSymbols & t) :
+        lexer{s, t} {}
 }
