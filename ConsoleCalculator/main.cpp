@@ -6,7 +6,6 @@
 
 using namespace clc;
 
-#include "Lexer/Token.h"
 
 int main()
 {

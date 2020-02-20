@@ -19,9 +19,18 @@ StateMachine::StateMachine()
         {
             TokenType::Operation,
             {
-                L"sqrt", L"sin", L"cos", L"ctg", L"tg",
                 L"*",    L"/",   L"+",   L"-",
                 L"(",    L")",   L";"
+            }
+        }
+    );
+    states.emplace_back
+    (
+        new StateOperation
+        {
+            TokenType::Function,
+            {
+                L"sqrt", L"sin", L"cos", L"ctg", L"tg"
             }
         }
     );
@@ -71,9 +80,13 @@ TokenType StateMachine::CheckState()
 
 // If there is at least one correct condition, this state is returned.
     for (const auto& r : states)
+        if (r->GetTokenType() != TokenType::Bad)
+            return r->GetTokenType();
+        /*
         if (r->GetTokenType() != TokenType::Empty &&
             r->GetTokenType() != TokenType::Bad)
                 return r->GetTokenType();
+        */
 
     return TokenType::Bad;
 }
