@@ -43,8 +43,8 @@
     <Filter Include="Parser\Файлы заголовков">
       <UniqueIdentifier>{a36ca408-3ce7-4990-ae79-fb0ed2b08303}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UML">
-      <UniqueIdentifier>{84c7b5ef-21ca-49f8-bf8d-d6561b6849d4}</UniqueIdentifier>
+    <Filter Include="Documents">
+      <UniqueIdentifier>{87dbc601-6157-46f9-98e6-2686de3eee4b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -83,12 +83,6 @@
     <ClInclude Include="Lexer\Lexer.h">
       <Filter>Lexer\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\IState.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateMachine.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Parser\Parser.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
@@ -101,28 +95,36 @@
     <ClInclude Include="Calculator.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateOperation.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Lexer\Token.h">
       <Filter>Lexer\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\StateMachine\StateMachine.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Lexer\StateMachine\StateOperand.h">
       <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\JumpTableNumber.h">
+    <ClInclude Include="Lexer\StateMachine\StateOperation.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\StateMachine\IState.h">
       <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Lexer\StateMachine\JumpTableName.h">
       <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Lexer\StateMachine\JumpTableNumber.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lexer\StateMachine\UML\StateMachine.cd">
-      <Filter>Lexer\StateMachine\UML</Filter>
-    </None>
-    <None Include="UML.vsdx">
-      <Filter>UML</Filter>
+    <Text Include="Documents\ClassResponsibilities.txt">
+      <Filter>Documents</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documents\UML.vsdx">
+      <Filter>Documents</Filter>
     </None>
   </ItemGroup>
 </Project>

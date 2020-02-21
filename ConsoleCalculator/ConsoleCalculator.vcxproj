@@ -156,21 +156,23 @@
   <ItemGroup>
     <ClInclude Include="AliasType.h" />
     <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Lexer\StateMachine\IState.h" />
     <ClInclude Include="Lexer\StateMachine\JumpTableName.h" />
     <ClInclude Include="Lexer\StateMachine\JumpTableNumber.h" />
-    <ClInclude Include="Lexer\Token.h" />
-    <ClInclude Include="Lexer\Lexer.h" />
-    <ClInclude Include="Lexer\StateMachine\IState.h" />
-    <ClInclude Include="Lexer\StateMachine\StateOperation.h" />
     <ClInclude Include="Lexer\StateMachine\StateMachine.h" />
     <ClInclude Include="Lexer\StateMachine\StateOperand.h" />
+    <ClInclude Include="Lexer\StateMachine\StateOperation.h" />
+    <ClInclude Include="Lexer\Token.h" />
+    <ClInclude Include="Lexer\Lexer.h" />
     <ClInclude Include="Parser\Parser.h" />
     <ClInclude Include="Parser\AST.h" />
     <ClInclude Include="TableOfSymbols.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lexer\StateMachine\UML\StateMachine.cd" />
-    <None Include="UML.vsdx" />
+    <Text Include="Documents\ClassResponsibilities.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documents\UML.vsdx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
