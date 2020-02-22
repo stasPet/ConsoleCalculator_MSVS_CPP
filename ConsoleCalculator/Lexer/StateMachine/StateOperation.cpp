@@ -42,7 +42,7 @@ LexemeType StateOperation::Set(Char message)
                 ++p;
         }
 
-        if (fNamesRef.size() == 1) // Если в векторе осталась одна строка
+        if (fNamesRef.size() == 1) // f there is one line left in the vector
         {
             if (position + 1 == (*(fNamesRef.front() ) ).size() ) // That we check the position, if it is equal to the size of the row remaining in the vector, then the row coincided
                 currentState = State::SetFlag; // We set it to SetFlag state, this is necessary to skip one step,
