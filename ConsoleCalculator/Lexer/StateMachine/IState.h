@@ -1,5 +1,5 @@
 #pragma once
-#include "Lexer/Token.h"
+#include "Lexer/Lexeme.h"
 
 namespace clc::lxr
 {
@@ -7,9 +7,9 @@ namespace clc::lxr
     {
         virtual ~IState() {}
 
-        virtual TokenType Set(CharType) = 0;
+        virtual LexemeType Set(Char) = 0;
         virtual void Reset() = 0;
 
-        virtual TokenType GetTokenType() = 0;
+        virtual LexemeType GetLexemeType() = 0;
     };
 }

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "AliasType.h"
 #include <vector>
+#include "Lexer/Lexeme.h"
 
 namespace clc::lxr
 {
@@ -21,6 +21,6 @@ namespace clc::lxr
         };
 
         static const JumpTable<State> jumpTable;
-        static Signal ConvertToSignal(CharType);
+        static Signal ConvertToSignal(Char);
     };
 }

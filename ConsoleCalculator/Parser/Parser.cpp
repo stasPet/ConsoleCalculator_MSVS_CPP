@@ -1,9 +1,8 @@
 #include "Parser.h"
 #include <vector>
-#include "Lexer/Token.h"
 
 using namespace clc::prs;
-using namespace clc::lxr;
+
 
 AST Parser::GetAST()
 {
@@ -14,7 +13,7 @@ AST Parser::GetAST()
 
     while (true)
     {
-        buffer = lexer.GetToken();
+        //buffer = lexer.GetToken();
         v.push_back(buffer);
 
         if (buffer == end)

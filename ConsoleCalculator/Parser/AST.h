@@ -1,7 +1,6 @@
 #pragma once
 
-#include "AliasType.h"
-#include "Lexer/Token.h"
+#include "Parser/Token.h"
 
 #include <list>
 
@@ -12,7 +11,7 @@ namespace clc::prs
     private:
         struct Node
         {
-            lxr::Token value;
+            Token value;
 
             Node * left = nullptr;
             Node * right = nullptr;
@@ -21,11 +20,12 @@ namespace clc::prs
         std::list<Node*> buffer;
 
     public:
-        AST(lxr::Token);
+        AST() = default;
+        AST(Token);
 
-        void InsertToken(lxr::Token);
-        lxr::Token GetToken();
+        void InsertToken(Token);
+        Token GetToken();
     };
 
-    inline AST::AST(lxr::Token token) : buffer{new Node{token} } {}
+    inline AST::AST(Token token) : buffer{new Node{token} } {}
 }

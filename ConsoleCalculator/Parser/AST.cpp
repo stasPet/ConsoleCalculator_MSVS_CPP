@@ -1,9 +1,8 @@
 #include "AST.h"
 
 using namespace clc::prs;
-using namespace clc;
 
-void AST::InsertToken(lxr::Token token)
+void AST::InsertToken(Token token)
 {
     Node* temp = buffer.front();
     buffer.pop_front();

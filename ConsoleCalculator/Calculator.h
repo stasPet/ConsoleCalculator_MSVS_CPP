@@ -1,25 +1,31 @@
 #pragma once
 
-#include "TableOfSymbols.h"
+#include "Lexer/Lexer.h"
 #include "Parser/Parser.h"
+
+#include "TableOfSymbols.h"
 
 namespace clc
 {
     class Calculator
     {
     private:
-        TableOfSymbols tableOfSymbol;
-        prs::Parser parser{std::wcin, tableOfSymbol};
+        lxr::Lexer lexer;
+        prs::Parser parser;
+
+        TableOfSymbols<lxr::String, std::size_t> tableOfSymbol;
+
+        lxr::String result;
 
     public:
-        Calculator() = default;
-        Calculator(std::wistream &);
+        Calculator() {};
 
+        lxr::String const & GetResult();
+        lxr::String const & Calculate(std::wistream&);
     };
 
-    inline Calculator::Calculator(std::wistream & s) : parser{s, tableOfSymbol}
+    inline lxr::String const & Calculator::GetResult()
     {
-        parser.GetAST();
-        // ...
+        return result;
     }
 }

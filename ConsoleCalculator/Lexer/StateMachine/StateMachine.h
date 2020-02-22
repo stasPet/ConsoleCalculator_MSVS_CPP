@@ -14,16 +14,16 @@ namespace clc::lxr
     private:
         std::vector<std::unique_ptr<IState> > states;
 
-        TokenType currentTokenType;
-        TokenType CheckState();
+        LexemeType currentLexemeType;
+        LexemeType CheckState();
 
 // The method skips all characters until the delimiter is encountered.
-        TokenType Skip(CharType);
+        LexemeType Skip(Char);
 
     public:
         StateMachine();
 
-        TokenType SetChar(CharType);
+        LexemeType SetChar(Char);
         void ResetStates();
     };
 }

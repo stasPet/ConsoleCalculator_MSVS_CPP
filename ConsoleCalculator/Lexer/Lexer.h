@@ -1,38 +1,20 @@
 #pragma once
 
 #include <iosfwd>
-
 #include "StateMachine/StateMachine.h"
-
-#include "Token.h"
-#include "TableOfSymbols.h"
 
 namespace clc::lxr
 {
     class Lexer
     {
     private:
-        std::wistream & stream;
-        TableOfSymbols & tableOfSymbols;
+        Char charBuffer;
+        String stringBuffer;
 
-        CharType charBuffer;
-        ExpressionStringType stringBuffer;
-
-        Token currentToken;
-
+        Lexeme currentLexeme;
         StateMachine stateMachine;
 
     public:
-        explicit Lexer(std::wistream &, TableOfSymbols &);
-        Lexer(const Lexer &) = delete;
-
-        Token GetToken();
-        void PutToken(Token);
+        Lexeme GetLexeme(std::wistream &);
     };
-
-    inline Lexer::Lexer(std::wistream & s, TableOfSymbols & t) :
-            stream{s}, tableOfSymbols{t}
-    {
-        // ...
-    }
 }

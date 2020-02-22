@@ -60,9 +60,6 @@
     <ClCompile Include="Parser\Parser.cpp">
       <Filter>Parser\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="TableOfSymbols.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Parser\AST.cpp">
       <Filter>Parser\Исходные файлы</Filter>
     </ClCompile>
@@ -75,28 +72,22 @@
     <ClCompile Include="Lexer\StateMachine\JumpTableName.cpp">
       <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Calculator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AliasType.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Lexer\Lexer.h">
       <Filter>Lexer\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Parser\Parser.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="TableOfSymbols.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Parser\AST.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Calculator.h">
       <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\Token.h">
-      <Filter>Lexer\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Lexer\StateMachine\StateMachine.h">
       <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
@@ -115,6 +106,15 @@
     </ClInclude>
     <ClInclude Include="Lexer\StateMachine\JumpTableNumber.h">
       <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\Token.h">
+      <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\Lexeme.h">
+      <Filter>Lexer\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="TableOfSymbols.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -16,21 +16,21 @@ namespace clc::lxr
         };
 
         State currentState;
-        std::vector<ExpressionStringType>::size_type position;
+        std::vector<String>::size_type position;
 
-        TokenType tokenType;
-        TokenType currenType;
+        LexemeType lexemeType;
+        LexemeType currentLexemeType;
 
-        std::vector<ExpressionStringType> fNames;
-        std::vector<ExpressionStringType*> fNamesRef;
+        std::vector<String> fNames;
+        std::vector<String*> fNamesRef;
 
     public:
-        StateOperation(TokenType,
-            std::initializer_list<ExpressionStringType> );
+        StateOperation(LexemeType,
+            std::initializer_list<String> );
 
-        TokenType Set(CharType) override;
+        LexemeType Set(Char) override;
         void Reset() override;
 
-        TokenType GetTokenType() override;
+        LexemeType GetLexemeType() override;
     };
 }

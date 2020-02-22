@@ -3,35 +3,68 @@
 #include <initializer_list>
 #include <unordered_map>
 
-#include "AliasType.h"
+#include <string>
 
 namespace clc
 {
+    template <typename String, typename Attribute>
     class TableOfSymbols
     {
     private:
-        std::unordered_map<ExpressionStringType, AttributeType>
+        std::unordered_map<String, Attribute>
             tableOfSymbolsIn;
-        std::unordered_map<AttributeType, ExpressionStringType>
+        std::unordered_map<Attribute, String>
             tableOfSymbolsOut;
 
-        AttributeType valueAttribute = 1;
+        Attribute valueAttribute = 1;
 
     public:
         TableOfSymbols() = default;
-        TableOfSymbols(std::initializer_list<ExpressionStringType> );
+        TableOfSymbols(std::initializer_list<String> );
 
-        AttributeType SetSymbol(ExpressionStringType);
-        ExpressionStringType GetSymbol(AttributeType) const;
+        Attribute SetSymbol(String);
+        String GetSymbol(Attribute) const;
 
         void Clear();
     };
 
-    inline void TableOfSymbols::Clear()
+    template <typename String, typename Attribute>
+    inline void TableOfSymbols<String, Attribute>::Clear()
     {
         tableOfSymbolsIn.clear();
         tableOfSymbolsOut.clear();
 
         valueAttribute = 1;
+    }
+
+    template <typename String, typename Attribute>
+    TableOfSymbols<String, Attribute>::TableOfSymbols(std::initializer_list<String> l)
+    {
+        for (auto it = l.begin(); it != l.end(); ++it)
+            SetSymbol(std::move(*it) );
+    }
+
+    template <typename String, typename Attribute>
+    Attribute TableOfSymbols<String, Attribute>::SetSymbol(String e)
+    {
+        const auto p = tableOfSymbolsIn.try_emplace(e, valueAttribute);
+
+        if (p.second)
+        {
+            tableOfSymbolsOut.try_emplace(valueAttribute, std::move(e) );
+            return valueAttribute++;
+        }
+
+        return p.first->second;
+    }
+    template <typename String, typename Attribute>
+    String TableOfSymbols<String, Attribute>::GetSymbol(Attribute a) const
+    {
+        auto it = tableOfSymbolsOut.find(a);
+
+        if (it != tableOfSymbolsOut.end() )
+            return it->second;
+
+        return String{};
     }
 }

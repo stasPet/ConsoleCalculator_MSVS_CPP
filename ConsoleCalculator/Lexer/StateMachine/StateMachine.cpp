@@ -17,7 +17,7 @@ StateMachine::StateMachine()
     (
         new StateOperation
         {
-            TokenType::Operation,
+            LexemeType::Operation,
             {
                 L"*",    L"/",   L"+",   L"-",
                 L"(",    L")",   L";"
@@ -28,7 +28,7 @@ StateMachine::StateMachine()
     (
         new StateOperation
         {
-            TokenType::Function,
+            LexemeType::Function,
             {
                 L"sqrt", L"sin", L"cos", L"ctg", L"tg"
             }
@@ -38,59 +38,59 @@ StateMachine::StateMachine()
     (
         new StateOperand<JumpTableNumber>
         {
-            TokenType::Operand
+            LexemeType::Operand
         }
     );
     states.emplace_back
     (
         new StateOperand<JumpTableName>
         {
-            TokenType::Operand
+            LexemeType::Operand
         }
     );
 
-    currentTokenType = TokenType::Empty;
+    currentLexemeType = LexemeType::Empty;
 }
 
-TokenType StateMachine::SetChar(CharType message)
+LexemeType StateMachine::SetChar(Char message)
 {
     for (auto& r : states)
         r->Set(message);
 
-    currentTokenType = CheckState();
-    if (currentTokenType == TokenType::Bad)
-        currentTokenType = Skip(message);
+    currentLexemeType = CheckState();
+    if (currentLexemeType == LexemeType::Bad)
+        currentLexemeType = Skip(message);
 
-    return currentTokenType;
+    return currentLexemeType;
 }
 void StateMachine::ResetStates()
 {
     for (auto& r : states)
         r->Reset();
 
-    currentTokenType = TokenType::Empty;
+    currentLexemeType = LexemeType::Empty;
 }
 
-TokenType StateMachine::CheckState()
+LexemeType StateMachine::CheckState()
 {
  // If there is at least one undefined state returned TokenID::NON.
     for (const auto& r : states)
-        if (r->GetTokenType() == TokenType::Empty )
-            return TokenType::Empty;
+        if (r->GetLexemeType() == LexemeType::Empty )
+            return LexemeType::Empty;
 
 // If there is at least one correct condition, this state is returned.
     for (const auto& r : states)
-        if (r->GetTokenType() != TokenType::Bad)
-            return r->GetTokenType();
+        if (r->GetLexemeType() != LexemeType::Bad)
+            return r->GetLexemeType();
         /*
         if (r->GetTokenType() != TokenType::Empty &&
             r->GetTokenType() != TokenType::Bad)
                 return r->GetTokenType();
         */
 
-    return TokenType::Bad;
+    return LexemeType::Bad;
 }
-TokenType StateMachine::Skip(CharType message)
+LexemeType StateMachine::Skip(Char message)
 {
     switch (message)
     {
@@ -101,12 +101,12 @@ TokenType StateMachine::Skip(CharType message)
     case L';':
     case L'(':
     case L')':
-        return TokenType::Bad;
+        return LexemeType::Bad;
 
     default:
         if (std::iswspace(message) )
-            return TokenType::Bad;
+            return LexemeType::Bad;
     }
 
-    return TokenType::Empty;
+    return LexemeType::Empty;
 }

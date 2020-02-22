@@ -1,7 +1,7 @@
 #pragma once
-#include "AliasType.h"
+#include <cstddef>
 
-namespace clc::lxr
+namespace clc::prs
 {
     enum class TokenType
     {
@@ -11,7 +11,7 @@ namespace clc::lxr
     struct Token
     {
         TokenType tokenType = TokenType::Empty;
-        AttributeType attribue = 0;
+        std::size_t attribue = 0;
 
         void Clear();
     };

@@ -3,8 +3,8 @@
 using namespace clc::lxr;
 using namespace clc;
 
-StateOperation::StateOperation(TokenType t,
-    std::initializer_list<ExpressionStringType> l)
+StateOperation::StateOperation(LexemeType t,
+    std::initializer_list<String> l)
 {
     if (l.size() == 0)
         throw L"StateOperation::StateOperation(TokenType, \
@@ -13,11 +13,11 @@ StateOperation::StateOperation(TokenType t,
     for (auto& r : l)
         fNames.emplace_back(std::move(r) );
 
-    tokenType = t;
+    lexemeType = t;
     Reset();
 }
 
-TokenType StateOperation::Set(CharType message) 
+LexemeType StateOperation::Set(Char message) 
 {
     switch (currentState)
     {
@@ -25,7 +25,7 @@ TokenType StateOperation::Set(CharType message)
 
         for (auto p = fNamesRef.begin(); p != fNamesRef.end(); )
         {
-            const ExpressionStringType& element = *(*p);
+            String const & element = *(*p);
 
             if (element[position] != message)
                 p = fNamesRef.erase(p);
@@ -41,28 +41,28 @@ TokenType StateOperation::Set(CharType message)
         else if (fNamesRef.empty() )
         {
             currentState = State::Fail;
-            currenType = TokenType::Bad;
+            currentLexemeType = LexemeType::Bad;
         }
         ++position;
         break;
 
     case State::SetFlag:
         currentState = State::Good;
-        currenType = tokenType;
+        currentLexemeType = lexemeType;
         break;
 
     case State::Good:
         currentState = State::Fail;
-        currenType = TokenType::Bad;
+        currentLexemeType = LexemeType::Bad;
         break;
     }
 
-    return currenType;
+    return currentLexemeType;
 }
 void StateOperation::Reset()
 {
     currentState = State::Check;
-    currenType = TokenType::Empty;
+    currentLexemeType = LexemeType::Empty;
 
     fNamesRef.resize(fNames.size() );
 
@@ -72,7 +72,7 @@ void StateOperation::Reset()
     position = 0;
 }
 
-TokenType StateOperation::GetTokenType()
+LexemeType StateOperation::GetLexemeType()
 {
-    return currenType;
+    return currentLexemeType;
 }

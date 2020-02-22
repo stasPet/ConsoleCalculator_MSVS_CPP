@@ -5,7 +5,7 @@
 
 using namespace clc::lxr;
 
-Token Lexer::GetToken()
+Lexeme Lexer::GetLexeme(std::wistream & stream)
 {
     while (stream.get(charBuffer) )
     {
@@ -19,29 +19,23 @@ Token Lexer::GetToken()
     }
 
     stateMachine.ResetStates();
-    stringBuffer.clear();
-    currentToken.Clear();
 
     while (stream.get(charBuffer) )
     {
         stringBuffer.push_back(charBuffer);
-        currentToken.tokenType = stateMachine.SetChar(charBuffer);
+        currentLexeme.typeValue = stateMachine.SetChar(charBuffer);
 
-        if (currentToken.tokenType != TokenType::Empty)
+        if (currentLexeme.typeValue != LexemeType::Empty)
         {
 
             stream.putback(charBuffer);
             stringBuffer.erase(stringBuffer.end() - 1);
 
-            currentToken.attribue = tableOfSymbols.SetSymbol(stringBuffer);
+            currentLexeme.stringValue = std::move(stringBuffer);
 
             break;
         }
     }
 
-    return currentToken;
-}
-void Lexer::PutToken(Token)
-{
-    
+    return std::move(currentLexeme);
 }

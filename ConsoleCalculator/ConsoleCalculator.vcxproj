@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Lexer\Lexer.cpp" />
     <ClCompile Include="Lexer\StateMachine\JumpTableName.cpp" />
     <ClCompile Include="Lexer\StateMachine\JumpTableNumber.cpp" />
@@ -151,21 +152,20 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parser\AST.cpp" />
     <ClCompile Include="Parser\Parser.cpp" />
-    <ClCompile Include="TableOfSymbols.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AliasType.h" />
     <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Lexer\Lexeme.h" />
     <ClInclude Include="Lexer\StateMachine\IState.h" />
     <ClInclude Include="Lexer\StateMachine\JumpTableName.h" />
     <ClInclude Include="Lexer\StateMachine\JumpTableNumber.h" />
     <ClInclude Include="Lexer\StateMachine\StateMachine.h" />
     <ClInclude Include="Lexer\StateMachine\StateOperand.h" />
     <ClInclude Include="Lexer\StateMachine\StateOperation.h" />
-    <ClInclude Include="Lexer\Token.h" />
     <ClInclude Include="Lexer\Lexer.h" />
     <ClInclude Include="Parser\Parser.h" />
     <ClInclude Include="Parser\AST.h" />
+    <ClInclude Include="Parser\Token.h" />
     <ClInclude Include="TableOfSymbols.h" />
   </ItemGroup>
   <ItemGroup>

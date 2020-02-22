@@ -10,7 +10,7 @@ using namespace clc;
 int main()
 {
 	std::wistringstream sstream {L"tg;"};
-	Calculator calculator{sstream};
+	Calculator calculator;
 
 	return 0;
 }
