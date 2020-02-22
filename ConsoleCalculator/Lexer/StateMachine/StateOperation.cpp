@@ -4,9 +4,17 @@ using namespace clc::lxr;
 using namespace clc;
 
 /*
-    The constructor accepts string values so that they can be used to compare with incoming characters.
+    Search "cos"
+
+    enter -> c          center -> o       center -> s
+
+    sin   - delete    |                 |               | 
+    [c]os - match     | c[o]s - match   | co[s] - match | cos - match
+    tg    - delete    |                 |               | 
+    [c]tg - match     | c[t]g - delete  |               |
 */
 
+// The constructor accepts string values so that they can be used to compare with incoming characters.
 StateOperation::StateOperation(LexemeType t,
     std::initializer_list<String> l)
 {
