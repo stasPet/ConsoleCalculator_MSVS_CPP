@@ -14,7 +14,7 @@ const JumpTableName::JumpTable<JumpTableName::State> JumpTableName::jumpTable
     
 };
 
-JumpTableName::Signal JumpTableName::ConvertToSignal(Char message)
+JumpTableName::Signal JumpTableName::ConvertToSignal(WChar message)
 {   
     if (std::iswdigit(message) )                  return Signal::Digit;
     if (std::iswalpha(message) || message == '_') return Signal::Alpha;

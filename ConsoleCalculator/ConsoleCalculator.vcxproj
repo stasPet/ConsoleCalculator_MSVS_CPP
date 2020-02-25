@@ -152,6 +152,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parser\AST.cpp" />
     <ClCompile Include="Parser\Parser.cpp" />
+    <ClCompile Include="Parser\ShuntingYard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Lexer\Lexer.h" />
     <ClInclude Include="Parser\Parser.h" />
     <ClInclude Include="Parser\AST.h" />
+    <ClInclude Include="Parser\ShuntingYard.h" />
     <ClInclude Include="Parser\Token.h" />
     <ClInclude Include="TableOfSymbols.h" />
   </ItemGroup>

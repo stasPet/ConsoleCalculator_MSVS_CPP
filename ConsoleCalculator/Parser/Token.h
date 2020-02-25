@@ -5,16 +5,25 @@ namespace clc::prs
 {
     enum class TokenType
     {
-        Operand, Operation, Function, Bad, Empty
+        Operand,         Operation,        Function,
+        LeftParenthesis, RightParenthesis, Bad,      Empty,
+        End
     };
 
     struct Token
     {
-        TokenType tokenType = TokenType::Empty;
-        std::size_t attribue = 0;
+        TokenType tokenType;
+        std::size_t attribue;
+
+        Token(TokenType t = TokenType::Empty, std::size_t s = 0);
 
         void Clear();
     };
+
+    inline Token::Token(TokenType t, std::size_t s) : tokenType{t}, attribue{s}
+    {
+        // ...
+    }
 
     inline void Token::Clear()
     {

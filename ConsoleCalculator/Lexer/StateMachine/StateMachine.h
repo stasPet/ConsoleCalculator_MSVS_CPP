@@ -18,12 +18,12 @@ namespace clc::lxr
         LexemeType CheckState();
 
 // The method skips all characters until the delimiter is encountered.
-        LexemeType Skip(Char);
+        LexemeType Skip(WChar);
 
     public:
         StateMachine();
 
-        LexemeType SetChar(Char);
+        LexemeType SetChar(WChar);
         void ResetStates();
     };
 }

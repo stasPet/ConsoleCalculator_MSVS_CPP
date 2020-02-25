@@ -13,18 +13,21 @@ namespace clc
         lxr::Lexer lexer;
         prs::Parser parser;
 
-        TableOfSymbols<lxr::String, std::size_t> tableOfSymbol;
+        TableOfSymbols<lxr::WString, std::size_t> tableOfSymbol;
 
-        lxr::String result;
+        prs::AST ast;
+        lxr::WString result;
+
+        static prs::TokenType GetTokenType(lxr::Lexeme const &);
 
     public:
-        Calculator() {};
+        //Calculator() = default;
 
-        lxr::String const & GetResult();
-        lxr::String const & Calculate(std::wistream&);
+        lxr::WString GetResult();
+        lxr::WString Calculate(std::wistream &);
     };
 
-    inline lxr::String const & Calculator::GetResult()
+    inline lxr::WString Calculator::GetResult()
     {
         return result;
     }

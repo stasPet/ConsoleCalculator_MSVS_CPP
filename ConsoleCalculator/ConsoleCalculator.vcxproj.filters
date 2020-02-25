@@ -75,6 +75,9 @@
     <ClCompile Include="Calculator.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Parser\ShuntingYard.cpp">
+      <Filter>Parser\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lexer\Lexer.h">
@@ -115,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="TableOfSymbols.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\ShuntingYard.h">
+      <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -8,8 +8,8 @@ namespace clc::lxr
     class Lexer
     {
     private:
-        Char charBuffer;
-        String stringBuffer;
+        WChar charBuffer;
+        WString stringBuffer;
 
         Lexeme currentLexeme;
         StateMachine stateMachine;

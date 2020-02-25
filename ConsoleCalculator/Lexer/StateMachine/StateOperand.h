@@ -24,7 +24,7 @@ namespace clc::lxr
 
         StateOperand(LexemeType);
 
-        LexemeType Set(Char) override;
+        LexemeType Set(WChar) override;
         void Reset() override;
 
         LexemeType GetLexemeType() override;
@@ -58,7 +58,7 @@ namespace clc::lxr
     }
 
     template <typename JumpTable>
-    LexemeType StateOperand<JumpTable>::Set(Char message)
+    LexemeType StateOperand<JumpTable>::Set(WChar message)
     {
         std::size_t base   = ConvertStateToIndex(currentState);
         std::size_t offset = ConvertSignalToIndex(JumpTable::ConvertToSignal(message) );

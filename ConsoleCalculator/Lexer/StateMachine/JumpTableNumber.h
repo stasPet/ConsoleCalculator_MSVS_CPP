@@ -23,6 +23,6 @@ namespace clc::lxr
         };
 
         static const JumpTable<State> jumpTable;
-        static Signal ConvertToSignal(Char);
+        static Signal ConvertToSignal(WChar);
     };
 }

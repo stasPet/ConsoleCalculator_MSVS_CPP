@@ -7,7 +7,7 @@ namespace clc::lxr
     {
         virtual ~IState() {}
 
-        virtual LexemeType Set(Char) = 0;
+        virtual LexemeType Set(WChar) = 0;
         virtual void Reset() = 0;
 
         virtual LexemeType GetLexemeType() = 0;

@@ -20,8 +20,21 @@ StateMachine::StateMachine()
             LexemeType::Operation,
             {
                 L"*",    L"/",   L"+",   L"-",
-                L"(",    L")",   L";"
             }
+        }
+    );
+    states.emplace_back
+    (
+        new StateOperation
+        {
+            LexemeType::LeftParenthesis, {L"("}
+        }
+    );
+    states.emplace_back
+    (
+        new StateOperation
+        {
+            LexemeType::RightParenthesis, {L")"}
         }
     );
     states.emplace_back
@@ -52,9 +65,9 @@ StateMachine::StateMachine()
     currentLexemeType = LexemeType::Empty;
 }
 
-LexemeType StateMachine::SetChar(Char message)
+LexemeType StateMachine::SetChar(WChar message)
 {
-    for (auto& r : states)
+    for (auto & r : states)
         r->Set(message);
 
     currentLexemeType = CheckState();
@@ -65,7 +78,7 @@ LexemeType StateMachine::SetChar(Char message)
 }
 void StateMachine::ResetStates()
 {
-    for (auto& r : states)
+    for (auto & r : states)
         r->Reset();
 
     currentLexemeType = LexemeType::Empty;
@@ -73,24 +86,30 @@ void StateMachine::ResetStates()
 
 LexemeType StateMachine::CheckState()
 {
+    LexemeType returnLexemeType {};
+
  // If there is at least one undefined state returned TokenID::NON.
-    for (const auto& r : states)
-        if (r->GetLexemeType() == LexemeType::Empty )
-            return LexemeType::Empty;
+    for (auto const & r : states)
+    {
+        returnLexemeType = r->GetLexemeType();
+
+        if (returnLexemeType == LexemeType::Empty )
+            return returnLexemeType;
+    }
+        
 
 // If there is at least one correct condition, this state is returned.
-    for (const auto& r : states)
-        if (r->GetLexemeType() != LexemeType::Bad)
-            return r->GetLexemeType();
-        /*
-        if (r->GetTokenType() != TokenType::Empty &&
-            r->GetTokenType() != TokenType::Bad)
-                return r->GetTokenType();
-        */
+    for (auto const & r : states)
+    {
+        returnLexemeType = r->GetLexemeType();
 
-    return LexemeType::Bad;
+        if (returnLexemeType != LexemeType::Bad)
+            return returnLexemeType;
+    }
+
+    return returnLexemeType;
 }
-LexemeType StateMachine::Skip(Char message)
+LexemeType StateMachine::Skip(WChar message)
 {
     switch (message)
     {

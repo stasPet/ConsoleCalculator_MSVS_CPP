@@ -3,6 +3,7 @@
 #include "IState.h"
 
 #include <vector>
+#include <list>
 #include <string>
 
 namespace clc::lxr
@@ -15,20 +16,21 @@ namespace clc::lxr
             Check, SetFlag, Good, Fail
         };
 
-        State currentState;
-        std::vector<String>::size_type position;
-
         LexemeType lexemeType;
         LexemeType currentLexemeType;
 
-        std::vector<String> fNames;
-        std::vector<String*> fNamesRef;
+        State currentState;
+
+        std::vector<WString> operationNames;
+        std::list<WString*> pointersToOperationNames;
+
+        std::list<WString>::size_type currentSymbolPosition;
 
     public:
         StateOperation(LexemeType,
-            std::initializer_list<String> );
+            std::initializer_list<WString> );
 
-        LexemeType Set(Char) override;
+        LexemeType Set(WChar) override;
         void Reset() override;
 
         LexemeType GetLexemeType() override;

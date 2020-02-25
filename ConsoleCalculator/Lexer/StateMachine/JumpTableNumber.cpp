@@ -18,7 +18,7 @@ const JumpTableNumber::JumpTable<JumpTableNumber::State> JumpTableNumber::jumpTa
     
 };
 
-JumpTableNumber::Signal JumpTableNumber::ConvertToSignal(Char message)
+JumpTableNumber::Signal JumpTableNumber::ConvertToSignal(WChar message)
 {   
     switch (message)
     {
