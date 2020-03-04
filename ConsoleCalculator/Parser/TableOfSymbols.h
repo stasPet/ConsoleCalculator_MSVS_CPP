@@ -5,7 +5,7 @@
 
 #include <string>
 
-namespace clc
+namespace clc::prs
 {
     template <typename String, typename Attribute>
     class TableOfSymbols

@@ -16,7 +16,7 @@ namespace clc::lxr
     struct Lexeme
     {
         WString stringValue;
-        LexemeType typeValue = LexemeType::Empty;
+        LexemeType typeValue{LexemeType::Empty};
 
         Lexeme() = default;
         Lexeme(Lexeme const &) = default;

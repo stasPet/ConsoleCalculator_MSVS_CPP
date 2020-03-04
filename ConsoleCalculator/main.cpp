@@ -7,9 +7,9 @@ using namespace clc;
 
 int main()
 {
-	std::wistringstream sstream {L";"};
+	std::wistringstream sstream{L"4/-55;"};
 
-	Calculator calculator;
+	clc::Calculator calculator;
 	clc::lxr::WString result = calculator.Calculate(sstream);
 
 	return 0;

@@ -97,7 +97,6 @@ LexemeType StateMachine::CheckState()
             return returnLexemeType;
     }
         
-
 // If there is at least one correct condition, this state is returned.
     for (auto const & r : states)
     {

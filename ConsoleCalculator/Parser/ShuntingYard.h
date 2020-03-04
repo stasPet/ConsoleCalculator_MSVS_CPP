@@ -1,16 +1,28 @@
 #pragma once
 
-#include <list>
-#include "Token.h"
+#include <queue>
+#include <stack>
+
+#include "Parser/Token.h"
+#include "Parser/TableOfSymbols.h"
 
 namespace clc::prs
 {
     class ShuntingYard
     {
     private:
-        std::list<Token> listValue;
+        using TableOfSymbolsT = 
+            TableOfSymbols<std::wstring, std::size_t>;
+
+        using Priority = char;
+
+        std::stack<Token> stackValue;
+
+        Priority currentPriority = 0;
+        Priority GetPriority(Token, TableOfSymbolsT &);
 
     public:
-        void AddToken(Token);
+        std::queue<Token> Transform(std::queue<Token>,
+            TableOfSymbolsT &);
     };
 }

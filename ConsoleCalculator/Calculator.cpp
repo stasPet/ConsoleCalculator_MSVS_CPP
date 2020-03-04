@@ -1,13 +1,15 @@
-#include <istream>
 #include "Calculator.h"
+
+#include <istream>
+#include <queue>
 
 using namespace clc::lxr;
 using namespace clc::prs;
 using namespace clc;
 
-TokenType Calculator::GetTokenType(Lexeme const & lexeme)
+TokenType Calculator::GetTokenType(LexemeType t)
 {
-    switch (lexeme.typeValue)
+    switch (t)
     {
         case LexemeType::Operand:          return TokenType::Operand;
         case LexemeType::Operation:        return TokenType::Operation;
@@ -22,22 +24,28 @@ TokenType Calculator::GetTokenType(Lexeme const & lexeme)
 
 WString Calculator::Calculate(std::wistream & stream)
 {
+    prs::TableOfSymbolsT & tableOfSymbols =
+        parser.GetTableOfSymbols();
+
+    std::queue<Token> tokenBuffer;
     Lexeme lexeme;
 
     while (stream)
     {
         lexeme = lexer.GetLexeme(stream);
-
-        parser.AddToken
+        tokenBuffer.push
         (
+            Token
             {
-                GetTokenType(lexeme),
-                tableOfSymbol.SetSymbol(lexeme.stringValue)
+                GetTokenType(lexeme.typeValue),
+                tableOfSymbols.SetSymbol(lexeme.stringValue)
             }
         );
     }
 
-    ast = parser.GetAST();
+    AST ast{parser.GetAST(tokenBuffer) };
+    ast.Show(ast.GetRoot(), tableOfSymbols);
+    // ...
 
     return L"";
 }

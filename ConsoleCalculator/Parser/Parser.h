@@ -1,18 +1,35 @@
 #pragma once
 
-#include "ShuntingYard.h"
+#include "TableOfSymbols.h"
 #include "AST.h"
 
 namespace clc::prs
 {
+    using TableOfSymbolsT = 
+        TableOfSymbols<std::wstring, std::size_t>;
+
     class Parser
     {
     private:
-        ShuntingYard shuntingYard;
-        AST ast;
+        using Priority = char;
+
+        std::stack<Token> stackValue;
+
+        Token pastToken;
+        Priority currentPriority = 0;
+        Priority GetPriority(Token);
+
+        std::queue<Token> ShuntingYard(std::queue<Token> );
+
+        TableOfSymbolsT tableOfSymbol;
 
     public:
-        void AddToken(Token);
-        AST GetAST();
+        AST GetAST(std::queue<Token> );
+        TableOfSymbolsT & GetTableOfSymbols();
     };
+
+    inline TableOfSymbolsT & Parser::GetTableOfSymbols()
+    {
+        return tableOfSymbol;
+    }
 }

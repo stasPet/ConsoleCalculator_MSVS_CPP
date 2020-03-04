@@ -2,30 +2,73 @@
 
 #include "Parser/Token.h"
 
-#include <list>
+#include <queue>
+#include <stack>
+
+#include <iostream>
+
+#include "TableOfSymbols.h"
 
 namespace clc::prs
 {
     class AST
     {
     private:
+        using TableOfSymbolsT = 
+            TableOfSymbols<std::wstring, std::size_t>;
+
         struct Node
         {
             Token value;
 
-            Node * left = nullptr;
-            Node * right = nullptr;
+            Node * left;
+            Node * right;
         };
 
-        std::list<Node*> buffer;
+        Node * root{};
+        Node * left{};
+        Node * right{};
+
+        std::stack<Node *> stackValue;
 
     public:
         AST() = default;
-        AST(Token);
+        AST(std::queue<Token> );
 
-        void InsertToken(Token);
-        Token GetToken();
+        void SetTokenBuffer(std::queue<Token> );
+        Token GetNextToken();
+
+        Node * GetRoot();
+
+        void Show(Node * node, TableOfSymbolsT & t)
+        {
+            while (!stackValue.empty() || node)
+            {
+                if (node)
+                {
+                    stackValue.push(node);
+                    node = node->left;
+                }
+                else
+                {
+                    node = stackValue.top();
+                    stackValue.pop();
+
+                    std::wcout << t.GetSymbol(node->value.attribue) << ' ';
+
+                    node = node->right;
+                }
+            }
+        }
     };
 
-    inline AST::AST(Token token) : buffer{new Node{token} } {}
+    inline AST::AST(std::queue<Token> q)
+    {
+        SetTokenBuffer(std::move(q) );
+    }
+
+    inline AST::Node * AST::GetRoot()
+    {
+        return root;
+    }
 }

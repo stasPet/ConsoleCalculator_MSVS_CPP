@@ -2,16 +2,49 @@
 
 using namespace clc::prs;
 
-void AST::InsertToken(Token token)
+void AST::SetTokenBuffer(std::queue<Token> tokenBuffer)
 {
-    Node* temp = buffer.front();
-    buffer.pop_front();
+    Token token;
+    while (!tokenBuffer.empty() )
+    {
+        token = tokenBuffer.front();
+        tokenBuffer.pop();
 
-    temp->left = new Node{};
-    temp->right = new Node{};
+        if (token.tokenType != TokenType::Operation)
+        {
+            stackValue.push(new Node{token} );
+        }
+        else
+        {
+            root = new Node{token};
 
-    buffer.push_back(temp->left);
-    buffer.push_back(temp->right);
+            if (stackValue.empty() )
+                stackValue.push(new Node{} );
 
-    buffer.front()->value = token;
+            right = stackValue.top();
+            stackValue.pop();
+
+            if (stackValue.empty() )
+                stackValue.push(new Node{} );
+
+            left = stackValue.top();
+            stackValue.pop();
+
+            root->right = right;
+            root->left = left;
+
+            stackValue.push(root);
+        }
+    }
+
+    root = stackValue.top();
+    stackValue.pop();
+
+    left = nullptr;
+    right = nullptr;
+}
+
+Token AST::GetNextToken()
+{
+    return Token{};
 }
