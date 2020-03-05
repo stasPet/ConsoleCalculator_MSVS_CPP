@@ -6,7 +6,7 @@
 namespace clc::lxr
 {
     template <typename JumpTable>
-    class StateOperand : public IState
+    class StateJumpTable : public IState
     {
     private:
         using State  = typename JumpTable::State;
@@ -22,7 +22,7 @@ namespace clc::lxr
 
     public:
 
-        StateOperand(LexemeType);
+        StateJumpTable(LexemeType);
 
         LexemeType Set(WChar) override;
         void Reset() override;
@@ -31,14 +31,14 @@ namespace clc::lxr
     };
 
     template <typename JumpTable>
-    inline StateOperand<JumpTable>::StateOperand(LexemeType t)
+    inline StateJumpTable<JumpTable>::StateJumpTable(LexemeType t)
     {
         lexemeType = t;
         Reset();
     }
 
     template <typename JumpTable>
-    inline void StateOperand<JumpTable>::Reset()
+    inline void StateJumpTable<JumpTable>::Reset()
     {
         currentState = State::Start;
         currentLexemeType = LexemeType::Empty;
@@ -46,19 +46,19 @@ namespace clc::lxr
 
     template <typename JumpTable>
     constexpr std::size_t
-        StateOperand<JumpTable>::ConvertStateToIndex(State state)
+        StateJumpTable<JumpTable>::ConvertStateToIndex(State state)
     {
         return static_cast<std::size_t>(state);
     }
     template <typename JumpTable>
     constexpr std::size_t
-        StateOperand<JumpTable>::ConvertSignalToIndex(Signal state)
+        StateJumpTable<JumpTable>::ConvertSignalToIndex(Signal state)
     {
         return static_cast<std::size_t>(state);
     }
 
     template <typename JumpTable>
-    LexemeType StateOperand<JumpTable>::Set(WChar message)
+    LexemeType StateJumpTable<JumpTable>::Set(WChar message)
     {
         std::size_t base   = ConvertStateToIndex(currentState);
         std::size_t offset = ConvertSignalToIndex(JumpTable::ConvertToSignal(message) );
@@ -80,7 +80,7 @@ namespace clc::lxr
     }
 
     template <typename JumpTable>
-    LexemeType StateOperand<JumpTable>::GetLexemeType()
+    LexemeType StateJumpTable<JumpTable>::GetLexemeType()
     {
         return currentLexemeType;
     }

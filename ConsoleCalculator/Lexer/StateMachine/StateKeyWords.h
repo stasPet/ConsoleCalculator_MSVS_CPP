@@ -8,7 +8,7 @@
 
 namespace clc::lxr
 {
-    class StateOperation : public IState
+    class StateKeyWords : public IState
     {
     private:
         enum class State: unsigned char
@@ -27,7 +27,7 @@ namespace clc::lxr
         std::list<WString>::size_type currentSymbolPosition;
 
     public:
-        StateOperation(LexemeType,
+        StateKeyWords(LexemeType,
             std::initializer_list<WString> );
 
         LexemeType Set(WChar) override;

@@ -1,7 +1,7 @@
 #include "StateMachine.h"
 
-#include "StateOperation.h"
-#include "StateOperand.h"
+#include "StateKeyWords.h"
+#include "StateJumpTable.h"
 
 #include "JumpTableNumber.h"
 #include "JumpTableName.h"
@@ -15,31 +15,17 @@ StateMachine::StateMachine()
 {
     states.emplace_back
     (
-        new StateOperation
+        new StateKeyWords
         {
             LexemeType::Operation,
             {
-                L"*",    L"/",   L"+",   L"-",
+                L"*",    L"/",   L"+",   L"-"
             }
         }
     );
     states.emplace_back
     (
-        new StateOperation
-        {
-            LexemeType::LeftParenthesis, {L"("}
-        }
-    );
-    states.emplace_back
-    (
-        new StateOperation
-        {
-            LexemeType::RightParenthesis, {L")"}
-        }
-    );
-    states.emplace_back
-    (
-        new StateOperation
+        new StateKeyWords
         {
             LexemeType::Function,
             {
@@ -49,14 +35,28 @@ StateMachine::StateMachine()
     );
     states.emplace_back
     (
-        new StateOperand<JumpTableNumber>
+        new StateKeyWords
+        {
+            LexemeType::LeftParenthesis, {L"("}
+        }
+    );
+    states.emplace_back
+    (
+        new StateKeyWords
+        {
+            LexemeType::RightParenthesis, {L")"}
+        }
+    );
+    states.emplace_back
+    (
+        new StateJumpTable<JumpTableNumber>
         {
             LexemeType::Operand
         }
     );
     states.emplace_back
     (
-        new StateOperand<JumpTableName>
+        new StateJumpTable<JumpTableName>
         {
             LexemeType::Operand
         }

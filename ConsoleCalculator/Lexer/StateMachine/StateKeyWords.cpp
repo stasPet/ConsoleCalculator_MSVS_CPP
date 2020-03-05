@@ -1,9 +1,9 @@
-#include "StateOperation.h"
+#include "StateKeyWords.h"
 
 using namespace clc::lxr;
 using namespace clc;
 
-StateOperation::StateOperation(LexemeType t,
+StateKeyWords::StateKeyWords(LexemeType t,
     std::initializer_list<WString> l) : operationNames{l.size() }
 {
     if (l.size() == 0)
@@ -29,7 +29,7 @@ StateOperation::StateOperation(LexemeType t,
     [c]tg - match     | c[t]g - delete  |               |
 */
 
-LexemeType StateOperation::Set(WChar message)
+LexemeType StateKeyWords::Set(WChar message)
 {
     switch (currentState)
     {
@@ -81,7 +81,7 @@ LexemeType StateOperation::Set(WChar message)
 
     return currentLexemeType;
 }
-void StateOperation::Reset()
+void StateKeyWords::Reset()
 {
     currentState = State::Check;
     currentLexemeType = LexemeType::Empty;
@@ -93,7 +93,7 @@ void StateOperation::Reset()
     currentSymbolPosition = 0;
 }
 
-LexemeType StateOperation::GetLexemeType()
+LexemeType StateKeyWords::GetLexemeType()
 {
     return currentLexemeType;
 }

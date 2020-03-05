@@ -5,7 +5,7 @@ namespace clc::prs
 {
     enum class TokenType
     {
-        Operand,         Operation,        Function,
+        Operand,         Operation,        Function, 
         LeftParenthesis, RightParenthesis, Bad,      Empty,
         End
     };

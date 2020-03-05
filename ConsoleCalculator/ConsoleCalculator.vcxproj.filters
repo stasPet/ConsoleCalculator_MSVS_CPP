@@ -63,9 +63,6 @@
     <ClCompile Include="Parser\AST.cpp">
       <Filter>Parser\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\StateOperation.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Lexer\StateMachine\JumpTableNumber.cpp">
       <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
@@ -74,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="Calculator.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexer\StateMachine\StateKeyWords.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,12 +90,6 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Lexer\StateMachine\StateMachine.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateOperand.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateOperation.h">
       <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Lexer\StateMachine\IState.h">
@@ -115,6 +109,12 @@
     </ClInclude>
     <ClInclude Include="Parser\TableOfSymbols.h">
       <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\StateMachine\StateKeyWords.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer\StateMachine\StateJumpTable.h">
+      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

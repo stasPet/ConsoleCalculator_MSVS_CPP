@@ -18,8 +18,7 @@ namespace clc::lxr
         WString stringValue;
         LexemeType typeValue{LexemeType::Empty};
 
-        Lexeme() = default;
-        Lexeme(Lexeme const &) = default;
+        Lexeme() = default;    
         Lexeme(Lexeme &&);
 
         Lexeme& operator=(Lexeme const &) = default;

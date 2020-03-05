@@ -8,20 +8,17 @@ namespace clc::prs
     using TableOfSymbolsT = 
         TableOfSymbols<std::wstring, std::size_t>;
 
+    using Priority = char;
+
     class Parser
     {
     private:
-        using Priority = char;
+        TableOfSymbolsT tableOfSymbol;
 
         std::stack<Token> stackValue;
 
-        Token pastToken;
-        Priority currentPriority = 0;
-        Priority GetPriority(Token);
-
         std::queue<Token> ShuntingYard(std::queue<Token> );
-
-        TableOfSymbolsT tableOfSymbol;
+        Priority GetPriority(Token);
 
     public:
         AST GetAST(std::queue<Token> );
