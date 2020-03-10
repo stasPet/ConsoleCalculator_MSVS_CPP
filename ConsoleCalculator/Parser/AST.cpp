@@ -2,6 +2,17 @@
 
 using namespace clc::prs;
 
+AST::AST(AST && a)
+{
+    rootNode = a.rootNode;
+    currentNode = a.currentNode;
+
+    a.rootNode = nullptr;
+    a.currentNode = nullptr;
+
+    stackValue.swap(a.stackValue);
+}
+
 void AST::SetTokenBuffer(std::queue<Token> tokenBuffer)
 {
     Token token;
@@ -16,35 +27,60 @@ void AST::SetTokenBuffer(std::queue<Token> tokenBuffer)
         }
         else
         {
-            root = new Node{token};
+            rootNode = new Node{token};
 
+            // If the operation is unary
             if (stackValue.empty() )
                 stackValue.push(new Node{} );
 
-            right = stackValue.top();
+            rootNode->right = stackValue.top();
             stackValue.pop();
 
+            // If the operation is unary
             if (stackValue.empty() )
                 stackValue.push(new Node{} );
 
-            left = stackValue.top();
+            rootNode->left = stackValue.top();
             stackValue.pop();
 
-            root->right = right;
-            root->left = left;
-
-            stackValue.push(root);
+            stackValue.push(rootNode);
         }
     }
 
-    root = stackValue.top();
+    rootNode = stackValue.top();
     stackValue.pop();
 
-    left = nullptr;
-    right = nullptr;
+    currentNode = rootNode;
 }
 
 Token AST::GetNextToken()
 {
-    return Token{};
+    Token returnValue;
+
+    while (!stackValue.empty() || currentNode)
+    {
+        if (currentNode)
+        {
+            stackValue.push(currentNode);
+            currentNode = currentNode->left;
+        }
+        else
+        {
+            currentNode = stackValue.top();
+            stackValue.pop();
+
+            returnValue = currentNode->value;
+            currentNode = currentNode->right;
+
+            break;
+        }
+    }
+
+    return returnValue;
+}
+
+AST::Node::~Node()
+{
+    delete left;
+    delete right;
 }

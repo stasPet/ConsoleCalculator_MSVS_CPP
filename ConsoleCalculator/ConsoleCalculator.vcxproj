@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Lexer\Lexer.cpp" />
+    <ClCompile Include="Lexer\StateMachine\IState.cpp" />
     <ClCompile Include="Lexer\StateMachine\JumpTableName.cpp" />
     <ClCompile Include="Lexer\StateMachine\JumpTableNumber.cpp" />
     <ClCompile Include="Lexer\StateMachine\StateKeyWords.cpp" />

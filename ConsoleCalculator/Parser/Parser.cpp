@@ -18,7 +18,8 @@ std::queue<Token> Parser::ShuntingYard(std::queue<Token> tokenBuffer)
 
         switch (token.tokenType)
         {
-            case TokenType::Operand:
+            case TokenType::Number:
+            case TokenType::Name:
                 tokenBufferOut.push(token);
                 break;
 

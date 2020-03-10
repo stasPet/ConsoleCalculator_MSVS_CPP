@@ -11,58 +11,16 @@
 using namespace clc::lxr;
 using namespace clc;
 
-StateMachine::StateMachine()
+StateMachine::StateMachine(std::initializer_list<LexemeType> l) :
+    currentLexemeType{LexemeType::Empty}
 {
-    states.emplace_back
-    (
-        new StateKeyWords
-        {
-            LexemeType::Operation,
-            {
-                L"*",    L"/",   L"+",   L"-"
-            }
-        }
-    );
-    states.emplace_back
-    (
-        new StateKeyWords
-        {
-            LexemeType::Function,
-            {
-                L"sqrt", L"sin", L"cos", L"ctg", L"tg"
-            }
-        }
-    );
-    states.emplace_back
-    (
-        new StateKeyWords
-        {
-            LexemeType::LeftParenthesis, {L"("}
-        }
-    );
-    states.emplace_back
-    (
-        new StateKeyWords
-        {
-            LexemeType::RightParenthesis, {L")"}
-        }
-    );
-    states.emplace_back
-    (
-        new StateJumpTable<JumpTableNumber>
-        {
-            LexemeType::Operand
-        }
-    );
-    states.emplace_back
-    (
-        new StateJumpTable<JumpTableName>
-        {
-            LexemeType::Operand
-        }
-    );
+    if (l.size() == 0)
+        throw std::exception{
+            "StateMachine::StateMachine \
+            (std::initializer_list<LexemeType> )"};
 
-    currentLexemeType = LexemeType::Empty;
+    for (auto & r : l)
+        states.emplace_back(IState::Factory(r) );
 }
 
 LexemeType StateMachine::SetChar(WChar message)

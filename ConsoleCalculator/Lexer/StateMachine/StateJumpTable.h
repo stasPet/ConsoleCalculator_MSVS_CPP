@@ -12,6 +12,9 @@ namespace clc::lxr
         using State  = typename JumpTable::State;
         using Signal = typename JumpTable::Signal;
 
+        using Predicate = bool(*)(WChar);
+        Predicate IsSeparator;
+
         State currentState;
 
         LexemeType lexemeType;
@@ -21,8 +24,7 @@ namespace clc::lxr
         static constexpr std::size_t ConvertSignalToIndex(Signal);
 
     public:
-
-        StateJumpTable(LexemeType);
+        StateJumpTable(LexemeType, Predicate);
 
         LexemeType Set(WChar) override;
         void Reset() override;
@@ -31,9 +33,9 @@ namespace clc::lxr
     };
 
     template <typename JumpTable>
-    inline StateJumpTable<JumpTable>::StateJumpTable(LexemeType t)
+    inline StateJumpTable<JumpTable>::StateJumpTable(LexemeType t,
+        Predicate p) : lexemeType{t}, IsSeparator{p}
     {
-        lexemeType = t;
         Reset();
     }
 
@@ -60,15 +62,18 @@ namespace clc::lxr
     template <typename JumpTable>
     LexemeType StateJumpTable<JumpTable>::Set(WChar message)
     {
-        std::size_t base   = ConvertStateToIndex(currentState);
-        std::size_t offset = ConvertSignalToIndex(JumpTable::ConvertToSignal(message) );
+        std::size_t base =
+            ConvertStateToIndex(currentState);
+        std::size_t offset =
+            ConvertSignalToIndex(JumpTable::ConvertToSignal(message) );
 
         currentState = JumpTable::jumpTable[base][offset];
 
         switch (currentState)
         {
             case State::Good:
-                currentLexemeType = lexemeType;
+                if (IsSeparator(message) )
+                    currentLexemeType = lexemeType;          
                 break;
 
             case State::Fail:

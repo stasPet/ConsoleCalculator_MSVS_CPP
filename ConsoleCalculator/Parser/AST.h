@@ -23,52 +23,35 @@ namespace clc::prs
 
             Node * left;
             Node * right;
+
+            ~Node();
         };
 
-        Node * root{};
-        Node * left{};
-        Node * right{};
+        Node * rootNode{};
+        Node * currentNode{};
 
         std::stack<Node *> stackValue;
 
     public:
         AST() = default;
+        AST(AST const &) = delete;
+
         AST(std::queue<Token> );
+        AST(AST &&);
+
+        ~AST();
 
         void SetTokenBuffer(std::queue<Token> );
         Token GetNextToken();
-
-        Node * GetRoot();
-
-        void Show(Node * node, TableOfSymbolsT & t)
-        {
-            while (!stackValue.empty() || node)
-            {
-                if (node)
-                {
-                    stackValue.push(node);
-                    node = node->left;
-                }
-                else
-                {
-                    node = stackValue.top();
-                    stackValue.pop();
-
-                    std::wcout << t.GetSymbol(node->value.attribue) << ' ';
-
-                    node = node->right;
-                }
-            }
-        }
     };
 
     inline AST::AST(std::queue<Token> q)
     {
         SetTokenBuffer(std::move(q) );
     }
-
-    inline AST::Node * AST::GetRoot()
+    
+    inline AST::~AST()
     {
-        return root;
+        delete rootNode;
     }
 }

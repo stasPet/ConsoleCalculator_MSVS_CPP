@@ -75,6 +75,9 @@
     <ClCompile Include="Lexer\StateMachine\StateKeyWords.cpp">
       <Filter>Lexer\StateMachine\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Lexer\StateMachine\IState.cpp">
+      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lexer\Lexer.h">

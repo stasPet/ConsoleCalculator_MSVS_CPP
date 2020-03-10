@@ -5,6 +5,8 @@
 #include <memory>
 #include <vector>
 
+#include <initializer_list>
+
 // The StateMachine class in turn passes the message to each of its states.
 
 namespace clc::lxr
@@ -21,7 +23,12 @@ namespace clc::lxr
         LexemeType Skip(WChar);
 
     public:
-        StateMachine();
+        StateMachine(std::initializer_list<LexemeType> );
+        StateMachine(StateMachine const &);
+        StateMachine(StateMachine &&);
+
+        StateMachine & operator=(StateMachine const &);
+        StateMachine & operator=(StateMachine &&);
 
         LexemeType SetChar(WChar);
         void ResetStates();

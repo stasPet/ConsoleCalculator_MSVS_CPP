@@ -11,12 +11,14 @@ TokenType Calculator::GetTokenType(LexemeType t)
 {
     switch (t)
     {
-        case LexemeType::Operand:          return TokenType::Operand;
+        case LexemeType::Number:           return TokenType::Number;
+        case LexemeType::Name:             return TokenType::Name;
         case LexemeType::Operation:        return TokenType::Operation;
         case LexemeType::Function:         return TokenType::Function;
         case LexemeType::LeftParenthesis:  return TokenType::LeftParenthesis;
         case LexemeType::RightParenthesis: return TokenType::RightParenthesis;
         case LexemeType::Bad:              return TokenType::Bad;
+        case LexemeType::End:              return TokenType::End;
     }
 
     return TokenType::Empty;
@@ -32,7 +34,14 @@ WString Calculator::Calculate(std::wistream & stream)
 
     while (stream)
     {
+        stream.clear();
         lexeme = lexer.GetLexeme(stream);
+
+        /*
+            Check the sequence for correctness,
+            Determine the unary minus.
+        */
+
         tokenBuffer.push
         (
             Token
@@ -44,8 +53,8 @@ WString Calculator::Calculate(std::wistream & stream)
     }
 
     AST ast{parser.GetAST(tokenBuffer) };
-    ast.Show(ast.GetRoot(), tableOfSymbols);
-    // ...
+
+    // TODO...
 
     return L"";
 }

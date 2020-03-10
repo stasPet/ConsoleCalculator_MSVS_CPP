@@ -11,9 +11,12 @@ namespace clc::lxr
     class StateKeyWords : public IState
     {
     private:
+        using Predicate = bool(*)(WChar);
+        Predicate IsSeparator;
+
         enum class State: unsigned char
         {
-            Check, SetFlag, Good, Fail
+            Check, CheckSeparator, End, Skip
         };
 
         LexemeType lexemeType;
@@ -28,7 +31,8 @@ namespace clc::lxr
 
     public:
         StateKeyWords(LexemeType,
-            std::initializer_list<WString> );
+                      std::initializer_list<WString>,
+                      Predicate);
 
         LexemeType Set(WChar) override;
         void Reset() override;

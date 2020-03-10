@@ -8,8 +8,8 @@ namespace clc::lxr
 
     enum class LexemeType
     {
-        Operand,         Operation,        Function,
-        LeftParenthesis, RightParenthesis, Bad,      Empty,
+        Number,          Name,             Operation,        Function,
+        LeftParenthesis, RightParenthesis, Bad,              Empty,
         End
     };
 

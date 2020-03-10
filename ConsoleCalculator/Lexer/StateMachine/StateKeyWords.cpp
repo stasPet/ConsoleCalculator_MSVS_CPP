@@ -4,7 +4,9 @@ using namespace clc::lxr;
 using namespace clc;
 
 StateKeyWords::StateKeyWords(LexemeType t,
-    std::initializer_list<WString> l) : operationNames{l.size() }
+                             std::initializer_list<WString> l,
+                             Predicate p) :
+    operationNames{l.size() }, IsSeparator{p}
 {
     if (l.size() == 0)
         throw std::exception{"StateOperation::StateOperation(TokenType, \
@@ -33,51 +35,51 @@ LexemeType StateKeyWords::Set(WChar message)
 {
     switch (currentState)
     {
-    case State::Check:
-        for (auto p = pointersToOperationNames.begin();
-            p != pointersToOperationNames.end(); )
-        {
-            WString const & element = *(*p);
-
-            if (element[currentSymbolPosition] != message)
-                p = pointersToOperationNames.erase(p); 
-            else
-                ++p;
-        }
-
-        if (pointersToOperationNames.size() == 1)
-        {
-            if (currentSymbolPosition + 1 ==
-                pointersToOperationNames.front()->size() )
+        case State::Check:
+            for (auto p = pointersToOperationNames.begin();
+                p != pointersToOperationNames.end(); )
             {
-                currentState = State::SetFlag;
+                WString const & element = *(*p);
+
+                if (element[currentSymbolPosition] != message)
+                    p = pointersToOperationNames.erase(p); 
+                else
+                    ++p;
             }
-        }
-        else if (pointersToOperationNames.empty() )
-        {
-            currentState = State::Fail;
+
+            if (pointersToOperationNames.size() == 1)
+            {
+                if (currentSymbolPosition + 1 ==
+                    pointersToOperationNames.front()->size() )
+                {
+                    currentState = State::CheckSeparator;
+                }
+            }
+            else if (pointersToOperationNames.empty() )
+            {
+                currentState = State::End;
+                //currentLexemeType = LexemeType::Bad;
+            }
+
+            ++currentSymbolPosition;
+            break;
+
+        case State::CheckSeparator:
+            if (IsSeparator(message) )
+                currentLexemeType = lexemeType;
+
+            currentState = State::End;
+            break;
+
+        case State::End:
+
+            currentState = State::Skip;
             currentLexemeType = LexemeType::Bad;
+            break;
+
+        case State::Skip:
+            break;
         }
-
-        ++currentSymbolPosition;
-        break;
-
-    case State::SetFlag:
-
-        currentState = State::Good;
-        currentLexemeType = lexemeType;
-        break;
-
-    case State::Good:
-
-        currentState = State::Fail;
-        currentLexemeType = LexemeType::Bad;
-        break;
-
-    case State::Fail:
-        // Skip
-        break;
-    }
 
     return currentLexemeType;
 }
