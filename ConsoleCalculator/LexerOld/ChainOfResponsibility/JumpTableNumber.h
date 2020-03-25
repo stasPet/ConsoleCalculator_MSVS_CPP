@@ -1,26 +1,29 @@
 #pragma once
 
 #include <vector>
-#include "Lexer/Lexeme.h"
 
 namespace clc::lxr
 {
-    struct JumpTableName
+    struct JumpTableNumber
     {
         template <typename T> using JumpTable =
             std::vector<std::vector<T> >;
 
         enum class State: unsigned char
         {
-            Start, DigitAlpha, Good, Fail
+            Start,          DigitDotExponent, DigitExponent,
+            DigitOperation, DigitA,           DigitB,
+            Skip,           Off,
+            Good,           Fail
         };
 
         enum class Signal : unsigned char
         {
-            Digit, Alpha, NoMatch
+            Digit, Dot, Exponent, Operation, Separator, NoMatch
         };
 
+
         static const JumpTable<State> jumpTable;
-        static Signal ConvertToSignal(WChar);
+        static Signal ConvertToSignal(wchar_t);
     };
 }

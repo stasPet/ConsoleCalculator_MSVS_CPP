@@ -1,32 +1,27 @@
 #pragma once
 
-#include "TableOfSymbols.h"
-#include "AST.h"
+#include "Lexer/Lexer.h"
+#include "ParseTree.h"
 
 namespace clc::prs
 {
-    using TableOfSymbolsT = 
-        TableOfSymbols<std::wstring, std::size_t>;
-
-    using Priority = char;
-
     class Parser
     {
     private:
-        TableOfSymbolsT tableOfSymbol;
-
-        std::stack<Token> stackValue;
-
-        std::queue<Token> ShuntingYard(std::queue<Token> );
-        Priority GetPriority(Token);
+        lxr::Lexer lexer;
 
     public:
-        AST GetAST(std::queue<Token> );
-        TableOfSymbolsT & GetTableOfSymbols();
+        Parser(std::wistream &);
+
+        ParseTree GetParseTree();
+
+        lxr::TableOfSymbols<> & GetTableOfSymbol();
     };
 
-    inline TableOfSymbolsT & Parser::GetTableOfSymbols()
+    inline Parser::Parser(std::wistream & s) : lexer{s} {}
+
+    inline lxr::TableOfSymbols<> & Parser::GetTableOfSymbol()
     {
-        return tableOfSymbol;
+        return lexer.GetTableOfSymbol();
     }
 }

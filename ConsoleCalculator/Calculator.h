@@ -1,6 +1,4 @@
 #pragma once
-
-#include "Lexer/Lexer.h"
 #include "Parser/Parser.h"
 
 namespace clc
@@ -8,14 +6,16 @@ namespace clc
     class Calculator
     {
     private:
-        lxr::Lexer lexer;
         prs::Parser parser;
-
-        std::wstring result;
-
-        static prs::TokenType GetTokenType(lxr::LexemeType);
+        prs::lxr::TableOfSymbols<> & tableOfSymbols;
 
     public:
-        std::wstring Calculate(std::wistream &);
+        Calculator(std::wistream &);
+
+        std::wstring_view GetResult();
+        std::wstring_view Calculate(std::wstring_view);
     };
+
+    inline Calculator::Calculator(std::wistream & s) :
+        parser{s}, tableOfSymbols{parser.GetTableOfSymbol() } {}
 }

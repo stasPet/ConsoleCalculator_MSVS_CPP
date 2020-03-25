@@ -16,27 +16,6 @@
     <Filter Include="Parser">
       <UniqueIdentifier>{bf1bbec9-1dfc-4ac1-bdcb-40998f2b5c28}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lexer">
-      <UniqueIdentifier>{1e939517-b7c4-416c-8097-e016bb14b29f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lexer\Исходные файлы">
-      <UniqueIdentifier>{bf5e6a74-b43d-4364-848b-9d4810a91db7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lexer\Файлы заголовков">
-      <UniqueIdentifier>{657c0358-303d-41b2-9df1-f85dbc791dd1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lexer\StateMachine">
-      <UniqueIdentifier>{a9ad49f0-9635-4855-a992-c5cd08035a53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lexer\StateMachine\Исходные файлы">
-      <UniqueIdentifier>{1656f936-5122-4a65-b175-80f3a7e5896a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lexer\StateMachine\Файлы заголовков">
-      <UniqueIdentifier>{efb114cd-c8d5-4586-9cc8-8e370952527f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lexer\StateMachine\UML">
-      <UniqueIdentifier>{2f4a1518-791e-45c6-98fd-c8514b899dc3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Parser\Исходные файлы">
       <UniqueIdentifier>{e58437a0-4718-469b-8000-610d4e11855f}</UniqueIdentifier>
     </Filter>
@@ -46,78 +25,75 @@
     <Filter Include="Documents">
       <UniqueIdentifier>{87dbc601-6157-46f9-98e6-2686de3eee4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Parser\Lexer">
+      <UniqueIdentifier>{1e939517-b7c4-416c-8097-e016bb14b29f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser\Lexer\Исходные файлы">
+      <UniqueIdentifier>{bf5e6a74-b43d-4364-848b-9d4810a91db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser\Lexer\Файлы заголовков">
+      <UniqueIdentifier>{659c309e-be55-45a1-98bd-56ba099d6b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{a00c7f9e-a0ba-4725-82d3-e9b4fa5360ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exceptions\Исходные файлы">
+      <UniqueIdentifier>{74e819ca-2f09-4e45-a139-c1de60c14e8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exceptions\Файлы заголовков">
+      <UniqueIdentifier>{e661ea0d-06f4-4e69-bd30-a7a39e5bdea1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexer\Lexer.cpp">
-      <Filter>Lexer\Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\StateMachine.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
+    <ClCompile Include="Calculator.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Parser\Parser.cpp">
       <Filter>Parser\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Parser\AST.cpp">
-      <Filter>Parser\Исходные файлы</Filter>
+    <ClCompile Include="Parser\Lexer\LexemeState.cpp">
+      <Filter>Parser\Lexer\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\JumpTableNumber.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
+    <ClCompile Include="Parser\Lexer\LexemeStateImpl.cpp">
+      <Filter>Parser\Lexer\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\JumpTableName.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Calculator.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\StateKeyWords.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Lexer\StateMachine\IState.cpp">
-      <Filter>Lexer\StateMachine\Исходные файлы</Filter>
+    <ClCompile Include="Parser\Lexer\Lexer.cpp">
+      <Filter>Parser\Lexer\Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lexer\Lexer.h">
-      <Filter>Lexer\Файлы заголовков</Filter>
+    <ClInclude Include="Calculator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\Lexer\LexemeState.h">
+      <Filter>Parser\Lexer\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\Lexer\LexemeStateImpl.h">
+      <Filter>Parser\Lexer\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\Lexer\TableOfSymbols.h">
+      <Filter>Parser\Lexer\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\Lexer\Token.h">
+      <Filter>Parser\Lexer\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Parser\Parser.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\AST.h">
+    <ClInclude Include="Parser\Lexer\Lexer.h">
+      <Filter>Parser\Lexer\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\ExceptionLexer.h">
+      <Filter>Exceptions\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\Exception.h">
+      <Filter>Exceptions\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\ParseTree.h">
       <Filter>Parser\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Calculator.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateMachine.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\IState.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\JumpTableName.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\JumpTableNumber.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Parser\Token.h">
-      <Filter>Parser\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\Lexeme.h">
-      <Filter>Lexer\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Parser\TableOfSymbols.h">
-      <Filter>Parser\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateKeyWords.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer\StateMachine\StateJumpTable.h">
-      <Filter>Lexer\StateMachine\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

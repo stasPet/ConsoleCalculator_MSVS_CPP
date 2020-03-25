@@ -3,11 +3,13 @@
 #include <initializer_list>
 #include <unordered_map>
 
+#include <cstddef>
 #include <string>
 
-namespace clc::prs
+namespace clc::prs::lxr
 {
-    template <typename String, typename Attribute>
+    template <typename String = std::wstring, 
+                typename Attribute = std::size_t>
     class TableOfSymbols
     {
     private:
@@ -16,17 +18,23 @@ namespace clc::prs
         std::unordered_map<Attribute, String>
             tableOfSymbolsOut;
 
-        Attribute valueAttribute = 1;
+        Attribute valueAttribute;
 
     public:
-        TableOfSymbols() = default;
+        TableOfSymbols();
         TableOfSymbols(std::initializer_list<String> );
 
         Attribute SetSymbol(String);
         String GetSymbol(Attribute) const;
 
         void Clear();
+
+        static TableOfSymbols & GetTableOfSymbols();
     };
+
+    template <typename String, typename Attribute>
+    inline TableOfSymbols<String, Attribute>::TableOfSymbols() :
+        valueAttribute{1} {}
 
     template <typename String, typename Attribute>
     inline void TableOfSymbols<String, Attribute>::Clear()
@@ -36,14 +44,14 @@ namespace clc::prs
 
         valueAttribute = 1;
     }
-
+        
     template <typename String, typename Attribute>
     TableOfSymbols<String, Attribute>::TableOfSymbols(std::initializer_list<String> l)
     {
         for (auto it = l.begin(); it != l.end(); ++it)
             SetSymbol(std::move(*it) );
     }
-
+        
     template <typename String, typename Attribute>
     Attribute TableOfSymbols<String, Attribute>::SetSymbol(String e)
     {
@@ -66,5 +74,13 @@ namespace clc::prs
             return it->second;
 
         return String{};
+    }
+
+    template <typename String, typename Attribute>
+    TableOfSymbols<String, Attribute> &
+        TableOfSymbols<String, Attribute>::GetTableOfSymbols()
+    {
+        static TableOfSymbols defaultTable;
+        return defaultTable;
     }
 }

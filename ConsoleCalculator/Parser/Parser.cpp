@@ -1,67 +1,17 @@
 #include "Parser.h"
 
 using namespace clc::prs;
+using namespace clc::prs::lxr;
 
-AST Parser::GetAST(std::queue<Token> tokenBuffer)
+ParseTree Parser::GetParseTree()
 {
-    std::queue<Token> tempBuffer{ShuntingYard(std::move(tokenBuffer) ) };
-    return AST{tempBuffer};
-}
+    lxr::Token currentToken;
+    lxr::Token endToken{TokenEnum::End};
 
-std::queue<Token> Parser::ShuntingYard(std::queue<Token> tokenBuffer)
-{
-    std::queue<Token> tokenBufferOut;
-    while (!tokenBuffer.empty() )
+    while (lexer && currentToken != endToken)
     {
-        Token token = tokenBuffer.front();
-        tokenBuffer.pop();
-
-        switch (token.tokenType)
-        {
-            case TokenType::Number:
-            case TokenType::Name:
-                tokenBufferOut.push(token);
-                break;
-
-            case TokenType::Operation:
-            {
-                while (!stackValue.empty() )
-                {
-                    if(GetPriority(stackValue.top() ) >=
-                        GetPriority(token) )
-                    {
-                        tokenBufferOut.push(stackValue.top() );
-                        stackValue.pop();
-                    }
-                    else
-                        break;
-                }
-
-                stackValue.push(token);
-                break;
-            }
-        }
+        currentToken = lexer.GetToken();
     }
 
-    while (!stackValue.empty() )
-    {
-        tokenBufferOut.push(stackValue.top() );
-        stackValue.pop();
-    }
-
-    return std::move(tokenBufferOut);
-}
-
-Priority Parser::GetPriority(Token token)
-{
-    auto c = tableOfSymbol.GetSymbol(token.attribue).front();
-
-    Priority retValue{};
-    switch (c)
-    {
-        case L'*': case L'/': retValue = 2; break;
-        case L'+': case L'-': retValue = 1; break;
-    }
-
-    return retValue;
+    return ParseTree{};
 }
