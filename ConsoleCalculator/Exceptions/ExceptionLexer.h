@@ -6,7 +6,7 @@ namespace clc
     class ExceptionLexer : public Exception
     {
     private:
-        std::wstring åxceptionLexerMessage;
+        std::wstring exceptionLexerMessage;
 
     public:
         explicit ExceptionLexer(std::wstring);
@@ -15,12 +15,12 @@ namespace clc
     };
 
     inline ExceptionLexer::ExceptionLexer(std::wstring s) :
-        åxceptionLexerMessage{L"Lexer."} {}
+        exceptionLexerMessage{L"Lexer."} {}
 
     inline const std::wstring & ExceptionLexer::GetMessage(
         std::wstring addMessage)
     {
         return Exception::GetMessage() +
-            åxceptionLexerMessage + addMessage;
+            exceptionLexerMessage + addMessage;
     }
 }

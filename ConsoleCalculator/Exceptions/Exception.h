@@ -6,7 +6,7 @@ namespace clc
     class Exception
     {
     private:
-        std::wstring åxceptionMessage;
+        std::wstring exceptionMessage;
 
     public:
         explicit Exception();
@@ -15,11 +15,11 @@ namespace clc
     };
 
     inline Exception::Exception() :
-        åxceptionMessage{L"Exception."} {}
+        exceptionMessage{L"Exception."} {}
 
     inline const std::wstring & Exception::GetMessage(
         std::wstring addMessage)
     {
-        return åxceptionMessage + addMessage;
+        return exceptionMessage + addMessage;
     }
 }
