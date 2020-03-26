@@ -23,3 +23,7 @@ LexemeState::StateEnum LexemeState::GetState()
 
     return None;
 }
+void LexemeState::Reset()
+{
+    pImpl->SetMessage(L';');
+}

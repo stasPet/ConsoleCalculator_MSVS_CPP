@@ -20,7 +20,7 @@ namespace clc::prs::lxr
             Digit, Dot, Exponent, PlusMinus, Separator, Alpha, NoMatch
         };
  
-        State currentState;
+        State currentState{Start};
         static const State jumpTable[][12];
 
         static Signal ConvertToSignal(wchar_t);
@@ -29,13 +29,9 @@ namespace clc::prs::lxr
         static std::size_t ConvertSignalToIndex(Signal);
 
     public:
-        LexemeStateImpl();
-
         void SetMessage(wchar_t);
         State GetState();
     };
-
-    inline LexemeStateImpl::LexemeStateImpl() : currentState(Start) {}
 
     inline LexemeStateImpl::State LexemeStateImpl::GetState()
     {

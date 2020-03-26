@@ -12,10 +12,12 @@ namespace clc::prs::lxr
         };
 
         LexemeState();
-        ~LexemeState();
+       ~LexemeState();
 
         StateEnum SetMessage(wchar_t);
+
         StateEnum GetState();
+        void Reset();
 
     private:
         std::unique_ptr<class LexemeStateImpl> pImpl;
