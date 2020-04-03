@@ -15,7 +15,7 @@
     Expression -> e
 
     Term -> Term * Factor
-    Term -> Term / Factor2
+    Term -> Term / Factor
     Term -> Factor
 
     Factor -> Number
