@@ -1,31 +1,26 @@
 #include <cwctype>
 #include "Lexer.h"
 
-#include <iostream>
-
 using namespace clc::prs::lxr;
 
 Token Lexer::GetToken()
 {
     std::wstring::value_type wCharBuffer;
 
-    while (*this)
+    while (inputIterator != endIterator)
     {
         wCharBuffer = *inputIterator;
-        if (!std::iswspace(wCharBuffer) &&
+        if (std::iswspace(wCharBuffer) &&
             wCharBuffer != L'\n')
-            break;
-        else
             ++inputIterator;
+        else
+            break;
     }
 
-    Lexeme currentLexeme;
     std::wstring wStringBuffer;
 
-    if (lexemeBuffer)
-        std::swap(lexemeBuffer, currentLexeme);
-
-    while (!currentLexeme)
+    while (inputIterator != endIterator &&
+           lexemeBuffer.empty() )
     {
         wCharBuffer = *inputIterator++;
         lexemeState.SetMessage(wCharBuffer);
@@ -34,32 +29,26 @@ Token Lexer::GetToken()
         {
             case LexemeState::Number:
             {
-                currentLexeme = Lexeme(TokenEnum::Number, wStringBuffer);
-
-                lexemeBuffer = Lexeme(TokenEnum::Operation,
-                    std::wstring(1, wCharBuffer) );
+                InsertBuffer(TokenEnum::Number, wStringBuffer, wCharBuffer);
                 break;
             }
             case LexemeState::Name:
             {
-                currentLexeme = Lexeme(TokenEnum::Name, wStringBuffer);
-
-                lexemeBuffer = Lexeme(TokenEnum::Operation,
-                    std::wstring(1, wCharBuffer) );
+                InsertBuffer(TokenEnum::Name, wStringBuffer, wCharBuffer);
                 break;
             }
             case LexemeState::Fail:
             {
-                currentLexeme = Lexeme(TokenEnum::Bad, wStringBuffer);
-
-                lexemeBuffer = Lexeme(TokenEnum::Operation,
-                    std::wstring(1, wCharBuffer) );
+                InsertBuffer(TokenEnum::Bad, wStringBuffer, wCharBuffer);
                 break;
             }
             case LexemeState::Operation:
             {
-                currentLexeme = Lexeme(TokenEnum::Operation,
-                    std::wstring(1, wCharBuffer) );
+                lexemeBuffer.push
+                (
+                    RefineToken(TokenEnum::Operation,
+                        std::wstring{wCharBuffer} ) 
+                );
                 break;
             }
             default:
@@ -68,54 +57,56 @@ Token Lexer::GetToken()
         }
     }
 
-    pastToken = RefineToken(currentLexeme);
-    return pastToken;
+    Token returnToken;
+    if (!lexemeBuffer.empty() )
+    {
+        returnToken = lexemeBuffer.front();
+        lexemeBuffer.pop();
+    }
+
+    return returnToken;
 }
 
-Token Lexer::RefineToken(Lexeme & l)
+Token Lexer::RefineToken(TokenEnum e, std::wstring s)
 {
-    switch (l.tokenEnum)
+    switch (e)
     {
         case TokenEnum::Operation:
-            RefineOperation(l);
+            e = RefineOperation(s.front() );
             break;
 
         case TokenEnum::Name:
-            RefineFunction(l);
+            e = RefineFunction(s);
             break;
     }
 
     return Token
     {
-        l.tokenEnum,
-        tableOfSymbols.SetSymbol(
-            std::move(l.wStringValue) ),
+        e, tableOfSymbols.SetSymbol(std::move(s) ),
     };
 }
 
-void Lexer::RefineFunction(Lexeme & l)
+TokenEnum Lexer::RefineFunction(std::wstring & s)
 {
     for (std::wstring & r : functionNames)
     {
-        if (r == l.wStringValue)
-        {
-            l.tokenEnum = TokenEnum::Function;
-            break;
-        }
+        if (r == s)
+            return TokenEnum::Function;
     }
+
+    return TokenEnum::Name;
 }
-void Lexer::RefineOperation(Lexeme & l)
+TokenEnum Lexer::RefineOperation(std::wstring::value_type c)
 {
-    switch (l.wStringValue.front() )
+    switch (c)
     {
         case L'(':
-            l.tokenEnum = TokenEnum::LeftParenthesis;
-            break;
+            return TokenEnum::LeftParenthesis;
         case L')':
-            l.tokenEnum = TokenEnum::RightParenthesis;
-            break;
-        case L';':
-            l.tokenEnum = TokenEnum::End;
-            break;
+            return TokenEnum::RightParenthesis;
+        case L';': case L'\n':
+            return TokenEnum::End;
     }
+
+    return TokenEnum::Operation;
 }

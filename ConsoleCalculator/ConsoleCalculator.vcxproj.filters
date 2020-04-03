@@ -34,15 +34,6 @@
     <Filter Include="Parser\Lexer\Файлы заголовков">
       <UniqueIdentifier>{659c309e-be55-45a1-98bd-56ba099d6b38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Exceptions">
-      <UniqueIdentifier>{a00c7f9e-a0ba-4725-82d3-e9b4fa5360ce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Exceptions\Исходные файлы">
-      <UniqueIdentifier>{74e819ca-2f09-4e45-a139-c1de60c14e8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Exceptions\Файлы заголовков">
-      <UniqueIdentifier>{e661ea0d-06f4-4e69-bd30-a7a39e5bdea1}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -86,14 +77,11 @@
     <ClInclude Include="Parser\Lexer\Lexer.h">
       <Filter>Parser\Lexer\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Exceptions\ExceptionLexer.h">
-      <Filter>Exceptions\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Exceptions\Exception.h">
-      <Filter>Exceptions\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Parser\ParseTree.h">
       <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\Lexer\ExceptionLexer.h">
+      <Filter>Parser\Lexer\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

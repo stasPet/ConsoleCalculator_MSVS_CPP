@@ -12,7 +12,14 @@ namespace clc::prs::lxr
         };
 
         LexemeState();
-       ~LexemeState();
+        
+        LexemeState(LexemeState const &) = delete;
+        LexemeState(LexemeState &&) = default;
+
+        ~LexemeState();
+
+        LexemeState & operator=(LexemeState const &) = delete;
+        LexemeState & operator=(LexemeState &&) = default;
 
         StateEnum SetMessage(wchar_t);
 

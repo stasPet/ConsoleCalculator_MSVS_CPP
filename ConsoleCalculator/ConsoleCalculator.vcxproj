@@ -153,8 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
-    <ClInclude Include="Exceptions\Exception.h" />
-    <ClInclude Include="Exceptions\ExceptionLexer.h" />
+    <ClInclude Include="Parser\Lexer\ExceptionLexer.h" />
     <ClInclude Include="Parser\Lexer\LexemeState.h" />
     <ClInclude Include="Parser\Lexer\LexemeStateImpl.h" />
     <ClInclude Include="Parser\Lexer\Lexer.h" />

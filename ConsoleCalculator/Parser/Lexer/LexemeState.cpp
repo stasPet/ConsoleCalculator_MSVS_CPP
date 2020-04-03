@@ -4,6 +4,7 @@
 using namespace clc::prs::lxr;
 
 LexemeState::LexemeState() : pImpl(new LexemeStateImpl() ) {}
+
 LexemeState::~LexemeState() {}
 
 LexemeState::StateEnum LexemeState::SetMessage(wchar_t message)

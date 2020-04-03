@@ -6,6 +6,12 @@ namespace clc::prs::lxr
 {
     enum class TokenEnum
     {
+        // non-terminals
+        Expression,
+        Term,
+        Factor,
+        
+        // terminals
         Number,
         Name,
         Operation,

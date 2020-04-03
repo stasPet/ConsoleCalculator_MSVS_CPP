@@ -3,6 +3,7 @@
 #include <istream>
 #include <iterator>
 #include <string>
+#include <queue>
 #include <forward_list>
 
 #include "Token.h"
@@ -11,43 +12,37 @@
 
 namespace clc::prs::lxr
 {
-    using InputIterator = std::istreambuf_iterator<wchar_t>;
-
     class Lexer
     {
-    public:
-        struct Lexeme
-        {
-            TokenEnum tokenEnum;
-            std::wstring wStringValue;
-
-            Lexeme(TokenEnum e = TokenEnum::Empty,
-                std::wstring s = std::wstring() );
-            operator bool();
-
-        };
-
     private:
         LexemeState lexemeState;
 
-        InputIterator inputIterator;
-        InputIterator endIterator;
+        std::istreambuf_iterator<wchar_t> inputIterator;
+        std::istreambuf_iterator<wchar_t> endIterator;
 
-        Lexeme lexemeBuffer;
-        Token pastToken;
+        std::queue<Token> lexemeBuffer;
+        void InsertBuffer(TokenEnum, std::wstring &, std::wstring::value_type);
 
         TableOfSymbols<> tableOfSymbols;
 
-        Token RefineToken(Lexeme &);
+        Token RefineToken(TokenEnum, std::wstring);
 
-        void RefineFunction(Lexeme &);
-        void RefineOperation(Lexeme &);
+        TokenEnum RefineFunction(std::wstring &);
+        TokenEnum RefineOperation(std::wstring::value_type);
 
         std::forward_list<std::wstring> functionNames;
 
     public:
         Lexer(std::wistream &, std::initializer_list<std::wstring> l =
                 {L"sin", L"cos", L"tg", L"ctg", L"sqrt",} );
+
+        Lexer(Lexer const &) = delete;
+        Lexer(Lexer &&) = default;
+
+        ~Lexer() = default;
+
+        Lexer & operator=(Lexer const &) = delete;
+        Lexer & operator=(Lexer &&) = default;
 
         Token GetToken();
 
@@ -56,6 +51,14 @@ namespace clc::prs::lxr
 
         TableOfSymbols<> & GetTableOfSymbol();
     };
+
+    inline void Lexer::InsertBuffer(
+        TokenEnum t, std::wstring & s, std::wstring::value_type c)
+    {
+        lexemeBuffer.push(RefineToken(t, std::move(s) ) );
+        lexemeBuffer.push(
+            RefineToken(TokenEnum::Operation, std::wstring{c} ) );
+    }
 
     inline Lexer::Lexer(std::wistream & i, std::initializer_list<std::wstring> l) :
         inputIterator{i}, functionNames{l} {}
@@ -68,20 +71,11 @@ namespace clc::prs::lxr
 
     inline Lexer::operator bool()
     {
-        return inputIterator != endIterator ||
-            lexemeBuffer.tokenEnum != TokenEnum::Empty;
+        return inputIterator != endIterator || !lexemeBuffer.empty();
     }
 
     inline TableOfSymbols<> & Lexer::GetTableOfSymbol()
     {
         return tableOfSymbols;
-    }
-
-    inline Lexer::Lexeme::Lexeme(TokenEnum e, std::wstring s) :
-        tokenEnum(e), wStringValue(s) {}
-    inline Lexer::Lexeme::operator bool()
-    {
-        if (tokenEnum == TokenEnum::Empty) return false;
-        return true;
     }
 }
