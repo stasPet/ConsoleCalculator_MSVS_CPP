@@ -91,7 +91,7 @@ TokenEnum Lexer::RefineFunction(std::wstring & s)
     for (std::wstring & r : functionNames)
     {
         if (r == s)
-            return TokenEnum::Function;
+            return TokenEnum::Call;
     }
 
     return TokenEnum::Name;
@@ -100,6 +100,14 @@ TokenEnum Lexer::RefineOperation(std::wstring::value_type c)
 {
     switch (c)
     {
+        case L'*':
+            return TokenEnum::Multiplication;
+        case L'/':
+            return TokenEnum::Division;
+        case L'+':
+            return TokenEnum::Addition;
+        case L'-':
+            return TokenEnum::Subtraction;
         case L'(':
             return TokenEnum::LeftParenthesis;
         case L')':

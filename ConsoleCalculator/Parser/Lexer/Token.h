@@ -4,23 +4,29 @@
 
 namespace clc::prs::lxr
 {
-    enum class TokenEnum
+    enum TokenEnum
     {
-        // non-terminals
         Expression,
+        Addition,
+        Number,
+
+        // non-terminals
         Term,
         Factor,
         
-        // terminals
-        Number,
+        // terminals   
         Name,
-        Operation,
-        Function, 
-        LeftParenthesis,
-        RightParenthesis,
+        Call,
         Bad,
+        Multiplication,
+        Division,
+        Subtraction, 
+        LeftParenthesis,
+        RightParenthesis, 
         Empty,
-        End
+        End,
+
+        Operation,
     };
 
     struct Token

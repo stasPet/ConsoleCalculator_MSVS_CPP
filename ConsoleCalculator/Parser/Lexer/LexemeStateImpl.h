@@ -25,25 +25,18 @@ namespace clc::prs::lxr
 
         static Signal ConvertToSignal(wchar_t);
 
-        static std::size_t ConvertStateToIndex(State);
-        static std::size_t ConvertSignalToIndex(Signal);
-
     public:
         void SetMessage(wchar_t);
         State GetState();
     };
 
+    inline void LexemeStateImpl::SetMessage(wchar_t message)
+    {
+        currentState = jumpTable[currentState][ConvertToSignal(message) ];
+    }
+
     inline LexemeStateImpl::State LexemeStateImpl::GetState()
     {
         return currentState;
-    }
-
-    inline std::size_t LexemeStateImpl::ConvertStateToIndex(State state)
-    {
-        return static_cast<std::size_t>(state);
-    }
-    inline std::size_t LexemeStateImpl::ConvertSignalToIndex(Signal signal)
-    {
-        return static_cast<std::size_t>(signal);
     }
 }

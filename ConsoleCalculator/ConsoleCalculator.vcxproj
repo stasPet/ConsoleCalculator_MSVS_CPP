@@ -150,6 +150,7 @@
     <ClCompile Include="Parser\Lexer\LexemeStateImpl.cpp" />
     <ClCompile Include="Parser\Lexer\Lexer.cpp" />
     <ClCompile Include="Parser\Parser.cpp" />
+    <ClCompile Include="Parser\ParserState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Parser\Lexer\TableOfSymbols.h" />
     <ClInclude Include="Parser\Lexer\Token.h" />
     <ClInclude Include="Parser\Parser.h" />
+    <ClInclude Include="Parser\ParserState.h" />
     <ClInclude Include="Parser\ParseTree.h" />
   </ItemGroup>
   <ItemGroup>

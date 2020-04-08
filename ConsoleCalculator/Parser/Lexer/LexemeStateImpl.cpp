@@ -51,11 +51,3 @@ LexemeStateImpl::Signal LexemeStateImpl::ConvertToSignal(wchar_t message)
 
     return NoMatch;
 }
-
-void LexemeStateImpl::SetMessage(wchar_t message)
-{
-    std::size_t base = ConvertStateToIndex(currentState);
-    std::size_t offset = ConvertSignalToIndex(ConvertToSignal(message) );
-
-    currentState = jumpTable[base][offset];
-}

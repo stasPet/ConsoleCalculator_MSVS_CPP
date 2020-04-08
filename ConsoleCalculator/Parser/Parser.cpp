@@ -4,16 +4,17 @@
 using namespace clc::prs;
 using namespace clc::prs::lxr;
 
+/*********************Context-free grammar (Test)******************************
+
+    Finish     -> Expression
+    Expression -> Expression + Number
+    Expression -> Number
+
+******************************************************************************/
+
 ParseTree Parser::GetParseTree()
 {
-    lxr::Token currentToken;
-    lxr::Token endToken{TokenEnum::End};
-
-    while (lexer)
-    {
-        currentToken = lexer.GetToken();
-        // ...
-    }
+    // ...
 
     return ParseTree{};
 }
