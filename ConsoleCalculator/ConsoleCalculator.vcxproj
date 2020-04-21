@@ -149,19 +149,20 @@
     <ClCompile Include="Parser\Lexer\LexemeState.cpp" />
     <ClCompile Include="Parser\Lexer\LexemeStateImpl.cpp" />
     <ClCompile Include="Parser\Lexer\Lexer.cpp" />
+    <ClCompile Include="Parser\LR0Algorithm.cpp" />
     <ClCompile Include="Parser\Parser.cpp" />
-    <ClCompile Include="Parser\ParserState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Parser\ExceptionParser.h" />
     <ClInclude Include="Parser\Lexer\ExceptionLexer.h" />
     <ClInclude Include="Parser\Lexer\LexemeState.h" />
     <ClInclude Include="Parser\Lexer\LexemeStateImpl.h" />
     <ClInclude Include="Parser\Lexer\Lexer.h" />
     <ClInclude Include="Parser\Lexer\TableOfSymbols.h" />
     <ClInclude Include="Parser\Lexer\Token.h" />
+    <ClInclude Include="Parser\LR0Algorithm.h" />
     <ClInclude Include="Parser\Parser.h" />
-    <ClInclude Include="Parser\ParserState.h" />
     <ClInclude Include="Parser\ParseTree.h" />
   </ItemGroup>
   <ItemGroup>

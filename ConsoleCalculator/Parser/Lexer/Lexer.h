@@ -3,7 +3,6 @@
 #include <istream>
 #include <iterator>
 #include <string>
-#include <queue>
 #include <forward_list>
 
 #include "Token.h"
@@ -20,12 +19,9 @@ namespace clc::prs::lxr
         std::istreambuf_iterator<wchar_t> inputIterator;
         std::istreambuf_iterator<wchar_t> endIterator;
 
-        std::queue<Token> lexemeBuffer;
-        void InsertBuffer(TokenEnum, std::wstring &, std::wstring::value_type);
-
         TableOfSymbols<> tableOfSymbols;
 
-        Token RefineToken(TokenEnum, std::wstring);
+        Token RefineToken(TokenEnum, std::wstring &);
 
         TokenEnum RefineFunction(std::wstring &);
         TokenEnum RefineOperation(std::wstring::value_type);
@@ -52,14 +48,6 @@ namespace clc::prs::lxr
         TableOfSymbols<> & GetTableOfSymbol();
     };
 
-    inline void Lexer::InsertBuffer(
-        TokenEnum t, std::wstring & s, std::wstring::value_type c)
-    {
-        lexemeBuffer.push(RefineToken(t, std::move(s) ) );
-        lexemeBuffer.push(
-            RefineToken(TokenEnum::Operation, std::wstring{c} ) );
-    }
-
     inline Lexer::Lexer(std::wistream & i, std::initializer_list<std::wstring> l) :
         inputIterator{i}, functionNames{l} {}
 
@@ -71,7 +59,7 @@ namespace clc::prs::lxr
 
     inline Lexer::operator bool()
     {
-        return inputIterator != endIterator || !lexemeBuffer.empty();
+        return inputIterator != endIterator;
     }
 
     inline TableOfSymbols<> & Lexer::GetTableOfSymbol()

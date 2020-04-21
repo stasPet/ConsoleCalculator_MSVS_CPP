@@ -54,7 +54,7 @@
     <ClCompile Include="Parser\Lexer\Lexer.cpp">
       <Filter>Parser\Lexer\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Parser\ParserState.cpp">
+    <ClCompile Include="Parser\LR0Algorithm.cpp">
       <Filter>Parser\Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,7 +86,10 @@
     <ClInclude Include="Parser\Lexer\ExceptionLexer.h">
       <Filter>Parser\Lexer\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\ParserState.h">
+    <ClInclude Include="Parser\LR0Algorithm.h">
+      <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\ExceptionParser.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

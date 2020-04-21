@@ -6,7 +6,7 @@ using namespace clc::prs::lxr;
 Token Lexer::GetToken()
 {
     std::wstring::value_type wCharBuffer;
-
+  
     while (inputIterator != endIterator)
     {
         wCharBuffer = *inputIterator;
@@ -17,57 +17,50 @@ Token Lexer::GetToken()
             break;
     }
 
+    Token returnToken;
     std::wstring wStringBuffer;
 
     while (inputIterator != endIterator &&
-           lexemeBuffer.empty() )
+           returnToken.type == TokenEnum::Empty)
     {
-        wCharBuffer = *inputIterator++;
+        wCharBuffer = *inputIterator;
         lexemeState.SetMessage(wCharBuffer);
 
         switch (lexemeState.GetState() )
         {
             case LexemeState::Number:
             {
-                InsertBuffer(TokenEnum::Number, wStringBuffer, wCharBuffer);
+                returnToken = RefineToken(TokenEnum::Number, wStringBuffer);
                 break;
             }
             case LexemeState::Name:
             {
-                InsertBuffer(TokenEnum::Name, wStringBuffer, wCharBuffer);
+                returnToken = RefineToken(TokenEnum::Name, wStringBuffer);
                 break;
             }
             case LexemeState::Fail:
             {
-                InsertBuffer(TokenEnum::Bad, wStringBuffer, wCharBuffer);
+                returnToken = RefineToken(TokenEnum::Bad, wStringBuffer);
                 break;
             }
             case LexemeState::Operation:
             {
-                lexemeBuffer.push
-                (
-                    RefineToken(TokenEnum::Operation,
-                        std::wstring{wCharBuffer} ) 
-                );
+                std::wstring temp{wCharBuffer};
+                returnToken = RefineToken(TokenEnum::Operation, temp);
+                ++inputIterator;
                 break;
             }
             default:
                 wStringBuffer += wCharBuffer;
+                ++inputIterator;
                 break;
         }
-    }
-
-    Token returnToken;
-    if (!lexemeBuffer.empty() )
-    {
-        returnToken = lexemeBuffer.front();
-        lexemeBuffer.pop();
     }
 
     return returnToken;
 }
 
-Token Lexer::RefineToken(TokenEnum e, std::wstring s)
+Token Lexer::RefineToken(TokenEnum e, std::wstring & s)
 {
     switch (e)
     {

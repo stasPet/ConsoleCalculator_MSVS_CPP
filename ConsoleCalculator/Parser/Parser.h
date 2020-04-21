@@ -1,9 +1,7 @@
 #pragma once
 
-#include <stack>
-#include <vector>
-
 #include "Lexer/Lexer.h"
+#include "LR0Algorithm.h"
 #include "ParseTree.h"
 
 /*********************Context-free grammar*********************

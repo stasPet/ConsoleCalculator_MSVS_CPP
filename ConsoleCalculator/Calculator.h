@@ -11,9 +11,7 @@ namespace clc
 
     public:
         Calculator(std::wistream &);
-
         std::wstring_view GetResult();
-        std::wstring_view Calculate(std::wstring_view);
     };
 
     inline Calculator::Calculator(std::wistream & s) :

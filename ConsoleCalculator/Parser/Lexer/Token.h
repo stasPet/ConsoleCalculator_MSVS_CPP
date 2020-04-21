@@ -6,26 +6,26 @@ namespace clc::prs::lxr
 {
     enum TokenEnum
     {
-        Expression,
-        Addition,
-        Number,
-
         // non-terminals
+        Expression,
         Term,
         Factor,
         
         // terminals   
-        Name,
-        Call,
-        Bad,
+        Number,
+        Name,               // not implemented
+        Call,               // not implemented
         Multiplication,
         Division,
+        Addition,
         Subtraction, 
         LeftParenthesis,
-        RightParenthesis, 
-        Empty,
+        RightParenthesis,  
         End,
 
+        // not used in the parser
+        Empty,
+        Bad,
         Operation,
     };
 

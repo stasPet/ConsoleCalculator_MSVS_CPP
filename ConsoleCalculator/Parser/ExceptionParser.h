@@ -1,23 +1,24 @@
 #pragma once
+
 #include <stack>
 #include <string>
 
-namespace clc::prs::lxr
+namespace clc::prs
 {
-    class ExceptionLexer
+    class ExceptionParser
     {
     private:
         std::wstring exceptionMessage;
 
     public:
-        ExceptionLexer(std::wstring/*, std::stack<Token>*/ );
+        ExceptionParser(std::wstring/*, std::stack<Token>*/ );
         const std::wstring & GetMessage();
     };
 
-    inline ExceptionLexer::ExceptionLexer(std::wstring addMessage
+    inline ExceptionParser::ExceptionParser(std::wstring addMessage
         /*, std::stack<Token>*/ ) : exceptionMessage{std::move(addMessage) } {}
 
-    inline const std::wstring & ExceptionLexer::GetMessage()
+    inline const std::wstring & ExceptionParser::GetMessage()
     {
         return exceptionMessage;
     }
