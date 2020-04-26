@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Parser\Command.h" />
     <ClInclude Include="Parser\ExceptionParser.h" />
     <ClInclude Include="Parser\Lexer\ExceptionLexer.h" />
     <ClInclude Include="Parser\Lexer\LexemeState.h" />
@@ -163,13 +164,14 @@
     <ClInclude Include="Parser\Lexer\Token.h" />
     <ClInclude Include="Parser\LR0Algorithm.h" />
     <ClInclude Include="Parser\Parser.h" />
-    <ClInclude Include="Parser\ParseTree.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Documents\ClassResponsibilities.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Documents\UML.vsdx" />
+    <None Include="Parser\Documents\LR0AlgorithmStateMachine.pdf" />
+    <None Include="Parser\Documents\LR0AlgorithmStateMachine.vsdx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Lexer/Lexer.h"
+#include <queue>
+
 #include "LR0Algorithm.h"
-#include "ParseTree.h"
 
 /*********************Context-free grammar*********************
 
@@ -27,6 +28,9 @@ namespace clc::prs
     private:
         lxr::Lexer lexer;
 
+        std::queue<lxr::Token> qt;
+        LR0Algorithm lroa{qt};
+
     public:
         Parser(std::wistream &);
 
@@ -38,7 +42,7 @@ namespace clc::prs
         Parser & operator=(Parser const &) = delete;
         Parser & operator=(Parser &&) = default;
 
-        ParseTree GetParseTree();
+        std::queue<lxr::Token> & GetRPN();
         lxr::TableOfSymbols<> & GetTableOfSymbol();
     };
 

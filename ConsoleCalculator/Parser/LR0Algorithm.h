@@ -5,7 +5,7 @@
 #include <queue>
 #include <stack>
 
-#include "ParseTree.h"
+#include "Lexer/Token.h"
 
 /*********************Context-free grammar*********************
 
@@ -35,87 +35,171 @@ namespace clc::prs
             virtual void Execute() = 0;
         };
 
+        // Finish -> Expression
+
+        class RC1 : public Command
+        {
+        public:
+            RC1() {}
+            virtual void Execute() override {}
+        };
+
+        // Expression -> Expression + Term | Expression - Term
+
+        class RC2 : public Command
+        {
+        private:
+            const std::size_t rs = 2;   // reduction size
+            LR0Algorithm & host;  
+
+        public:
+            RC2(LR0Algorithm & h) : host{h} {}
+            virtual void Execute() override;
+        };
+
+        // Expression -> Term
+
+        class RC3 : public Command
+        {
+        private:
+            LR0Algorithm & host;  
+
+        public:
+            RC3(LR0Algorithm & h) : host{h} {}
+            virtual void Execute() override;
+        };
+
+        // Term -> Term * Factor | Term / Factor
+
+        class RC4 : public Command
+        {
+        private:
+            const std::size_t rs = 2;   // reduction size
+            LR0Algorithm & host;  
+
+        public:
+            RC4(LR0Algorithm & h) : host{h} {}
+            virtual void Execute() override;
+        };
+
+        // Term -> Factor
+
+        class RC5 : public Command
+        {
+        private:
+            class LR0Algorithm & host;  
+
+        public:
+            RC5(LR0Algorithm & h) : host{h} {}
+            virtual void Execute() override;
+        };
+
+        // Factor -> Number
+
+        class RC6 : public Command
+        {
+        private:
+            class LR0Algorithm & host;  
+
+        public:
+            RC6(LR0Algorithm & h) : host{h} {}
+            virtual void Execute() override;
+        };
+
+        // Factor -> -Number
+
+        class RC7 : public Command
+        {
+        private:
+            class LR0Algorithm & host;  
+
+        public:
+            RC7(LR0Algorithm & h) : host{h} {}
+            virtual void Execute() override;
+        };
+
+        // Factor -> (Expression)
+
+        class RC8 : public Command
+        {
+        private:
+            const std::size_t rs = 3;   // reduction size
+            class LR0Algorithm & host;  
+
+        public:
+            RC8(LR0Algorithm & h) : host{h} {}
+            virtual void Execute() override;
+        };
+
         enum State : std::size_t // (used in action table)
         {
             Start, A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, E1, F1
         };
 
-        enum ReduceType
-        {
-            R1,    // Finish     -> Expression
-            R2,    // Expression -> Expression + Term | Expression - Term
-            R3,    // Expression -> Term
-            R4,    // Term       -> Term * Factor | Term / Factor
-            R5,    // Term       -> Factor
-            R6,    // Factor     -> Number
-            R7,    // Factor     -> -Number
-            R8,    // Factor     -> (Expression)
-        };
+        /*
+            //
+        */
 
-        class ShiftCommand : public Command
+        class Shift : public Command
         {
         private:
             State st;   
-            LR0Algorithm & host;     // holder
-            bool nf;                // next flag
+            LR0Algorithm & host;
 
         public:
-            ShiftCommand(State s, LR0Algorithm & h, bool f = false) :
-                st{s}, host{h}, nf{f} {}
+            Shift(State s, LR0Algorithm & h) : st{s}, host{h} {}
 
             virtual void Execute() override;
         };
 
-        class ReduceCommand : public Command
+        class Goto : public Command
         {
         private:
-            ReduceType rt;                     // reduction type
-            const std::size_t rs = 3;          // reduction size
-            LR0Algorithm & host;               // holder
+            State st;   
+            LR0Algorithm & host;
 
         public:
-            ReduceCommand(ReduceType r, LR0Algorithm & h) :
-                rt{r}, host{h} {}
+            Goto(State s, LR0Algorithm & h) : st{s}, host{h} {}
 
             virtual void Execute() override;
         };
 
     public:
         LR0Algorithm(std::queue<lxr::Token> & q) : qt{q} {}
-
-        Node * GetTree();
+        std::queue<lxr::Token> & GetRPN();
 
     private:
-        std::stack<State> ss;
-        std::stack<lxr::Token> st;
+        std::stack<State> ss;           // state service stack
+        std::stack<lxr::Token> st;      // token service stack
 
-        std::stack<Node *> sn;
+        std::queue<lxr::Token> rpn;     // output token
 
-        std::queue<lxr::Token> & qt;
-        lxr::Token tb;   // token buffer
+        std::queue<lxr::Token> & qt;    // input token
+        lxr::Token tb;                  // token buffer
 
-        ReduceCommand r1{R1, *this};   // Finish     -> Expression
-        ReduceCommand r2{R2, *this};   // Expression -> Expression + Term | Expression - Term
-        ReduceCommand r3{R3, *this};   // Expression -> Term
-        ReduceCommand r4{R4, *this};   // Term       -> Term * Factor | Term / Factor
-        ReduceCommand r5{R5, *this};   // Term       -> Factor
-        ReduceCommand r6{R6, *this};   // Factor     -> Number
-        ReduceCommand r7{R7, *this};   // Factor     -> -Number
-        ReduceCommand r8{R8, *this};   // Factor     -> (Expression)
+        RC1 r1{};        // Finish     -> Expression
 
-        ShiftCommand sA1{A1, *this};
-        ShiftCommand sA2{A2, *this, true};
-        ShiftCommand sA3{A3, *this};
-        ShiftCommand sB1{B1, *this};
-        ShiftCommand sB2{B2, *this, true};
-        ShiftCommand sB3{B3, *this};
-        ShiftCommand sC1{C1, *this, true};
-        ShiftCommand sC2{C2, *this};
-        ShiftCommand sC3{C3, *this, true};
-        ShiftCommand sD1{D1, *this};
-        ShiftCommand sD2{D2, *this};
-        ShiftCommand sE1{E1, *this};
-        ShiftCommand sF1{F1, *this, true};
+        RC2 r2{*this};   // Expression -> Expression + Term | Expression - Term
+        RC3 r3{*this};   // Expression -> Term
+        RC4 r4{*this};   // Term       -> Term * Factor | Term / Factor
+        RC5 r5{*this};   // Term       -> Factor
+        RC6 r6{*this};   // Factor     -> Number
+        RC7 r7{*this};   // Factor     -> -Number
+        RC8 r8{*this};   // Factor     -> (Expression)
+
+        Goto  sA1{A1, *this};
+        Shift sA2{A2, *this};
+        Goto  sA3{A3, *this};
+        Goto  sB1{B1, *this};
+        Shift sB2{B2, *this};
+        Goto  sB3{B3, *this};
+        Shift sC1{C1, *this};
+        Goto  sC2{C2, *this};
+        Shift sC3{C3, *this};
+        //?  sD1{D1, *this};
+        //?  sD2{D2, *this};
+        Goto  sE1{E1, *this};
+        Shift sF1{F1, *this};
 
         Command * commandTable[14][13]
         {
@@ -126,7 +210,7 @@ namespace clc::prs
             { 0,         0,      0,     0,      0,   0,   &sB2,          &sB2,    &r2,     &r2,        0,              &r2,             &r2, },    /*A3*/
             { 0,         0,      0,     0,      0,   0,   &sB2,          &sB2,    &r3,     &r3,        0,              &r3,             &r3, },    /*B1*/
             { 0,         0,      &sB3,  &sF1,   0,   0,   0,             0,       0,       0,          &sC1,           0,               0,   },    /*B2*/
-            { 0,         0,      0,     0,      0,   0,   &r4,           &r4,     &r4,     &r4,        0,              0,               &r4, },    /*B3*/
+            { 0,         0,      0,     0,      0,   0,   &r4,           &r4,     &r4,     &r4,        0,              &r4,             &r4, },    /*B3*/
             { &sC2,      &sB1,   &sE1,  &sF1,   0,   0,   0,             0,       0,       0,          &sC1,           0,               0,   },    /*C1*/
             { 0,         0,      0,     0,      0,   0,   0,             0,       &sA2,    &sA2,       0,              &sC3,            0,   },    /*C2*/
             { 0,         0,      0,     0,      0,   0,   &r8,           &r8,     &r8,     &r8,        0,              &r8,             &r8, },    /*C3*/

@@ -34,6 +34,9 @@
     <Filter Include="Parser\Lexer\Файлы заголовков">
       <UniqueIdentifier>{659c309e-be55-45a1-98bd-56ba099d6b38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Parser\Documents">
+      <UniqueIdentifier>{ac1b5888-2951-4a73-bf1b-13ebdd729005}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,16 +83,16 @@
     <ClInclude Include="Parser\Lexer\Lexer.h">
       <Filter>Parser\Lexer\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\ParseTree.h">
-      <Filter>Parser\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Parser\Lexer\ExceptionLexer.h">
       <Filter>Parser\Lexer\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\ExceptionParser.h">
+      <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Parser\LR0Algorithm.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\ExceptionParser.h">
+    <ClInclude Include="Parser\Command.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,6 +104,12 @@
   <ItemGroup>
     <None Include="Documents\UML.vsdx">
       <Filter>Documents</Filter>
+    </None>
+    <None Include="Parser\Documents\LR0AlgorithmStateMachine.pdf">
+      <Filter>Parser\Documents</Filter>
+    </None>
+    <None Include="Parser\Documents\LR0AlgorithmStateMachine.vsdx">
+      <Filter>Parser\Documents</Filter>
     </None>
   </ItemGroup>
 </Project>
