@@ -1,21 +1,34 @@
 #include "Calculator.h"
 
+#include "Parser/BadMassage.h"
+#include "Exception.h"
+
 using namespace clc;
 using namespace prs;
 using namespace lxr;
 
-std::wstring Calculator::GetResult()
+double Calculator::GetResult()
 {
-    std::queue<Token> opn = parser.GetRPN();
+    std::queue<Token> rpn{};
+
+    try
+    {
+        rpn = parser.GetRPN();
+    }
+    catch (BadMassage & m)
+    {
+        throw Exception{m};
+    }  
+
     std::stack<double> buffer;
 
     Token t;
     double l, r;
 
-    while (!opn.empty() )
+    while (!rpn.empty() )
     {
-        t = opn.front();
-        opn.pop();
+        t = rpn.front();
+        rpn.pop();
 
         if (t.type == Number)
             buffer.push(GetNumber(t) );
@@ -48,7 +61,12 @@ std::wstring Calculator::GetResult()
         }
     }
 
-    return std::to_wstring(buffer.top() );
+    double returnValue{};
+
+    if (!buffer.empty() )
+        returnValue = buffer.top();
+
+    return returnValue;
 }
 
 double Calculator::GetNumber(prs::lxr::Token t)

@@ -60,6 +60,9 @@
     <ClCompile Include="Parser\LR0Algorithm.cpp">
       <Filter>Parser\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h">
@@ -83,17 +86,14 @@
     <ClInclude Include="Parser\Lexer\Lexer.h">
       <Filter>Parser\Lexer\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\Lexer\ExceptionLexer.h">
-      <Filter>Parser\Lexer\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Parser\ExceptionParser.h">
-      <Filter>Parser\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Parser\LR0Algorithm.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\Command.h">
+    <ClInclude Include="Parser\BadMassage.h">
       <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Exception.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

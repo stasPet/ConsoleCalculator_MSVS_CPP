@@ -27,9 +27,7 @@ namespace clc::prs
     {
     private:
         lxr::Lexer lexer;
-
-        std::queue<lxr::Token> qt;
-        LR0Algorithm lroa{qt};
+        LR0Algorithm lroa;
 
     public:
         Parser(std::wistream &);
@@ -42,11 +40,18 @@ namespace clc::prs
         Parser & operator=(Parser const &) = delete;
         Parser & operator=(Parser &&) = default;
 
+        operator bool();
+
         std::queue<lxr::Token> & GetRPN();
         lxr::TableOfSymbols<> & GetTableOfSymbol();
     };
 
     inline Parser::Parser(std::wistream & s) : lexer{s} {}
+
+    inline Parser::operator bool()
+    {
+        return lexer;
+    }
 
     inline lxr::TableOfSymbols<> & Parser::GetTableOfSymbol()
     {

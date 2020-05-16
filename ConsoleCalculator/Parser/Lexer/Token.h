@@ -4,7 +4,7 @@
 
 namespace clc::prs::lxr
 {
-    enum TokenEnum
+    enum TokenEnum : std::size_t // (used in action table)
     {
         // non-terminals
         Expression,
@@ -18,7 +18,8 @@ namespace clc::prs::lxr
         Multiplication,
         Division,
         Addition,
-        Subtraction, 
+        Subtraction,
+        UnarySubtraction,   // not implemented
         LeftParenthesis,
         RightParenthesis,  
         End,

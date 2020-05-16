@@ -9,6 +9,8 @@ namespace clc
         prs::Parser parser;
         prs::lxr::TableOfSymbols<> & tableOfSymbols;
 
+        std::wistream & inputStream;
+
         double GetNumber(prs::lxr::Token);
 
     public:
@@ -22,9 +24,17 @@ namespace clc
         Calculator & operator=(Calculator const &) = delete;
         Calculator & operator=(Calculator &&) = default;
         
-        std::wstring GetResult();
+        operator bool();
+
+        double GetResult();
     };
 
     inline Calculator::Calculator(std::wistream & s) :
-        parser{s}, tableOfSymbols{parser.GetTableOfSymbol() } {}
+        parser{s}, inputStream{s}, tableOfSymbols{parser.GetTableOfSymbol() }
+    {}
+
+    inline Calculator::operator bool()
+    {
+        return parser;
+    }
 }

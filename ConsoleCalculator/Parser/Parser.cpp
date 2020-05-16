@@ -1,23 +1,30 @@
 #include "Parser.h"
-#include "ExceptionParser.h"
+#include "BadMassage.h"
 
 using namespace clc::prs;
 using namespace lxr;
 
 std::queue<lxr::Token> & Parser::GetRPN()
 {
+    Token tempToken{};
+    std::queue<lxr::Token> badTokens;
+
     while (lexer)
     {
-        qt.push(lexer.GetToken() );
-        if (qt.back().type == End) break;
+        tempToken = lexer.GetToken();
+
+        if (tempToken.type == Bad)
+            badTokens.push(tempToken); 
+        
+        if (badTokens.empty() )
+            lroa.PushToken(tempToken);
+
+        if (tempToken.type == End) break;
     }
-    
-    if (qt.empty() )
-        throw ExceptionParser{L"ParseTree Parser::GetParseTree()"};
 
-    if (qt.back().type != End)
-        throw ExceptionParser{L"ParseTree Parser::GetParseTree()"};
+    // 4 - Parser: bad token detected:
+    if (!badTokens.empty() )
+        throw BadMassage{4, badTokens};
 
-    
     return lroa.GetRPN();
 }

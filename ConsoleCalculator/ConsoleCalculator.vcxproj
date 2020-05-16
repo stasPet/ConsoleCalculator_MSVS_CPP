@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="Exception.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parser\Lexer\LexemeState.cpp" />
     <ClCompile Include="Parser\Lexer\LexemeStateImpl.cpp" />
@@ -154,9 +155,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
-    <ClInclude Include="Parser\Command.h" />
-    <ClInclude Include="Parser\ExceptionParser.h" />
-    <ClInclude Include="Parser\Lexer\ExceptionLexer.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="Parser\BadMassage.h" />
     <ClInclude Include="Parser\Lexer\LexemeState.h" />
     <ClInclude Include="Parser\Lexer\LexemeStateImpl.h" />
     <ClInclude Include="Parser\Lexer\Lexer.h" />
