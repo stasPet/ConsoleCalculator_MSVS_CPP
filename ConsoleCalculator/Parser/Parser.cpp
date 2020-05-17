@@ -1,5 +1,7 @@
 #include "Parser.h"
-#include "BadMassage.h"
+#include "ExceptionBadTokens.h"
+
+#include <vector>
 
 using namespace clc::prs;
 using namespace lxr;
@@ -7,24 +9,25 @@ using namespace lxr;
 std::queue<lxr::Token> & Parser::GetRPN()
 {
     Token tempToken{};
-    std::queue<lxr::Token> badTokens;
+    std::vector<lxr::Token> badTokens;
 
     while (lexer)
     {
         tempToken = lexer.GetToken();
 
         if (tempToken.type == Bad)
-            badTokens.push(tempToken); 
+            badTokens.push_back(tempToken); 
         
         if (badTokens.empty() )
             lroa.PushToken(tempToken);
 
-        if (tempToken.type == End) break;
+        if (tempToken.type == End)
+            break;
     }
 
-    // 4 - Parser: bad token detected:
     if (!badTokens.empty() )
-        throw BadMassage{4, badTokens};
+        throw ExceptionBadTokens{L"Parser: bad token detected:",
+            badTokens};
 
     return lroa.GetRPN();
 }

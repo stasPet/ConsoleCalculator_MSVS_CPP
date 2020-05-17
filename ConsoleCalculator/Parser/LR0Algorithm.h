@@ -5,6 +5,7 @@
 #include <vector>
 #include <queue>
 #include <stack>
+#include <string>
 
 #include "Lexer/Token.h"
 
@@ -91,13 +92,13 @@ namespace clc::prs
         {
         private:
             LR0Algorithm & host;
-            std::queue<lxr::TokenEnum> expectedTokens;
+            std::vector<std::wstring> expectedLexeme;
 
         public:
             Bad(LR0Algorithm & h,
-                std::initializer_list<lxr::TokenEnum> t)
+                std::initializer_list<std::wstring> e)
                     : host{h},
-                      expectedTokens{t} {}
+                      expectedLexeme{e} {}
 
             virtual void Execute() override;
         };
@@ -158,14 +159,26 @@ namespace clc::prs
         Goto  sE1{E1, *this};
         Shift sF1{F1, *this};
 
-        // Error handlers
-        Bad bh1
+        // Bad handlers
+        Bad tempHandler{*this, {L"+", L"-", L")"} };
+
+        Bad bhStart
         {
-            *this, 
+            *this,
             {
-                lxr::Addition,
-                lxr::Subtraction,
-                lxr::RightParenthesis
+                L"Number",
+                L"Name",
+                L"Call function",
+                L"-",
+                L"("
+            }
+        };
+
+        Bad bhF1
+        {
+            *this,
+            {
+                L"*", L"/", L"+", L"-", L")", L";",
             }
         };
 

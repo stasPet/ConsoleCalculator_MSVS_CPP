@@ -1,45 +1,45 @@
 #include "Exception.h"
 
 using namespace clc;
-using namespace prs;
 
-Exception::Exception(BadMassage badMessage)
+Exception::Exception(
+    prs::ExceptionBadSequence e,
+    prs::lxr::TableOfSymbols<> & t)
+        : message{e.GetMessage() }
 {
-    switch (badMessage.GetErrorCode() )
+    message += L" Detected '";
+    message += t.GetSymbol(e.GetToken().attribue);
+    message += L"', expected";
+
+    for (const auto & r : e.GetExcpectedLexeme() )
     {
-        case 0:
-        {
-            message = L"Unknown error.";
-            fatalError = true;
-        }
-            break;
-
-        case 1:
-        {
-            message = L"LR0Algorithm: empty input sequence.";
-            fatalError = true;
-        }
-            break;
-
-        case 2:
-        {
-            message = L"LR0Algorithm: the sequence must end with ';'.";
-            fatalError = true;
-        }
-            break;
-
-        case 3:
-        {
-            message = L"LR0Algorithm: bad sequence detected, after:";
-            fatalError = true;
-        }
-            break;
-
-        case 4:
-        {
-            message = L"Parser: bad token detected:";
-            fatalError = true;
-        }
-            break;
+        message += L" '";
+        message += r;
+        message += L"',";
     }
+
+    message.back() = L'.';
+}
+
+Exception::Exception(
+    prs::ExceptionBadTokens e,
+    prs::lxr::TableOfSymbols<> & t)
+        : message{e.GetMessage() }
+{
+    auto badTokens = e.GetBadTokens();
+
+    for (const auto & r : badTokens)
+    {
+        message += L' ';
+        message += t.GetSymbol(r.attribue);
+        message += L',';
+    }
+
+    message.back() = L'.';
+}
+
+Exception::Exception(prs::ExceptionParser e)
+    : message{e.GetMessage() }
+{
+    fatalError = true;
 }

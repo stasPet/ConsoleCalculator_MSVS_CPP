@@ -156,7 +156,9 @@
   <ItemGroup>
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="Exception.h" />
-    <ClInclude Include="Parser\BadMassage.h" />
+    <ClInclude Include="Parser\ExceptionBadTokens.h" />
+    <ClInclude Include="Parser\ExceptionBadSequence.h" />
+    <ClInclude Include="Parser\ExceptionParser.h" />
     <ClInclude Include="Parser\Lexer\LexemeState.h" />
     <ClInclude Include="Parser\Lexer\LexemeStateImpl.h" />
     <ClInclude Include="Parser\Lexer\Lexer.h" />

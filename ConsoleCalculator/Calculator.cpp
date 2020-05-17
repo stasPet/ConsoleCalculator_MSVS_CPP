@@ -1,28 +1,36 @@
 #include "Calculator.h"
 
-#include "Parser/BadMassage.h"
+#include "Parser/ExceptionBadSequence.h"
+#include "Parser/ExceptionBadTokens.h"
+
 #include "Exception.h"
 
 using namespace clc;
-using namespace prs;
-using namespace lxr;
 
 double Calculator::GetResult()
 {
-    std::queue<Token> rpn{};
+    std::queue<prs::lxr::Token> rpn{};
 
     try
     {
         rpn = parser.GetRPN();
     }
-    catch (BadMassage & m)
+    catch (prs::ExceptionBadSequence & e)
     {
-        throw Exception{m};
+        throw Exception{e, tableOfSymbols};
+    } 
+    catch (prs::ExceptionBadTokens & e)
+    {
+        throw Exception{e, tableOfSymbols};
+    }  
+    catch (prs::ExceptionParser & e)
+    {
+        throw Exception{e};
     }  
 
     std::stack<double> buffer;
 
-    Token t;
+    prs::lxr::Token t;
     double l, r;
 
     while (!rpn.empty() )
@@ -30,7 +38,7 @@ double Calculator::GetResult()
         t = rpn.front();
         rpn.pop();
 
-        if (t.type == Number)
+        if (t.type == prs::lxr::Number)
             buffer.push(GetNumber(t) );
         else
         {
@@ -42,19 +50,19 @@ double Calculator::GetResult()
 
             switch (t.type)
             {
-                case Multiplication:
+                case prs::lxr::Multiplication:
                     buffer.push(l * r);
                     break;
 
-                case Division:
+                case prs::lxr::Division:
                     buffer.push(l / r);
                     break;
 
-                case Addition:
+                case prs::lxr::Addition:
                     buffer.push(l + r);
                     break;
 
-                case Subtraction:
+                case prs::lxr::Subtraction:
                     buffer.push(l - r);
                     break;
             }

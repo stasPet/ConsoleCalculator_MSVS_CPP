@@ -8,7 +8,7 @@ using namespace clc;
 
 int main()
 {
-	std::wistringstream sstream{L"3-1/(2;"};
+	std::wistringstream sstream{L"(1+);"};
 	Calculator calculator{sstream};
 
 	while (calculator)
@@ -20,7 +20,7 @@ int main()
 		}
 		catch (Exception & e)
 		{
-			std::wcerr << e.GetMessage();
+			std::wcerr << e.GetMessage() << std::endl;
 
 			if (e.IsFatalError() )
 				break;

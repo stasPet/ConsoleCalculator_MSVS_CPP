@@ -1,18 +1,18 @@
 #include "LR0Algorithm.h"
-#include "BadMassage.h"
+#include "ExceptionBadSequence.h"
 
 using namespace clc::prs;
 using namespace lxr;
 
 std::queue<lxr::Token> & LR0Algorithm::GetRPN()
-{        
-    // 1 - LR0Algorithm: empty input sequence.    
+{          
     if (qt.empty() )
-        throw BadMassage{1};
+        throw ExceptionParser{
+            L"LR0Algorithm: empty input sequence."};
 
-    // 2 - LR0Algorithm: the sequence must end with ';'.
     if (qt.back().type != End)
-        throw BadMassage{2};
+        throw ExceptionParser{
+            L"LR0Algorithm: the sequence must end with ';'."};
 
     ss.push(Start);
     tb = qt.front();
@@ -65,20 +65,12 @@ void LR0Algorithm::Goto::Execute()
 
 void LR0Algorithm::Bad::Execute()
 {
-    std::queue<lxr::Token> temp;
-
-    temp.push(host.rpn.back() );    // after token
-    temp.push(host.tb);             // come token
-
-    // expected tokens
-    while (!expectedTokens.empty() )
+    throw ExceptionBadSequence
     {
-        temp.emplace(expectedTokens.front() );
-        expectedTokens.pop();
-    }
-
-    // 3 - LR0Algorithm: bad sequence detected, after:
-    throw BadMassage{3, temp};
+        L"LR0Algorithm: Bad sequence.",
+        host.tb,
+        expectedLexeme
+    };
 }
 
 bool LR0Algorithm::IsOperand(TokenEnum t)
@@ -104,16 +96,16 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[0][1]   = &sB1;       // Term
     commandTable[0][2]   = &sE1;       // Factor
     commandTable[0][3]   = &sF1;       // Number
-    commandTable[0][4]   = nullptr;    // Name
+    commandTable[0][4]   = &sF1;       // Name
     commandTable[0][5]   = nullptr;    // Call
-    commandTable[0][6]   = nullptr;    // Multiplication
-    commandTable[0][7]   = nullptr;    // Division
-    commandTable[0][8]   = nullptr;    // Addition
+    commandTable[0][6]   = &bhStart;   // Multiplication
+    commandTable[0][7]   = &bhStart;   // Division
+    commandTable[0][8]   = &bhStart;   // Addition
     commandTable[0][9]   = nullptr;    // Subtraction
-    commandTable[0][10]  = nullptr;    // UnarySubtraction
+    commandTable[0][10]  = nullptr;    // UnarySubtraction         REMOVE!!!
     commandTable[0][11]  = &sC1;       // LeftParenthesis
-    commandTable[0][12]  = nullptr;    // RightParenthesis
-    commandTable[0][13]  = nullptr;    // End
+    commandTable[0][12]  = &bhStart;   // RightParenthesis
+    commandTable[0][13]  = &bhStart;   // End
 
     // A1
     commandTable[1][0]   = nullptr;    // Expression
@@ -136,16 +128,16 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[2][1]   = &sA3;       // Term
     commandTable[2][2]   = &sE1;       // Factor
     commandTable[2][3]   = &sF1;       // Number
-    commandTable[2][4]   = nullptr;    // Name
+    commandTable[2][4]   = &sF1;       // Name
     commandTable[2][5]   = nullptr;    // Call
-    commandTable[2][6]   = nullptr;    // Multiplication
-    commandTable[2][7]   = nullptr;    // Division
-    commandTable[2][8]   = nullptr;    // Addition
+    commandTable[2][6]   = &bhStart;   // Multiplication
+    commandTable[2][7]   = &bhStart;   // Division
+    commandTable[2][8]   = &bhStart;   // Addition
     commandTable[2][9]   = nullptr;    // Subtraction
     commandTable[2][10]  = nullptr;    // UnarySubtraction
     commandTable[2][11]  = &sC1;       // LeftParenthesis
-    commandTable[2][12]  = nullptr;    // RightParenthesis
-    commandTable[2][13]  = nullptr;    // End
+    commandTable[2][12]  = &bhStart;   // RightParenthesis
+    commandTable[2][13]  = &bhStart;   // End
 
     // A3
     commandTable[3][0]   = nullptr;    // Expression
@@ -184,7 +176,7 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[5][1]   = nullptr;    // Term
     commandTable[5][2]   = &sB3;       // Factor
     commandTable[5][3]   = &sF1;       // Number
-    commandTable[5][4]   = nullptr;    // Name
+    commandTable[5][4]   = &sF1;       // Name
     commandTable[5][5]   = nullptr;    // Call
     commandTable[5][6]   = nullptr;    // Multiplication
     commandTable[5][7]   = nullptr;    // Division
@@ -216,16 +208,16 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[7][1]   = &sB1;       // Term
     commandTable[7][2]   = &sE1;       // Factor
     commandTable[7][3]   = &sF1;       // Number
-    commandTable[7][4]   = nullptr;    // Name
+    commandTable[7][4]   = &sF1;       // Name
     commandTable[7][5]   = nullptr;    // Call
-    commandTable[7][6]   = nullptr;    // Multiplication
-    commandTable[7][7]   = nullptr;    // Division
-    commandTable[7][8]   = nullptr;    // Addition
+    commandTable[7][6]   = &bhStart;    // Multiplication
+    commandTable[7][7]   = &bhStart;    // Division
+    commandTable[7][8]   = &bhStart;    // Addition
     commandTable[7][9]   = nullptr;    // Subtraction
     commandTable[7][10]  = nullptr;    // UnarySubtraction
     commandTable[7][11]  = &sC1;       // LeftParenthesis
-    commandTable[7][12]  = nullptr;    // RightParenthesis
-    commandTable[7][13]  = nullptr;    // End
+    commandTable[7][12]  = &bhStart;    // RightParenthesis
+    commandTable[7][13]  = &bhStart;    // End
 
     // C2
     commandTable[8][0]   = nullptr;    // Expression
@@ -241,7 +233,7 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[8][10]  = nullptr;    // UnarySubtraction
     commandTable[8][11]  = nullptr;    // LeftParenthesis
     commandTable[8][12]  = &sC3;       // RightParenthesis
-    commandTable[8][13]  = &bh1;       // End
+    commandTable[8][13]  = &tempHandler;       // End
 
     // C3
     commandTable[9][0]   = nullptr;    // Expression
@@ -311,15 +303,15 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[13][0]  = nullptr;    // Expression
     commandTable[13][1]  = nullptr;    // Term
     commandTable[13][2]  = nullptr;    // Factor
-    commandTable[13][3]  = nullptr;    // Number
-    commandTable[13][4]  = nullptr;    // Name
-    commandTable[13][5]  = nullptr;    // Call
+    commandTable[13][3]  = &bhF1;      // Number
+    commandTable[13][4]  = &bhF1;      // Name
+    commandTable[13][5]  = &bhF1;      // Call
     commandTable[13][6]  = &r6;        // Multiplication
     commandTable[13][7]  = &r6;        // Division
     commandTable[13][8]  = &r6;        // Addition
     commandTable[13][9]  = &r6;        // Subtraction
     commandTable[13][10] = nullptr;    // UnarySubtraction
-    commandTable[13][11] = nullptr;    // LeftParenthesis
+    commandTable[13][11] = &bhF1;      // LeftParenthesis
     commandTable[13][12] = &r6;        // RightParenthesis
     commandTable[13][13] = &r6;        // End
 }

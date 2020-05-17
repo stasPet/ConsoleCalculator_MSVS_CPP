@@ -89,11 +89,17 @@
     <ClInclude Include="Parser\LR0Algorithm.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\BadMassage.h">
-      <Filter>Parser\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Exception.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\ExceptionBadTokens.h">
+      <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\ExceptionBadSequence.h">
+      <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\ExceptionParser.h">
+      <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

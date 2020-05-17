@@ -1,7 +1,11 @@
 #pragma once
 
 #include <string>
-#include "Parser/BadMassage.h"
+
+#include "Parser/ExceptionBadSequence.h"
+#include "Parser/ExceptionBadTokens.h"
+
+#include "Parser/Lexer/TableOfSymbols.h"
 
 namespace clc
 {
@@ -9,10 +13,18 @@ namespace clc
     {
     private:
         std::wstring message;
-        bool fatalError;
+        bool fatalError{};
 
     public:
-        Exception(prs::BadMassage);
+        Exception(
+            prs::ExceptionBadSequence,
+            prs::lxr::TableOfSymbols<> &);
+
+        Exception(
+            prs::ExceptionBadTokens,
+            prs::lxr::TableOfSymbols<> &);
+
+        Exception(prs::ExceptionParser);
 
         std::wstring GetMessage() {return message;}
         bool IsFatalError() {return fatalError;}
