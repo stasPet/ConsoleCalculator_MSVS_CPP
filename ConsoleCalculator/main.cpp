@@ -8,7 +8,7 @@ using namespace clc;
 
 int main()
 {
-	std::wistringstream sstream{L"(1+);"};
+	std::wistringstream sstream{L"- -2+-2;"};
 	Calculator calculator{sstream};
 
 	while (calculator)
@@ -26,6 +26,6 @@ int main()
 				break;
 		}
 	}
-
+	
 	return 0;
 }

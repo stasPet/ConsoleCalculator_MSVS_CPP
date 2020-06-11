@@ -42,11 +42,20 @@ double Calculator::GetResult()
             buffer.push(GetNumber(t) );
         else
         {
-            r = buffer.top();
-            buffer.pop();
 
-            l = buffer.top();
-            buffer.pop();
+            if (t.type != prs::lxr::Not)
+            {
+                r = buffer.top();
+                buffer.pop();
+
+                l = buffer.top();
+                buffer.pop();
+            }
+            else
+            {
+                r = buffer.top();
+                buffer.pop();
+            }
 
             switch (t.type)
             {
@@ -64,6 +73,10 @@ double Calculator::GetResult()
 
                 case prs::lxr::Subtraction:
                     buffer.push(l - r);
+                    break;
+
+                case prs::lxr::Not:
+                    buffer.push(0 - r);
                     break;
             }
         }

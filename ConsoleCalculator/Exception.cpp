@@ -30,9 +30,9 @@ Exception::Exception(
 
     for (const auto & r : badTokens)
     {
-        message += L' ';
+        message += L'\'';
         message += t.GetSymbol(r.attribue);
-        message += L',';
+        message += L"',";
     }
 
     message.back() = L'.';

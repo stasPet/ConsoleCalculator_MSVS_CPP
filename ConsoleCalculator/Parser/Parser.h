@@ -27,7 +27,6 @@ namespace clc::prs
     {
     private:
         lxr::Lexer lexer;
-        LR0Algorithm lroa;
 
     public:
         Parser(std::wistream &);
@@ -42,7 +41,7 @@ namespace clc::prs
 
         operator bool();
 
-        std::queue<lxr::Token> & GetRPN();
+        std::queue<lxr::Token> GetRPN();
         lxr::TableOfSymbols<> & GetTableOfSymbol();
     };
 

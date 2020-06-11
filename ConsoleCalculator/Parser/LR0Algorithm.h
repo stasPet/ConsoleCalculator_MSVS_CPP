@@ -38,7 +38,6 @@ namespace clc::prs
         };
 
         // Finish -> Expression
-
         struct Finish : public Command
         {
         public:
@@ -136,51 +135,39 @@ namespace clc::prs
         // Term -> Factor
         Reduce r5{*this, lxr::Token{lxr::Term}, 1};
 
+        // Factor -> - Factor
+        Reduce r6{*this, lxr::Token{lxr::Factor}, 2};
+
         // Factor -> Number
-        Reduce r6{*this, lxr::Token{lxr::Factor}, 1};
+        Reduce r7{*this, lxr::Token{lxr::Factor}, 1};
 
-        // Factor -> -Number
-        Reduce r7{*this, lxr::Token{lxr::Factor}, 2};
-
-        // Factor -> (Expression)
+        // Factor -> ( Expression )
         Reduce r8{*this, lxr::Token{lxr::Factor}, 3};
+
+        // Factor -> call ( Expression )
+        Reduce r9{*this, lxr::Token{lxr::Factor}, 4};
 
         Goto  sA1{A1, *this};
         Shift sA2{A2, *this};
         Goto  sA3{A3, *this};
+
         Goto  sB1{B1, *this};
         Shift sB2{B2, *this};
         Goto  sB3{B3, *this};
+
         Shift sC1{C1, *this};
         Goto  sC2{C2, *this};
         Shift sC3{C3, *this};
-        //-number  sD1{D1, *this};
-        //-number  sD2{D2, *this};
+
+        Shift sD1{D1, *this};
+        Goto  sD2{D2, *this};
+
         Goto  sE1{E1, *this};
+
         Shift sF1{F1, *this};
 
-        // Bad handlers
-        Bad tempHandler{*this, {L"+", L"-", L")"} };
 
-        Bad bhStart
-        {
-            *this,
-            {
-                L"Number",
-                L"Name",
-                L"Call function",
-                L"-",
-                L"("
-            }
-        };
-
-        Bad bhF1
-        {
-            *this,
-            {
-                L"*", L"/", L"+", L"-", L")", L";",
-            }
-        };
+        // Bad handlers TODO
 
         std::vector<std::vector<Command *> > commandTable;
     };

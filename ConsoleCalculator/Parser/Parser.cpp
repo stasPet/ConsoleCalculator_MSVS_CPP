@@ -6,10 +6,11 @@
 using namespace clc::prs;
 using namespace lxr;
 
-std::queue<lxr::Token> & Parser::GetRPN()
+std::queue<lxr::Token> Parser::GetRPN()
 {
-    Token tempToken{};
+    LR0Algorithm lroa{};
     std::vector<lxr::Token> badTokens;
+    Token tempToken{};
 
     while (lexer)
     {

@@ -13,13 +13,13 @@ namespace clc::prs::lxr
         
         // terminals   
         Number,
-        Name,               // not implemented
-        Call,               // not implemented
+        Name,
+        Call,
         Multiplication,
         Division,
         Addition,
         Subtraction,
-        UnarySubtraction,   // not implemented
+        Not,
         LeftParenthesis,
         RightParenthesis,  
         End,
@@ -36,13 +36,13 @@ namespace clc::prs::lxr
         std::size_t attribue;
 
         explicit Token(TokenEnum t = TokenEnum::Empty,
-            std::size_t s = 0);
+            std::size_t a = 0);
 
         void Clear();
     };
 
-    inline Token::Token(TokenEnum t, std::size_t s) :
-        type(t), attribue(s) {}
+    inline Token::Token(TokenEnum t, std::size_t a) :
+        type(t), attribue(a) {}
 
     inline void Token::Clear()
     {

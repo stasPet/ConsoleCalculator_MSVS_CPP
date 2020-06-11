@@ -21,6 +21,8 @@ namespace clc::prs::lxr
 
         TableOfSymbols<> tableOfSymbols;
 
+        TokenEnum pastToken{Empty};
+
         Token RefineToken(TokenEnum, std::wstring &);
 
         TokenEnum RefineFunction(std::wstring &);
@@ -55,6 +57,7 @@ namespace clc::prs::lxr
     {
         inputIterator = s;
         tableOfSymbols.Clear();
+        pastToken = Empty;
     }
 
     inline Lexer::operator bool()
