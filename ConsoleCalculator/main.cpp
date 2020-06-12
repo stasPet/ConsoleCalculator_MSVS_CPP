@@ -8,7 +8,7 @@ using namespace clc;
 
 int main()
 {
-	std::wistringstream sstream{L"- -2+-2;"};
+	std::wistringstream sstream{L"-sqrt(sqrt(4 / 4) * (sqrt(4) - -1) );"};
 	Calculator calculator{sstream};
 
 	while (calculator)

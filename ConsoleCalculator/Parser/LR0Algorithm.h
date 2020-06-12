@@ -62,7 +62,9 @@ namespace clc::prs
 
         enum State : std::size_t // (used in action table)
         {
-            Start, A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, E1, F1
+            Start,
+            A1, A2, A3, B1, B2, B3, C1, C2, C3,
+            D1, D2, E1, F1, G1, G2, G3, G4
         };
 
         class Shift : public Command
@@ -165,6 +167,11 @@ namespace clc::prs
         Goto  sE1{E1, *this};
 
         Shift sF1{F1, *this};
+
+        Shift sG1{G1, *this};
+        Shift sG2{G2, *this};
+        Goto  sG3{G3, *this};
+        Shift sG4{G4, *this};
 
 
         // Bad handlers TODO

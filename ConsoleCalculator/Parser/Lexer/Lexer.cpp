@@ -62,8 +62,6 @@ Token Lexer::GetToken()
 
 Token Lexer::RefineToken(TokenEnum e, std::wstring & s)
 {
-    TokenEnum temp = e;
-
     switch (e)
     {
         case TokenEnum::Operation:
@@ -75,7 +73,10 @@ Token Lexer::RefineToken(TokenEnum e, std::wstring & s)
             break;
     }
 
-    pastToken = temp;
+    if (IsUnary(e) )
+        e = Not;
+
+    pastToken = e;
 
     return Token
     {
@@ -107,11 +108,6 @@ TokenEnum Lexer::RefineOperation(std::wstring::value_type c)
             return TokenEnum::Addition;
 
         case L'-':
-            // Check unary negative
-            if (pastToken == Operation ||
-                pastToken == Empty)
-                return Not;
-
             return TokenEnum::Subtraction;
 
         case L'(':

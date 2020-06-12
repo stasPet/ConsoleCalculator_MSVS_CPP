@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "Calculator.h"
 
 #include "Parser/ExceptionBadSequence.h"
@@ -31,7 +33,7 @@ double Calculator::GetResult()
     std::stack<double> buffer;
 
     prs::lxr::Token t;
-    double l, r;
+    double l{}, r{};
 
     while (!rpn.empty() )
     {
@@ -43,17 +45,18 @@ double Calculator::GetResult()
         else
         {
 
-            if (t.type != prs::lxr::Not)
+            if (t.type == prs::lxr::Not ||
+                t.type == prs::lxr::Call)
             {
                 r = buffer.top();
-                buffer.pop();
-
-                l = buffer.top();
                 buffer.pop();
             }
             else
             {
                 r = buffer.top();
+                buffer.pop();
+
+                l = buffer.top();
                 buffer.pop();
             }
 
@@ -77,6 +80,22 @@ double Calculator::GetResult()
 
                 case prs::lxr::Not:
                     buffer.push(0 - r);
+                    break;
+
+                case prs::lxr::Call: // TODO case
+                {
+                    std::wstring rCall =
+                        tableOfSymbols.GetSymbol(t.attribue);
+
+                    if      (rCall == L"sqrt")
+                                buffer.push(std::sqrt(r) );
+
+                    else if (rCall == L"");
+
+                    else if (rCall == L"");
+
+                    else if (rCall == L"");
+                }
                     break;
             }
         }

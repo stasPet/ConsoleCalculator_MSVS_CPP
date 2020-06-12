@@ -22,6 +22,7 @@ namespace clc::prs::lxr
         TableOfSymbols<> tableOfSymbols;
 
         TokenEnum pastToken{Empty};
+        bool IsUnary(TokenEnum);
 
         Token RefineToken(TokenEnum, std::wstring &);
 
@@ -68,5 +69,11 @@ namespace clc::prs::lxr
     inline TableOfSymbols<> & Lexer::GetTableOfSymbol()
     {
         return tableOfSymbols;
+    }
+
+    inline bool Lexer::IsUnary(TokenEnum t)
+    {
+        return t == Subtraction &&
+            pastToken != RightParenthesis;
     }
 }

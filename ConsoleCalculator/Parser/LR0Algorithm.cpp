@@ -93,7 +93,7 @@ void LR0Algorithm::PushToken(lxr::Token t)
 }
 
 LR0Algorithm::LR0Algorithm() :
-    commandTable(19, std::vector<Command *>(14) )
+    commandTable(18, std::vector<Command *>(14) )
 {
     // START
     commandTable[0][0]   = &sA1;       // Expression
@@ -101,7 +101,7 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[0][2]   = &sE1;       // Factor
     commandTable[0][3]   = &sF1;       // Number
     commandTable[0][4]   = &sF1;       // Name
-    commandTable[0][5]   = nullptr;    // Call
+    commandTable[0][5]   = &sG1;       // Call
     commandTable[0][6]   = nullptr;    // Multiplication
     commandTable[0][7]   = nullptr;    // Division
     commandTable[0][8]   = nullptr;    // Addition
@@ -133,7 +133,7 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[2][2]   = &sE1;       // Factor
     commandTable[2][3]   = &sF1;       // Number
     commandTable[2][4]   = &sF1;       // Name
-    commandTable[2][5]   = nullptr;    // Call
+    commandTable[2][5]   = &sG1;       // Call
     commandTable[2][6]   = nullptr;    // Multiplication
     commandTable[2][7]   = nullptr;    // Division
     commandTable[2][8]   = nullptr;    // Addition
@@ -181,7 +181,7 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[5][2]   = &sB3;       // Factor
     commandTable[5][3]   = &sF1;       // Number
     commandTable[5][4]   = &sF1;       // Name
-    commandTable[5][5]   = nullptr;    // Call
+    commandTable[5][5]   = &sG1;       // Call
     commandTable[5][6]   = nullptr;    // Multiplication
     commandTable[5][7]   = nullptr;    // Division
     commandTable[5][8]   = nullptr;    // Addition
@@ -213,7 +213,7 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[7][2]   = &sE1;       // Factor
     commandTable[7][3]   = &sF1;       // Number
     commandTable[7][4]   = &sF1;       // Name
-    commandTable[7][5]   = nullptr;    // Call
+    commandTable[7][5]   = &sG1;       // Call
     commandTable[7][6]   = nullptr;    // Multiplication
     commandTable[7][7]   = nullptr;    // Division
     commandTable[7][8]   = nullptr;    // Addition
@@ -261,7 +261,7 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[10][2]  = &sD2;       // Factor
     commandTable[10][3]  = &sF1;       // Number
     commandTable[10][4]  = nullptr;    // Name
-    commandTable[10][5]  = nullptr;    // Call
+    commandTable[10][5]  = &sG1;       // Call
     commandTable[10][6]  = nullptr;    // Multiplication
     commandTable[10][7]  = nullptr;    // Division
     commandTable[10][8]  = nullptr;    // Addition
@@ -318,4 +318,68 @@ LR0Algorithm::LR0Algorithm() :
     commandTable[13][11] = nullptr;    // LeftParenthesis
     commandTable[13][12] = &r7;        // RightParenthesis
     commandTable[13][13] = &r7;        // End
+
+    // G1
+    commandTable[14][0]  = nullptr;    // Expression
+    commandTable[14][1]  = nullptr;    // Term
+    commandTable[14][2]  = nullptr;    // Factor
+    commandTable[14][3]  = nullptr;    // Number
+    commandTable[14][4]  = nullptr;    // Name
+    commandTable[14][5]  = nullptr;    // Call
+    commandTable[14][6]  = nullptr;    // Multiplication
+    commandTable[14][7]  = nullptr;    // Division
+    commandTable[14][8]  = nullptr;    // Addition
+    commandTable[14][9]  = nullptr;    // Subtraction
+    commandTable[14][10] = nullptr;    // Not
+    commandTable[14][11] = &sG2;       // LeftParenthesis
+    commandTable[14][12] = nullptr;    // RightParenthesis
+    commandTable[14][13] = nullptr;    // End
+
+    // G2
+    commandTable[15][0]  = &sG3;       // Expression
+    commandTable[15][1]  = &sB1;       // Term
+    commandTable[15][2]  = &sE1;       // Factor
+    commandTable[15][3]  = &sF1;       // Number
+    commandTable[15][4]  = nullptr;    // Name
+    commandTable[15][5]  = &sG1;       // Call
+    commandTable[15][6]  = nullptr;    // Multiplication
+    commandTable[15][7]  = nullptr;    // Division
+    commandTable[15][8]  = nullptr;    // Addition
+    commandTable[15][9]  = nullptr;    // Subtraction
+    commandTable[15][10] = &sD1;       // Not
+    commandTable[15][11] = nullptr;    // LeftParenthesis
+    commandTable[15][12] = nullptr;    // RightParenthesis
+    commandTable[15][13] = nullptr;    // End
+
+    // G3
+    commandTable[16][0]  = nullptr;    // Expression
+    commandTable[16][1]  = nullptr;    // Term
+    commandTable[16][2]  = nullptr;    // Factor
+    commandTable[16][3]  = nullptr;    // Number
+    commandTable[16][4]  = nullptr;    // Name
+    commandTable[16][5]  = nullptr;    // Call
+    commandTable[16][6]  = nullptr;    // Multiplication
+    commandTable[16][7]  = nullptr;    // Division
+    commandTable[16][8]  = &sA2;       // Addition
+    commandTable[16][9]  = nullptr;    // Subtraction
+    commandTable[16][10] = nullptr;    // Not
+    commandTable[16][11] = nullptr;    // LeftParenthesis
+    commandTable[16][12] = &sG4;       // RightParenthesis
+    commandTable[16][13] = nullptr;    // End
+
+    // G4
+    commandTable[17][0]  = nullptr;    // Expression
+    commandTable[17][1]  = nullptr;    // Term
+    commandTable[17][2]  = nullptr;    // Factor
+    commandTable[17][3]  = nullptr;    // Number
+    commandTable[17][4]  = nullptr;    // Name
+    commandTable[17][5]  = nullptr;    // Call
+    commandTable[17][6]  = &r9;        // Multiplication
+    commandTable[17][7]  = &r9;        // Division
+    commandTable[17][8]  = &r9;        // Addition
+    commandTable[17][9]  = &r9;        // Subtraction
+    commandTable[17][10] = nullptr;    // Not
+    commandTable[17][11] = nullptr;    // LeftParenthesis
+    commandTable[17][12] = &r9;        // RightParenthesis
+    commandTable[17][13] = &r9;        // End
 }
