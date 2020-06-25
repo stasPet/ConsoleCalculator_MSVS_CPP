@@ -122,3 +122,14 @@ TokenEnum Lexer::RefineOperation(std::wstring::value_type c)
 
     return TokenEnum::Operation;
 }
+
+bool Lexer::IsUnary(TokenEnum t)
+{
+    return t == Subtraction &&
+        (pastToken == LeftParenthesis ||
+         pastToken == Multiplication ||
+         pastToken == Division ||
+         pastToken == Addition ||
+         pastToken == Subtraction ||
+         pastToken == Empty);
+}

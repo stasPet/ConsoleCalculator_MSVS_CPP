@@ -14,14 +14,17 @@
     Finish     -> Expression
     Expression -> Expression + Term
     Expression -> Expression - Term
-    Expression -> Term
 
+    Expression -> Term
     Term -> Term * Factor
     Term -> Term / Factor
+
     Term -> Factor
 
+    Factor -> - Factor
+
     Factor -> Number
-    Factor -> -Number
+    Factor -> Variable
 
     Factor -> (Expression)
 **************************************************************/
@@ -53,6 +56,8 @@ namespace clc::prs
 
             LR0Algorithm & host;  
 
+            bool IsOperation(lxr::TokenEnum);
+
         public:
             Reduce(LR0Algorithm & h, lxr::Token t, std::size_t s) :
                 host{h}, rn{t}, rs{s} {}
@@ -72,6 +77,8 @@ namespace clc::prs
         private:
             State state;   
             LR0Algorithm & host;
+
+            bool IsOperand(lxr::TokenEnum);
 
         public:
             Shift(State s, LR0Algorithm & h) : state{s}, host{h} {}
@@ -104,6 +111,12 @@ namespace clc::prs
             virtual void Execute() override;
         };
 
+        class FatalError : public Command
+        {
+        public:
+            virtual void Execute() override;
+        };
+
     public:
         LR0Algorithm();
 
@@ -118,9 +131,6 @@ namespace clc::prs
 
         std::queue<lxr::Token> qt;          // incoming tokens
         lxr::Token tb;                      // token buffer
-
-        bool IsOperand(lxr::TokenEnum);
-        bool IsOperation(lxr::TokenEnum);
 
         // Finish -> Expression
         Finish r1{};
@@ -149,32 +159,46 @@ namespace clc::prs
         // Factor -> call ( Expression )
         Reduce r9{*this, lxr::Token{lxr::Factor}, 4};
 
+        // Finish     -> Expression
+        // Expression -> Expression + Term | Expression - Term
         Goto  sA1{A1, *this};
         Shift sA2{A2, *this};
         Goto  sA3{A3, *this};
 
+        // Expression -> Term
+        // Term       -> Term * Factor | Term / Factor
         Goto  sB1{B1, *this};
         Shift sB2{B2, *this};
         Goto  sB3{B3, *this};
 
+        // Factor -> ( Expression )
         Shift sC1{C1, *this};
         Goto  sC2{C2, *this};
         Shift sC3{C3, *this};
 
+        // Factor -> - Factor
         Shift sD1{D1, *this};
         Goto  sD2{D2, *this};
 
+        // Term -> Factor
         Goto  sE1{E1, *this};
 
+        // Factor -> Number
         Shift sF1{F1, *this};
 
+        // Factor -> call ( Expression )
         Shift sG1{G1, *this};
         Shift sG2{G2, *this};
         Goto  sG3{G3, *this};
         Shift sG4{G4, *this};
 
-
         // Bad handlers TODO
+        Bad b1{*this, {L"number", L"variable", L"function call", L"-", L"("} };
+        Bad b2{*this, {L"*", L"/", L"+", L"-", L";"} };
+        Bad b3{*this, {L"*", L"/", L"+", L"-", L")"} };
+        Bad b4{*this, {L"("} };
+
+        FatalError fatal;
 
         std::vector<std::vector<Command *> > commandTable;
     };

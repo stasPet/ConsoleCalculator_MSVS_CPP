@@ -8,24 +8,28 @@ using namespace clc;
 
 int main()
 {
-	std::wistringstream sstream{L"-sqrt(sqrt(4 / 4) * (sqrt(4) - -1) );"};
-	Calculator calculator{sstream};
+    std::wstring expression{L"2 -(5+-sqrt((1);"};
 
-	while (calculator)
-	{
-		try
-		{
-			std::wcout << calculator.GetResult()
-				<< std::endl;
-		}
-		catch (Exception & e)
-		{
-			std::wcerr << e.GetMessage() << std::endl;
+    std::wistringstream sstream{expression};
+    Calculator calculator{sstream};
 
-			if (e.IsFatalError() )
-				break;
-		}
-	}
-	
-	return 0;
+    std::wcout << expression << std::endl;
+
+    while (calculator)
+    {
+        try
+        {
+            std::wcout << calculator.GetResult()
+                << std::endl;
+        }
+        catch(Exception & e)
+        {
+            std::wcerr << e.GetMessage() << std::endl;
+
+            if (e.IsFatalError() )
+                break;
+        }
+    }
+
+    return 0;
 }

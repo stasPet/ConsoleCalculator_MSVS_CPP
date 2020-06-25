@@ -87,14 +87,17 @@ double Calculator::GetResult()
                     std::wstring rCall =
                         tableOfSymbols.GetSymbol(t.attribue);
 
-                    if      (rCall == L"sqrt")
-                                buffer.push(std::sqrt(r) );
+                    if (rCall == L"sqrt")
+                        buffer.push(std::sqrt(r) );
 
-                    else if (rCall == L"");
+                    else if (rCall == L"sin")
+                        buffer.push(std::sin(r) );
 
-                    else if (rCall == L"");
+                    else if (rCall == L"cos")
+                        buffer.push(std::cos(r) );
 
-                    else if (rCall == L"");
+                    else if (rCall == L"tan")
+                        buffer.push(std::tan(r) );
                 }
                     break;
             }

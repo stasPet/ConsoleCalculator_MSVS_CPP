@@ -33,7 +33,7 @@ namespace clc::prs::lxr
 
     public:
         Lexer(std::wistream &, std::initializer_list<std::wstring> l =
-                {L"sin", L"cos", L"tg", L"ctg", L"sqrt",} );
+                {L"sin", L"cos", L"tan", L"sqrt",} );
 
         Lexer(Lexer const &) = delete;
         Lexer(Lexer &&) = default;
@@ -69,11 +69,5 @@ namespace clc::prs::lxr
     inline TableOfSymbols<> & Lexer::GetTableOfSymbol()
     {
         return tableOfSymbols;
-    }
-
-    inline bool Lexer::IsUnary(TokenEnum t)
-    {
-        return t == Subtraction &&
-            pastToken != RightParenthesis;
     }
 }

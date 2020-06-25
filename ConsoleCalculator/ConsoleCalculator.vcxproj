@@ -166,6 +166,7 @@
     <ClInclude Include="Parser\Lexer\Token.h" />
     <ClInclude Include="Parser\LR0Algorithm.h" />
     <ClInclude Include="Parser\Parser.h" />
+    <ClInclude Include="Parser\ShowStateDebug.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Documents\ClassResponsibilities.txt" />

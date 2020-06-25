@@ -101,6 +101,9 @@
     <ClInclude Include="Parser\ExceptionParser.h">
       <Filter>Parser\Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Parser\ShowStateDebug.h">
+      <Filter>Parser\Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Documents\ClassResponsibilities.txt">
